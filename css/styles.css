@@ -402,13 +402,27 @@ a:hover {
 
 .wma-ctrl-bar {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 0.75rem;
   padding-bottom: 1.25rem;
   margin-bottom: 1.5rem;
   border-bottom: 1px solid var(--border-subtle);
+}
+
+.wma-ctrl-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.wma-ctrl-grp {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
 }
 
 .wma-layer-toggles {
@@ -463,6 +477,36 @@ a:hover {
 .btn-layer-chip.basemap-toggle.active {
   background: var(--accent-cyan);
   color: var(--bg-deep);
+}
+
+.btn-layer-chip.theme-toggle.active {
+  background: #38bdf8;
+  color: #05080f;
+  border-color: #38bdf8;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+}
+
+.btn-layer-chip.phase-toggle.active {
+  background: var(--accent-amber);
+  color: #05080f;
+  border-color: var(--accent-amber);
+  box-shadow: 0 0 12px rgba(248, 184, 56, 0.4);
+}
+
+/* Custom Leaflet Tooltip for Sector Map */
+.leaflet-tooltip.custom-leaflet-tooltip {
+  background: #030712 !important;
+  border: 1px solid rgba(56, 189, 248, 0.4) !important;
+  color: #f1f5f9 !important;
+  font-family: var(--font-sans) !important;
+  font-size: 0.8rem !important;
+  border-radius: 6px !important;
+  padding: 6px 10px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6) !important;
+}
+
+.leaflet-tooltip.custom-leaflet-tooltip:before {
+  border-top-color: #030712 !important;
 }
 
 .wma-display-split {

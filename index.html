@@ -126,40 +126,73 @@
       </p>
 
       <div class="wma-stage-card">
-        <!-- Control Bar: Layer Toggles & Base Map Switcher -->
+        <!-- Control Bar: Subsets, Thematic Mode, Phase Isolation & Base Map -->
         <div class="wma-ctrl-bar">
-          <!-- Layer Toggles -->
-          <div class="wma-layer-toggles">
-            <span class="ctrl-group-lbl">Layers:</span>
-            <button class="btn-layer-chip active" id="btn-layer-all" data-layer="all">
-              <span>●</span> All Phases
-            </button>
-            <button class="btn-layer-chip" id="btn-layer-female" data-layer="female">
-              <span>●</span> Female Burials (n=182)
-            </button>
-            <button class="btn-layer-chip" id="btn-layer-male" data-layer="male">
-              <span>●</span> Male Burials (n=178)
-            </button>
-            <button class="btn-layer-chip active" id="btn-layer-boundary" data-layer="boundary">
-              <span>⬡</span> Cemetery Perimeter
-            </button>
+          <!-- Row 1: Subsets & Thematic Mode -->
+          <div class="wma-ctrl-row">
+            <div class="wma-ctrl-grp">
+              <span class="ctrl-group-lbl">Subset:</span>
+              <button class="btn-layer-chip active" id="btn-layer-all" data-layer="all">
+                <span>●</span> All Burials (428)
+              </button>
+              <button class="btn-layer-chip" id="btn-layer-female" data-layer="female">
+                <span>●</span> Female (182)
+              </button>
+              <button class="btn-layer-chip" id="btn-layer-male" data-layer="male">
+                <span>●</span> Male (178)
+              </button>
+              <button class="btn-layer-chip active" id="btn-layer-boundary" data-layer="boundary">
+                <span>⬡</span> Perimeter
+              </button>
+            </div>
+
+            <div class="wma-ctrl-grp">
+              <span class="ctrl-group-lbl">Thematic View:</span>
+              <button class="btn-layer-chip theme-toggle active" data-mode="chronology">
+                Chronology
+              </button>
+              <button class="btn-layer-chip theme-toggle" data-mode="density">
+                Burial Density
+              </button>
+            </div>
           </div>
 
-          <!-- Base Map Switcher: None (Dark Canvas) & basemap.at Options -->
-          <div class="wma-layer-toggles">
-            <span class="ctrl-group-lbl">Base Map:</span>
-            <button class="btn-layer-chip basemap-toggle" data-bmap="none">
-              Dark Canvas
-            </button>
-            <button class="btn-layer-chip basemap-toggle active" data-bmap="grau">
-              Gray Map
-            </button>
-            <button class="btn-layer-chip basemap-toggle" data-bmap="ortho">
-              Aerial Photo
-            </button>
-            <button class="btn-layer-chip basemap-toggle" data-bmap="standard">
-              Standard
-            </button>
+          <!-- Row 2: Phase Isolation & Base Map -->
+          <div class="wma-ctrl-row" style="margin-top: 0.5rem; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 0.5rem;">
+            <div class="wma-ctrl-grp">
+              <span class="ctrl-group-lbl">Isolate Phase:</span>
+              <button class="btn-layer-chip phase-toggle active" data-phase="all">
+                All (428)
+              </button>
+              <button class="btn-layer-chip phase-toggle" data-phase="EAP">
+                Early (167)
+              </button>
+              <button class="btn-layer-chip phase-toggle" data-phase="MAP">
+                Middle (142)
+              </button>
+              <button class="btn-layer-chip phase-toggle" data-phase="LAP">
+                Late (112)
+              </button>
+            </div>
+
+            <div class="wma-ctrl-grp">
+              <span class="ctrl-group-lbl">Basemap:</span>
+              <button class="btn-layer-chip basemap-toggle" data-bmap="none">
+                Dark Canvas
+              </button>
+              <button class="btn-layer-chip basemap-toggle active" data-bmap="grau">
+                Gray
+              </button>
+              <button class="btn-layer-chip basemap-toggle" data-bmap="ortho">
+                Aerial Photo
+              </button>
+              <button class="btn-layer-chip basemap-toggle" data-bmap="standard">
+                Standard
+              </button>
+              <button id="btn-recenter-map" class="btn-layer-chip" title="Recenter and fit cemetery bounds" style="background: rgba(56, 189, 248, 0.12); border-color: rgba(56, 189, 248, 0.4); color: #38bdf8;">
+                ⌖ Fit View
+              </button>
+            </div>
           </div>
         </div>
 
@@ -197,37 +230,8 @@
                 </div>
               </div>
 
-              <!-- Chronology Key Strip -->
-              <div class="chronology-legend-grid">
-                <div class="chrono-item">
-                  <span class="chrono-dot" style="background: #22d3ee;"></span>
-                  <div>
-                    <strong>Early Avar (EAP)</strong>
-                    <span>c. 568–650 AD</span>
-                  </div>
-                </div>
-                <div class="chrono-item">
-                  <span class="chrono-dot" style="background: #ff4d29;"></span>
-                  <div>
-                    <strong>Middle Avar (MAP)</strong>
-                    <span>c. 650–700 AD</span>
-                  </div>
-                </div>
-                <div class="chrono-item">
-                  <span class="chrono-dot" style="background: #f8b838;"></span>
-                  <div>
-                    <strong>Late Avar (LAP)</strong>
-                    <span>c. 700–800 AD</span>
-                  </div>
-                </div>
-                <div class="chrono-item">
-                  <span class="chrono-dot" style="background: #c084fc;"></span>
-                  <div>
-                    <strong>Mixed Horizon</strong>
-                    <span>Phase Tie</span>
-                  </div>
-                </div>
-              </div>
+              <!-- Dynamic Legend Container (Chronology / Density) -->
+              <div id="inspect-legend-target"></div>
             </div>
 
             <!-- Spatial Rights Note -->
