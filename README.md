@@ -128,9 +128,9 @@ git push -u origin main
 
 ## 👥 Principal Investigators & Cooperations
 
-* **Dr. Dominik Hagmann** (Project Lead / Digital Archaeology, VIAS – University of Vienna)
-* **Univ.-Prof. Dr. Sylvia Kirchengast** (Bioarchaeology & Anthropology, Department of Evolutionary Anthropology, University of Vienna)
-* **Dr. Birgit Bühler** (Material Culture & Archaeometry, VIAS – University of Vienna)
+* **Dominik Hagmann** (Project Lead / Digital Archaeology, VIAS & HEAS – University of Vienna)
+* **Sylvia Kirchengast** (Bioarchaeology & Evolutionary Anthropology, Department of Evolutionary Anthropology & HEAS – University of Vienna)
+* **Birgit Bühler** (Material Culture & Archaeometry, VIAS & HEAS – University of Vienna)
 * **Cooperation:** Wien Museum, City of Vienna Culture (Stadt Wien Kultur)
 * **Funding:** Supported by the *Hochschuljubiläumsfonds der Stadt Wien* (Grant H-448297/2023)
 
