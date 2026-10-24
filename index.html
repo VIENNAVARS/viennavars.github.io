@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VIENNAVARS — Forschungsdaten & Archäothanatologie | Csokorgasse, Wien 11</title>
+  
+  <meta name="description" content="Offizielles Forschungsdaten-Portal des Projekts VIENNAVARS: Visualisierung und Interpretation weiblicher Lebenswelten in der Awarenzeit am Beispiel des Gräberfeldes Csokorgasse, Wien 11. Langzeitarchivierung auf PHAIDRA.">
+  <meta name="keywords" content="VIENNAVARS, Csokorgasse, Awarenzeit, Archäothanatologie, Bioarchäologie, PHAIDRA, Universität Wien, VIAS, Open Data">
+  <meta name="author" content="Dr. Dominik Hagmann, Univ.-Prof. Dr. Sylvia Kirchengast, Dr. Birgit Bühler">
+  <meta name="dc.identifier" content="10.25365/phaidra.537">
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="VIENNAVARS — Forschungsdaten-Portal">
+  <meta property="og:description" content="Visualisierung und Interpretation weiblicher Lebenswelten in der Awarenzeit (7.–8. Jh. n. Chr.) am Beispiel der Population des Gräberfeldes Csokorgasse, Wien 11.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://viennavars.github.io">
+
+  <!-- Google Fonts: Inter & Newsreader / Cormorant -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Leaflet CSS for GIS Mapping -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+  <!-- Portal Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container">
+      <a href="#top" class="brand-link">
+        <span class="brand-badge">VIENNAVARS</span>
+        <span class="brand-tag">Data Portal</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#uebersicht" data-i18n="nav_overview">Übersicht</a></li>
+          <li><a href="#daten-phaidra" data-i18n="nav_data">Daten & PHAIDRA</a></li>
+          <li><a href="#katalog" data-i18n="nav_catalog">Gräberkatalog</a></li>
+          <li><a href="#karte" data-i18n="nav_map">GIS-Karte</a></li>
+          <li><a href="#methode" data-i18n="nav_method">Archäothanatologie</a></li>
+          <li><a href="#team" data-i18n="nav_team">Team & Partner</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="lang-toggle" class="btn-lang" aria-label="Sprache wechseln / Switch Language">
+          🌐 EN
+        </button>
+        <a href="https://github.com/VIENNAVARS" target="_blank" rel="noopener" class="code-pill" style="font-weight: 600; color: var(--color-primary-dark); display: inline-flex; align-items: center; gap: 0.35rem;" title="VIENNAVARS auf GitHub">
+          <svg height="16" width="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="uebersicht" class="hero">
+    <div class="container">
+      <div class="hero-pill-row">
+        <span class="badge-pill" data-i18n="hero_tag">Forschungsdaten-Portal • Open Science & FAIR Data</span>
+        <a href="https://doi.org/10.25365/phaidra.537" target="_blank" rel="noopener" class="badge-pill doi">
+          DOI: 10.25365/phaidra.537
+        </a>
+        <a href="https://phaidra.univie.ac.at/detail/o:2091644" target="_blank" rel="noopener" class="badge-pill">
+          PHAIDRA: o:2091644
+        </a>
+        <span class="badge-pill fair">CC-BY 4.0 Open Access</span>
+      </div>
+
+      <h1 class="hero-title" data-i18n="hero_title">VIENNAVARS Forschungsdaten</h1>
+      
+      <p class="hero-subtitle" data-i18n="hero_subtitle">
+        Visualization and Interpretation of the early medieval fEmale avar populatioN through archaeothaNAthology from Vienna/Austria (csokorgasse-buRialS)
+      </p>
+
+      <p class="hero-german" data-i18n="hero_german">
+        Visualisierung und Interpretation weiblicher Lebenswelten in der Awarenzeit (7.–8. Jh. n. Chr.) am Beispiel der Population des Gräberfeldes Csokorgasse, Wien 11.
+      </p>
+
+      <div class="hero-cta-group">
+        <a href="#katalog" class="btn btn-primary" data-i18n="btn_explore">
+          🔍 Gräberkatalog erkunden
+        </a>
+        <a href="https://phaidra.univie.ac.at/detail/o:2091644" target="_blank" rel="noopener" class="btn btn-phaidra" data-i18n="btn_phaidra_archive">
+          🏛️ Langzeitarchivierung (PHAIDRA)
+        </a>
+        <a href="https://vias.univie.ac.at/projekte/viennavars/" target="_blank" rel="noopener" class="btn btn-outline-white" data-i18n="btn_vias_project">
+          🎓 Projektseite (VIAS / Uni Wien)
+        </a>
+        <a href="https://github.com/VIENNAVARS" target="_blank" rel="noopener" class="btn btn-outline-white" data-i18n="btn_github_org">
+          🐙 GitHub Organisation
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Statistics Bar -->
+  <section class="stats-bar">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">700+</div>
+          <div class="stat-label" data-i18n="stat_graves_total">Gräber Gesamt</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">7.–8. Jh.</div>
+          <div class="stat-label" data-i18n="stat_chronology">Chronologie (Awarenzeit)</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">Multi-Proxy</div>
+          <div class="stat-label" data-i18n="stat_methods">Archäothanatologie & 3D</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">FAIR</div>
+          <div class="stat-label" data-i18n="stat_license">Open Access & PHAIDRA</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Data Infrastructure & PHAIDRA Section -->
+  <section id="daten-phaidra" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" data-i18n="sec_archive_tag">FAIR Data & Langzeitarchivierung</span>
+        <h2 class="section-title" data-i18n="sec_archive_title">Dauerhafte Bewahrung & Dateninfrastruktur</h2>
+        <p class="section-desc" data-i18n="sec_archive_desc">
+          Alle Forschungsdaten, osteologischen Befundkataloge, 3D-Rekonstruktionen und Metadaten des Projekts VIENNAVARS sind über das Repositorium PHAIDRA der Universität Wien dauerhaft gesichert und frei zugänglich.
+        </p>
+      </div>
+
+      <div class="archive-grid">
+        <!-- Metadata Overview Card -->
+        <div class="archive-card">
+          <div class="archive-card-header">
+            <div>
+              <span class="brand-tag">Persistent Identifier</span>
+              <h3 class="archive-title" style="margin-top: 0.5rem;">PHAIDRA Repositorium der Universität Wien</h3>
+            </div>
+            <a href="https://phaidra.univie.ac.at/detail/o:2091644" target="_blank" rel="noopener" class="btn btn-phaidra" style="border: 1px solid var(--border-light);">
+              Zur PHAIDRA Ressource ↗
+            </a>
+          </div>
+
+          <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1rem;">
+            PHAIDRA (<em>Permanent Hosting, Archiving and Indexing of Digital Resources and Assets</em>) garantiert die zitierfähige Langzeitsicherung aller Quelldaten und Dokumente nach internationalen Archivierungsstandards.
+          </p>
+
+          <table class="meta-table">
+            <tbody>
+              <tr>
+                <th>Objekt-ID (PID)</th>
+                <td><a href="https://phaidra.univie.ac.at/detail/o:2091644" target="_blank" rel="noopener" class="code-pill">o:2091644</a></td>
+              </tr>
+              <tr>
+                <th>Digital Object Identifier</th>
+                <td><a href="https://doi.org/10.25365/phaidra.537" target="_blank" rel="noopener" class="code-pill" style="color: var(--color-accent); font-weight: 700;">10.25365/phaidra.537</a></td>
+              </tr>
+              <tr>
+                <th>Förderung</th>
+                <td>Hochschuljubiläumsfonds der Stadt Wien (Projekt H-448297/2023)</td>
+              </tr>
+              <tr>
+                <th>Lizenzierung</th>
+                <td><a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">Creative Commons Attribution 4.0 International (CC BY 4.0)</a></td>
+              </tr>
+              <tr>
+                <th>Klassifikation (ÖFOS)</th>
+                <td>601003 Archäologie, 106056 Biologische Anthropologie, 601026 Virtuelle Archäologie</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Download & Open Data Downloads Card -->
+        <div class="download-box">
+          <h3 class="archive-title">Offene Forschungsdaten herunterladen</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.25rem;">
+            Strukturierte maschinenlesbare Datensätze für wissenschaftliche Nachnutzung:
+          </p>
+
+          <div class="download-list">
+            <a href="data/graves.csv" download class="download-item">
+              <div class="download-info">
+                <span class="file-badge csv">CSV</span>
+                <div>
+                  <div class="download-name">Gräber- und Skelettkatalog</div>
+                  <div class="download-desc">Tabellarische Rohdaten & osteologische Metriken</div>
+                </div>
+              </div>
+              <span style="font-size: 1.1rem; color: var(--color-primary);">↓</span>
+            </a>
+
+            <a href="data/graves.json" download class="download-item">
+              <div class="download-info">
+                <span class="file-badge json">JSON</span>
+                <div>
+                  <div class="download-name">Vollständiger Datensatz (JSON)</div>
+                  <div class="download-desc">Inklusive Archäothanatologie & Beigabeninventar</div>
+                </div>
+              </div>
+              <span style="font-size: 1.1rem; color: var(--color-primary);">↓</span>
+            </a>
+
+            <a href="data/viennavars.geojson" download class="download-item">
+              <div class="download-info">
+                <span class="file-badge geojson">GeoJSON</span>
+                <div>
+                  <div class="download-name">Geodaten & GIS-Koordinaten</div>
+                  <div class="download-desc">Gräberfeld-Perimeter & Einzelgrab-Positionen</div>
+                </div>
+              </div>
+              <span style="font-size: 1.1rem; color: var(--color-primary);">↓</span>
+            </a>
+
+            <a href="data/metadata.json" download class="download-item">
+              <div class="download-info">
+                <span class="file-badge bib">JSON-LD</span>
+                <div>
+                  <div class="download-name">Dublin Core & DataCite Metadaten</div>
+                  <div class="download-desc">Standardschema für Repositorien und Aggregatoren</div>
+                </div>
+              </div>
+              <span style="font-size: 1.1rem; color: var(--color-primary);">↓</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Burials Catalog Explorer Section -->
+  <section id="katalog" class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" data-i18n="sec_catalog_tag">Interaktiver Daten-Explorer</span>
+        <h2 class="section-title" data-i18n="sec_catalog_title">Katalog der Bestattungen & Befunde</h2>
+        <p class="section-desc" data-i18n="sec_catalog_desc">
+          Durchsuchen und filtern Sie die Grabbefunde des Gräberfeldes Wien 11–Csokorgasse nach anthropologischen Merkmalen, Beigaben und archäothanatologischen Kriterien.
+        </p>
+      </div>
+
+      <!-- Search & Filter Controls -->
+      <div class="explorer-controls">
+        <div class="search-row">
+          <div class="search-input-wrapper">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="search-input" class="search-input" placeholder="Suche nach Grabnummer, Beigabe, Pathologie oder Befund...">
+          </div>
+        </div>
+
+        <div class="filter-grid">
+          <div>
+            <select id="filter-sex" class="select-custom" aria-label="Geschlechtsfilter">
+              <option value="all" data-i18n="filter_all_sex">Alle Geschlechter</option>
+              <option value="weiblich" data-i18n="filter_female">Nur Weiblich</option>
+              <option value="männlich" data-i18n="filter_male">Nur Männlich (Referenz)</option>
+            </select>
+          </div>
+
+          <div>
+            <select id="filter-age" class="select-custom" aria-label="Altersklassenfilter">
+              <option value="all" data-i18n="filter_all_age">Alle Altersklassen</option>
+              <option value="Infans II">Infans II (Kinder)</option>
+              <option value="Juvenis">Juvenis (Jugendliche)</option>
+              <option value="Adultus">Adultus (Erwachsene)</option>
+              <option value="Maturus">Maturus (Reife)</option>
+              <option value="Senilis">Senilis (Greisenalter)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="filter-toggle-label">
+              <input type="checkbox" id="filter-3d">
+              <span data-i18n="filter_3d_only">Nur mit 3D-Modell</span>
+            </label>
+          </div>
+
+          <div>
+            <label class="filter-toggle-label">
+              <input type="checkbox" id="filter-empty-space">
+              <span data-i18n="filter_empty_decay">Nur Hohlraumzerfall</span>
+            </label>
+          </div>
+
+          <div>
+            <button id="btn-reset" class="btn-reset" data-i18n="btn_reset_filter">
+              ↺ Zurücksetzen
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Catalog Header Toolbar -->
+      <div class="catalog-toolbar">
+        <div class="catalog-counter">
+          Zeige <span id="visible-count">0</span> von <span id="total-count">0</span> Gräbern
+        </div>
+      </div>
+
+      <!-- Graves Grid Container -->
+      <div id="graves-grid" class="graves-grid">
+        <!-- Rendered dynamically via JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive GIS & Spatial Mapping Section -->
+  <section id="karte" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" data-i18n="sec_map_tag">Räumliche Verteilung</span>
+        <h2 class="section-title" data-i18n="sec_map_title">Topographie des Gräberfeldes Csokorgasse</h2>
+        <p class="section-desc" data-i18n="sec_map_desc">
+          Interaktive Kartierung der Bestattungen im Areal Wien 11–Csokorgasse (Kaiserebersdorf) mit Grabkoordinaten und Belegungsdichte.
+        </p>
+      </div>
+
+      <div class="map-container-wrapper">
+        <div id="cemetery-map"></div>
+        <div class="map-legend">
+          <div class="legend-item">
+            <span class="legend-dot female"></span>
+            <span>Weibliche Bestattungen</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-dot male"></span>
+            <span>Männliche Bestattungen (Referenz)</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-dot perimeter"></span>
+            <span>Gräberfeld-Perimeter Csokorgasse</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Archaeothanatology & 3D Visualization Section -->
+  <section id="methode" class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" data-i18n="sec_method_tag">Methodik & 3D-Visualisierung</span>
+        <h2 class="section-title" data-i18n="sec_method_title">Archäothanatologie & Digitale Rekonstruktion</h2>
+        <p class="section-desc" data-i18n="sec_method_desc">
+          Rekonstruktion der ursprünglichen Grablege und Verwesungsprozesse im offenen Hohlraum (Holzsarg) im Vergleich zum verfüllten Erdgrab nach der Methodik von Henri Duday.
+        </p>
+      </div>
+
+      <div class="method-grid">
+        <div class="method-card">
+          <h3 class="method-title">Archäothanatologische Grundprinzipien</h3>
+          <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1rem;">
+            Die Archäothanatologie (nach H. Duday) analysiert die räumliche Lage von Knochenfragmenten und Gelenken zur Rekonstruktion des ursprünglichen Grabaufbaus:
+          </p>
+          <ul style="padding-left: 1.25rem; font-size: 0.92rem; color: var(--text-main); display: flex; flex-direction: column; gap: 0.5rem;">
+            <li><strong>Labile vs. persistente Gelenke:</strong> Frühe Zerfallsschritte (Halswirbel, Hände, Füße) vs. späte Gelenkdislokationen (Sakroiliakalgelenk, Knie).</li>
+            <li><strong>Hohlraumzerfall (espace vide):</strong> Seitliches Abkippen der Rippen und Beckenschaufeln belegt einen nicht-sedimentverfüllten Sarginnenraum.</li>
+            <li><strong>Wandeffekt:</strong> Lineare Begrenzungen der Langknochen indizieren vergangene Holzsargwände auch bei völligem Fehlen organischer Reste.</li>
+          </ul>
+        </div>
+
+        <div class="method-card">
+          <h3 class="method-title">3D-Dokumentation & Photogrammetrie</h3>
+          <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1rem;">
+            Mittels hochauflösender Bilddatensätze und photogrammetrischer Rekonstruktion werden ausgewählte Grablegen (wie Grab 315) dreidimensional dokumentiert:
+          </p>
+          <ul style="padding-left: 1.25rem; font-size: 0.92rem; color: var(--text-main); display: flex; flex-direction: column; gap: 0.5rem;">
+            <li><strong>Millimetergenaue Punktwolken:</strong> Präzise Erfassung der Lagebeziehung zwischen Skelettelementen und Trachtbestandteilen.</li>
+            <li><strong>Digitale Taphonomie:</strong> Simulation der Absinkdynamik von Weichteilen und Beigaben im virtuellen Modell.</li>
+            <li><strong>Langzeitspeicherung:</strong> 3D-Mesh-Modelle und Orthofotos werden standardisiert im PHAIDRA-Repositorium hinterlegt.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Interactive 3D Showcase Box -->
+      <div class="viewer-3d-box">
+        <div class="viewer-header">
+          <div>
+            <span class="brand-tag" style="background: rgba(255,255,255,0.15); color: #fff; border-color: rgba(255,255,255,0.2);">Fallstudie Grab 315</span>
+            <h3 style="font-family: var(--font-serif); font-size: 1.6rem; color: #fff; margin-top: 0.35rem;">
+              Frauengrab 315 — Taphonomisches 3D-Befundmodell
+            </h3>
+          </div>
+          <button class="btn btn-primary" onclick="openGraveModal('Grab 315')">
+            Vollständigen Befund öffnen ↗
+          </button>
+        </div>
+
+        <div class="viewer-canvas-mock">
+          <div class="interactive-mesh-preview">
+            <!-- Stylized Archeothanatology Vector Diagram of Coffin Burial -->
+            <svg class="grave-svg-diagram" viewBox="0 0 500 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Wooden Coffin Outline -->
+              <rect x="30" y="30" width="440" height="180" rx="8" stroke="#c59b27" stroke-width="2.5" stroke-dasharray="6 4" fill="rgba(197, 155, 39, 0.05)"/>
+              <text x="45" y="55" fill="#c59b27" font-size="12" font-family="monospace">Holzsarg (Wandeffekt-Grenze)</text>
+
+              <!-- Skeleton Silhouette Abstract Representation -->
+              <!-- Skull -->
+              <circle cx="100" cy="120" r="26" stroke="#e2e8f0" stroke-width="2" fill="rgba(255,255,255,0.1)"/>
+              <text x="82" y="125" fill="#e2e8f0" font-size="11" font-family="sans-serif">Schädel</text>
+              
+              <!-- Spine & Ribs -->
+              <line x1="126" y1="120" x2="260" y2="120" stroke="#e2e8f0" stroke-width="4"/>
+              <path d="M150 95 C170 120 170 120 150 145" stroke="#94a3b8" stroke-width="2"/>
+              <path d="M175 90 C195 120 195 120 175 150" stroke="#94a3b8" stroke-width="2"/>
+              <path d="M200 90 C220 120 220 120 200 150" stroke="#94a3b8" stroke-width="2"/>
+              <path d="M225 95 C245 120 245 120 225 145" stroke="#94a3b8" stroke-width="2"/>
+              
+              <!-- Pelvis -->
+              <ellipse cx="265" cy="120" rx="20" ry="32" stroke="#e2e8f0" stroke-width="2" fill="rgba(255,255,255,0.08)"/>
+              
+              <!-- Legs & Femurs with Wall Effect -->
+              <line x1="285" y1="110" x2="380" y2="105" stroke="#e2e8f0" stroke-width="3"/>
+              <line x1="380" y1="105" x2="440" y2="105" stroke="#cbd5e1" stroke-width="2.5"/>
+              <line x1="285" y1="130" x2="380" y2="135" stroke="#e2e8f0" stroke-width="3"/>
+              <line x1="380" y1="135" x2="440" y2="135" stroke="#cbd5e1" stroke-width="2.5"/>
+              
+              <!-- Grave Goods Markers -->
+              <!-- Earrings -->
+              <circle cx="95" cy="88" r="6" fill="#c59b27" stroke="#fff" stroke-width="1.5"/>
+              <circle cx="95" cy="152" r="6" fill="#c59b27" stroke="#fff" stroke-width="1.5"/>
+              <text x="110" y="86" fill="#c59b27" font-size="11" font-weight="bold">Goldene Polyeder-Ohrringe</text>
+              
+              <!-- Beads necklace -->
+              <path d="M125 105 Q140 120 125 135" stroke="#38bdf8" stroke-width="3" stroke-dasharray="3 3"/>
+              <text x="140" y="75" fill="#38bdf8" font-size="10">42 Glasperlen</text>
+
+              <!-- Spindle Whorl -->
+              <circle cx="280" cy="80" r="8" fill="#c2593f" stroke="#fff" stroke-width="1.5"/>
+              <text x="295" y="85" fill="#c2593f" font-size="11" font-weight="bold">Spinnwirtel (Keramik)</text>
+
+              <!-- Pottery vessel -->
+              <rect x="420" y="160" width="30" height="36" rx="4" fill="#a855f7" stroke="#fff" stroke-width="1.5"/>
+              <text x="350" y="195" fill="#c084fc" font-size="10">Keramikgefäß (Wellenband)</text>
+
+              <!-- Wall Effect Indicators -->
+              <line x1="30" y1="95" x2="470" y2="95" stroke="rgba(239, 68, 68, 0.4)" stroke-width="1" stroke-dasharray="4 4"/>
+              <line x1="30" y1="145" x2="470" y2="145" stroke="rgba(239, 68, 68, 0.4)" stroke-width="1" stroke-dasharray="4 4"/>
+            </svg>
+          </div>
+
+          <div class="viewer-overlay-tags">
+            <span class="code-pill" style="background: rgba(0,0,0,0.6); color: #fff; border-color: rgba(255,255,255,0.2);">
+              Orientierung: West-Ost (W-O)
+            </span>
+            <span class="code-pill" style="background: rgba(0,0,0,0.6); color: #38bdf8; border-color: rgba(56,189,248,0.4);">
+              Hohlraumzerfall & Wandeffekt bestätigt
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team, Collaborating Institutions & Funding Section -->
+  <section id="team" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" data-i18n="sec_team_tag">Projektleitung & Kooperationen</span>
+        <h2 class="section-title" data-i18n="sec_team_title">Beteiligte Institutionen & Forscher*innen</h2>
+      </div>
+
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar">DH</div>
+          <h3 class="team-name">Dr. Dominik Hagmann</h3>
+          <div class="team-role">Projektleitung & Digitale Archäologie</div>
+          <div class="team-affil">
+            Vienna Institute for Archaeological Science (VIAS)<br>Universität Wien
+          </div>
+        </div>
+
+        <div class="team-card">
+          <div class="team-avatar">SK</div>
+          <h3 class="team-name">Univ.-Prof. Dr. Sylvia Kirchengast</h3>
+          <div class="team-role">Bioarchäologie & Anthropologie</div>
+          <div class="team-affil">
+            Department für Evolutionäre Anthropologie<br>Universität Wien
+          </div>
+        </div>
+
+        <div class="team-card">
+          <div class="team-avatar">BB</div>
+          <h3 class="team-name">Dr. Birgit Bühler</h3>
+          <div class="team-role">Materielle Kultur & Archäometrie</div>
+          <div class="team-affil">
+            Vienna Institute for Archaeological Science (VIAS)<br>Universität Wien
+          </div>
+        </div>
+      </div>
+
+      <!-- Partner Logos / Badges -->
+      <div class="partners-row">
+        <a href="https://vias.univie.ac.at/projekte/viennavars/" target="_blank" rel="noopener" class="partner-logo-item">
+          VIAS — Vienna Institute for Archaeological Science
+        </a>
+        <a href="https://anthro.univie.ac.at" target="_blank" rel="noopener" class="partner-logo-item">
+          Department für Evolutionäre Anthropologie
+        </a>
+        <a href="https://www.univie.ac.at" target="_blank" rel="noopener" class="partner-logo-item">
+          Universität Wien
+        </a>
+        <a href="https://www.wienmuseum.at" target="_blank" rel="noopener" class="partner-logo-item">
+          Wien Museum
+        </a>
+        <span class="partner-logo-item" style="color: var(--color-accent);">
+          Hochschuljubiläumsfonds der Stadt Wien
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Citation Section -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag" data-i18n="sec_citation_tag">Zitation & Open Access</span>
+        <h2 class="section-title" data-i18n="sec_citation_title">Forschungsdaten zitieren</h2>
+      </div>
+
+      <div class="citation-container">
+        <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0.5rem;">
+          Bei Nachnutzung der Forschungsdaten oder Metriken zitieren Sie bitte den dauerhaften PHAIDRA-Datensatz:
+        </p>
+
+        <pre id="citation-code" class="citation-pre">@dataset{viennavars_csokorgasse_2024,
+  author    = {Hagmann, Dominik and Kirchengast, Sylvia and B{\"u}hler, Birgit},
+  title     = {{VIENNAVARS : Visualization and Interpretation of the early medieval fEmale avar populatioN through archaeothaNAthology from Vienna/Austria (csokorgasse-buRialS)}},
+  year      = {2024},
+  publisher = {PHAIDRA - University of Vienna},
+  doi       = {10.25365/phaidra.537},
+  url       = {https://phaidra.univie.ac.at/detail/o:2091644}
+}</pre>
+
+        <div class="citation-actions">
+          <span style="font-size: 0.88rem; color: var(--text-muted);">
+            Persistent DOI: <a href="https://doi.org/10.25365/phaidra.537" target="_blank" rel="noopener" style="font-weight: 600;">10.25365/phaidra.537</a>
+          </span>
+          <button id="btn-copy-citation" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.88rem;" data-i18n="btn_copy_citation">
+            📋 Zitation kopieren
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">VIENNAVARS</div>
+          <p style="max-width: 480px; margin-bottom: 1rem; line-height: 1.5;">
+            Visualization and Interpretation of the early medieval fEmale avar populatioN through archaeothaNAthology from Vienna/Austria (csokorgasse-buRialS).
+          </p>
+          <p style="font-size: 0.85rem; color: rgba(255,255,255,0.6);">
+            Gefördert durch den Hochschuljubiläumsfonds der Stadt Wien (H-448297/2023).
+          </p>
+        </div>
+
+        <div>
+          <strong style="color: #fff; display: block; margin-bottom: 0.75rem; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.08em;">
+            Wissenschaftliche Links
+          </strong>
+          <ul class="footer-links-list">
+            <li><a href="https://phaidra.univie.ac.at/detail/o:2091644" target="_blank" rel="noopener">PHAIDRA Repositorium (o:2091644)</a></li>
+            <li><a href="https://doi.org/10.25365/phaidra.537" target="_blank" rel="noopener">DOI: 10.25365/phaidra.537</a></li>
+            <li><a href="https://vias.univie.ac.at/projekte/viennavars/" target="_blank" rel="noopener">Projektseite VIAS (Uni Wien)</a></li>
+            <li><a href="https://anthro.univie.ac.at" target="_blank" rel="noopener">Dept. Evolutionäre Anthropologie</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <strong style="color: #fff; display: block; margin-bottom: 0.75rem; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.08em;">
+            Open Science & Code
+          </strong>
+          <ul class="footer-links-list">
+            <li><a href="https://github.com/VIENNAVARS" target="_blank" rel="noopener">GitHub Organisation</a></li>
+            <li><a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0 Lizenz</a></li>
+            <li><a href="data/graves.csv" download>CSV Daten-Download</a></li>
+            <li><a href="data/viennavars.geojson" download>GeoJSON Geodaten</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; 2024–2026 VIENNAVARS Projekt-Team • Universität Wien / VIAS.
+        </div>
+        <div>
+          Open Research Data & FAIR Data Infrastructure
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Burial Detail Interactive Modal Dialog -->
+  <dialog id="grave-modal" class="modal-dialog">
+    <div class="modal-header">
+      <div class="modal-title" id="modal-title">Befunddokumentation</div>
+      <button class="btn-close-modal" onclick="document.getElementById('grave-modal').close()" aria-label="Schließen">✕</button>
+    </div>
+    <div id="modal-dynamic-content" class="modal-body">
+      <!-- Injected dynamically by openGraveModal() -->
+    </div>
+  </dialog>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  
+  <!-- Main Application Script -->
+  <script src="js/app.js"></script>
+</body>
+</html>
