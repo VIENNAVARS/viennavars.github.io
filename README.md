@@ -1,13 +1,14 @@
-# VIENNAVARS — Open Research Data & Hexbin Visualization Portal
+# VIENNAVARS — Open Research Data & Geospatial WMA Portal
 
 [![DOI](https://img.shields.io/badge/DOI-10.25365%2Fphaidra.537-orange.svg)](https://doi.org/10.25365/phaidra.537)
 [![PHAIDRA](https://img.shields.io/badge/PHAIDRA-o%3A2091644-blueviolet.svg)](https://phaidra.univie.ac.at/detail/o:2091644)
+[![Base Maps](https://img.shields.io/badge/Base_Maps-basemap.at-teal.svg)](https://www.basemap.at)
 [![Spatial Data](https://img.shields.io/badge/Geometries-%C2%A9_Wien_Museum-red.svg)](https://www.wienmuseum.at)
 [![GitHub Pages](https://img.shields.io/badge/GitHub-Pages_Deployed-success.svg)](https://viennavars.github.io)
 
 **VIENNAVARS** — *Visualization and Interpretation of the early medieval fEmale avar populatioN from Vienna/Austria (csokorgasse-buRialS)*  
 
-Official research data and spatial visualization portal for the GitHub Organization [github.com/VIENNAVARS](https://github.com/VIENNAVARS).
+Official open research data, interactive GIS Web Map Application (WMA), and scientific visualization portal for the GitHub Organization [github.com/VIENNAVARS](https://github.com/VIENNAVARS).
 
 ---
 
@@ -26,23 +27,32 @@ The cemetery of **Vienna 11 – Csokorgasse (Kaiserebersdorf)** is the largest e
 
 This portal provides:
 
-### 1. Scientific Paper Insights
+### 1. Interactive Geospatial Web Map Application (WMA) on `basemap.at`
+* Direct rendering of authentic GIS spatial layers derived from the project's analytical QGIS/GeoPackage database.
+* Powered by official Austrian **`basemap.at`** WMTS tile layers (`bmapgrau` Gray, `bmaporthofoto30cm` 30cm Aerial Orthophoto, and `geolandbasemap` Standard).
+* **3-Meter Hexagonal Spatial Tessellation:**
+  * **All Burials (428 Hexbins):** Dominant chronological phase per cell (Early Avar [EAP], Middle Avar [MAP], Late Avar [LAP], Tie/Mixed).
+  * **Female Burials (182 Hexbins):** Horizontal trajectory of documented female graves.
+  * **Male Burials (178 Hexbins):** Horizontal trajectory of documented male graves.
+  * **Cemetery Outer Enclosure (`friedhof_huelle`):** Vector boundary polygon.
+* **Dynamic Hexbin Inspector:** Live inspection of cell coordinates, burial totals, dated vs. undated counts, and chronological phase breakdown upon hover and click.
+* **300 DPI Publication Plates Lightbox:** High-resolution plates (`SP01`–`SP06`) accessible via integrated fullscreen viewer.
+
+> **Spatial Intellectual Property Notice:** Primary excavation plans, trench geometries, and raw survey coordinates are the property of the **Wien Museum (© Wien Museum)** and are aggregated into 3-meter bins to ensure ethical confidentiality.
+
+### 2. Scientific Findings & Paper Teasers
 * **Demography, Stature & Stress:** Bioarchaeological analysis of female stature (mean: 158.4 cm) and early childhood physiological stress indicators (linear enamel hypoplasias, LEH).
 * **Material Culture & Social Stratification:** Status categories based on gilded bronze/silver earrings (polyhedral, grape pendants), multi-strand glass beads, and economic textile markers (spindle whorls in ~32% of female graves).
 * **Horizontal Stratigraphy:** Chronological trajectories across the Early, Middle, and Late Avar periods.
 
-### 2. Interactive Hexbin Maps (3-Meter Spatial Tessellation)
-To analyze cemetery dynamics without exposing sensitive individual coordinates, burials are aggregated into 3-meter hexagonal spatial bins:
-* **SP04:** Chronology in 3-Meter Hexagons (Total Cemetery)
-* **SP03:** Chronology in 3-Meter Hexagons by Sex (Female vs. Male trajectories)
-* **SP06:** Female Lifeworlds: Social Status and Chronology (Main Map, n=166 females)
-* **SP01:** Social Status by Sex Across the Adult Population (n=348 adults)
-* **SP05:** Cemetery Layout & Descriptive Convex Hulls
-* **Geographic Context:** OpenStreetMap / CartoDB dark site overview in Vienna 11.
+### 3. Abstracted Photographic Stream
+* Stylized, progressive duotone photographic documentation of prestige grave goods (filigree gold pendants), excavation ensembles (ceramic vessels, knives, spindle whorls), and Danube Limes environmental topography.
 
-> **Intellectual Property Notice:** Primary excavation plans, trench geometries, and raw survey coordinates are the property of the **Wien Museum (© Wien Museum)** and are not disseminated openly as raw vector points.
+### 4. Comprehensive Scientific Corpus & Bibliography
+* Structured searchable and filterable database of 20 publications and monographs directly covering the Csokorgasse site and associated machine learning/spatial methodology.
+* Direct one-click links to registered DOIs, open-access editions, and institutional repositories.
 
-### 3. Data Governance & Single-Point PHAIDRA Access
+### 5. Data Governance & Single-Point PHAIDRA Access
 * Datasets are permanently curated in the University of Vienna repository **PHAIDRA**.
 * Access to full tabular osteological catalogs and excavation records is managed through controlled scientific requests.
 
@@ -52,22 +62,30 @@ To analyze cemetery dynamics without exposing sensitive individual coordinates, 
 
 ```text
 viennavars/
-├── index.html                   # Modern scientific dark portal (English only)
+├── index.html                   # Avant-garde dark portal (English only)
 ├── css/
-│   └── styles.css               # Progressive styling with glow meshes and glassmorphism
+│   └── styles.css               # Progressive stylesheet (cyber-terracotta, gold, Leaflet WMA, duotone)
 ├── js/
-│   └── app.js                   # Hexbin map switcher, lightbox zoom, and Leaflet map
+│   └── app.js                   # Interactive Leaflet engine with basemap.at, GeoJSON, search & lightbox
 ├── assets/
-│   └── maps/                    # High-resolution 300 dpi publication hexbin maps (SP01–SP06)
-│       ├── SP04_Hex_Chronologie_Gesamt.png
-│       ├── SP03_Hex_Chronologie_nach_Geschlecht.png
-│       ├── SP06_Status_Chronologie_Female.png
-│       ├── SP01_Status_nach_Geschlecht.png
-│       └── SP05_Belegung_Vorhandene_Huellen.png
+│   ├── maps/                    # High-resolution 300 dpi publication hexbin maps (SP01–SP06)
+│   │   ├── SP04_Hex_Chronologie_Gesamt.png
+│   │   ├── SP03_Hex_Chronologie_nach_Geschlecht.png
+│   │   ├── SP06_Status_Chronologie_Female.png
+│   │   ├── SP01_Status_nach_Geschlecht.png
+│   │   └── SP05_Belegung_Vorhandene_Huellen.png
+│   └── photos/                  # Abstracted duotone archaeological photography
+│       ├── grave_gold_pendant.webp
+│       ├── grave_finds_ensemble.jpg
+│       └── viennavars_overview.jpg
 ├── data/
-│   ├── summary_statistics.json  # Aggregated metrics, paper insights, and map metadata
-│   ├── data_dictionary.json     # Variable schema of curated PHAIDRA tables
-│   └── metadata.json            # DataCite/Dublin Core metadata schema
+│   ├── cemetery_boundary.geojson     # Cemetery perimeter boundary (friedhof_huelle)
+│   ├── hex_chronology_all.geojson    # 428 3m-hexbins with phase attributes
+│   ├── hex_chronology_female.geojson # 182 female 3m-hexbins
+│   ├── hex_chronology_male.geojson   # 178 male 3m-hexbins
+│   ├── publications.json             # 20 peer-reviewed research papers and DOIs
+│   ├── summary_statistics.json       # Aggregated metrics, paper insights, and map metadata
+│   └── metadata.json                 # DataCite/Dublin Core metadata schema
 ├── .github/
 │   └── workflows/
 │       └── deploy.yml           # Automated GitHub Actions Pages deployment
@@ -89,7 +107,7 @@ git remote add origin https://github.com/VIENNAVARS/viennavars.github.io.git
 
 # Push to main:
 git add .
-git commit -m "feat: progressive hexbin maps portal in English with publication figures"
+git commit -m "feat: progressive GIS WMA on basemap.at with real hexbins and bibliography"
 git push -u origin main
 ```
 
