@@ -48,7 +48,8 @@ This portal provides:
 * High-resolution figures directly from peer-reviewed Csokorgasse publications:
   * **Fig. 1:** Cemetery Excavation Plan with 700+ Burials (*Nature & Anthropology* 2026, Fig. 2).
   * **Fig. 2:** Geographic Topography in Upper Danube Basin (*Nature & Anthropology* 2026, Fig. 1).
-  * **Fig. 3:** Horizontal Stratigraphy by Chronological Phase (*VIENNAVARS Spatial Analysis Series*).
+  * **Fig. 3:** Sampling Strategy Flowchart of 284 Studied Adults (*Nature & Anthropology* 2026, Fig. 3).
+  * **Bioarchaeological finding:** Warrior Status & Habitual Riding (HRS) identified in weapon-bearing males (Bühler & Kirchengast 2022a, *Acta Archaeologica*).
 
 ### 4. Publications & Research Corpus
 * 13 core publications directly covering the Vienna 11 – Csokorgasse cemetery and Avar population.
@@ -82,7 +83,7 @@ viennavars/
 │   ├── figures/                 # Authentic Csokorgasse publication figures
 │   │   ├── csokorgasse_excavation_plan_700burials.png
 │   │   ├── csokorgasse_geographic_location.jpg
-│   │   └── csokorgasse_chronology_phases.png
+│   │   └── csokorgasse_sampling_strategy.png
 │   └── maps/                    # High-resolution 300 dpi publication hexbin maps (SP01–SP06)
 ├── .github/
 │   └── workflows/
