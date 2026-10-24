@@ -1,7 +1,8 @@
 /**
  * VIENNAVARS - Open Research Data & Cemetery Map Portal
- * Language: English
- * Base Map: basemap.at (Magistrat der Stadt Wien / geoland.at) & Dark Canvas
+ * Subtitle: Visualization and Interpretation of Female Lifeworlds in the Avar Period (7th–8th Centuries AD):
+ *           The Population of the Csokorgasse Cemetery, Vienna 11
+ * Base Map: basemap.at (70% default transparency / opacity 0.30) & Dark Canvas
  * Excavation Documentation: © Wien Museum
  * Copyright: © VIENNAVARS
  */
@@ -15,11 +16,12 @@ let pubDisplayLimit = 3;
 let wmaMap = null;
 let wmaBaseLayers = {};
 let wmaGeoLayers = {};
-let activeHexLayerName = 'all'; // 'all' | 'female' | 'male'
+let activeHexLayerName = 'all';        // 'all' | 'female' | 'male'
 let showBoundary = true;
-let currentBasemap = 'grau';    // 'none' | 'grau' | 'ortho' | 'standard'
+let currentBasemap = 'grau';           // 'none' | 'grau' | 'ortho' | 'standard'
+let currentBasemapOpacity = 0.30;      // 0.30 = 70% transparency (so basemaps do not glare and archaeology stands out)
 let currentThematicMode = 'chronology'; // 'chronology' | 'density'
-let currentPhaseFilter = 'all'; // 'all' | 'EAP' | 'MAP' | 'LAP' | 'tie'
+let currentPhaseFilter = 'all';        // 'all' | 'EAP' | 'MAP' | 'LAP' | 'tie'
 let selectedHexId = null;
 let selectedHexLayer = null;
 
@@ -171,7 +173,7 @@ function escapeHtml(str) {
 }
 
 // =========================================================================
-// Interactive Cemetery Map (Optimized Rendering, Density & Phase Filters)
+// Interactive Cemetery Map (70% Basemap Transparency, Density & Phase Filters)
 // =========================================================================
 
 function initGisWma() {
@@ -192,23 +194,26 @@ function initGisWma() {
     scrollWheelZoom: true
   });
 
-  // basemap.at WMTS Tile Layers (TileMatrix: google3857)
+  // basemap.at WMTS Tile Layers set to 70% transparency (opacity: 0.30) by default
   wmaBaseLayers = {
     grau: L.tileLayer('https://mapsneu.wien.gv.at/basemap/bmapgrau/normal/google3857/{z}/{y}/{x}.png', {
       maxZoom: 19.5,
+      opacity: currentBasemapOpacity,
       attribution: '&copy; <a href="https://www.basemap.at" target="_blank" rel="noopener">basemap.at</a>'
     }),
     ortho: L.tileLayer('https://mapsneu.wien.gv.at/basemap/bmaporthofoto30cm/normal/google3857/{z}/{y}/{x}.jpeg', {
       maxZoom: 19.5,
+      opacity: currentBasemapOpacity,
       attribution: '&copy; <a href="https://www.basemap.at" target="_blank" rel="noopener">basemap.at</a>'
     }),
     standard: L.tileLayer('https://mapsneu.wien.gv.at/basemap/geolandbasemap/normal/google3857/{z}/{y}/{x}.png', {
       maxZoom: 19.5,
+      opacity: currentBasemapOpacity,
       attribution: '&copy; <a href="https://www.basemap.at" target="_blank" rel="noopener">basemap.at</a>'
     })
   };
 
-  // Add default base layer: Grau (Gray)
+  // Add default base layer: Grau (Gray at 70% transparency)
   wmaBaseLayers.grau.addTo(wmaMap);
 
   // Wire controls & load layers
@@ -220,7 +225,7 @@ function loadGisLayers() {
   const data = window.CSOKORGASSE_DATA;
   if (!data || !data.boundary || !data.hex_all) return;
 
-  // 1. Boundary Layer (friedhof_huelle)
+  // 1. Boundary Layer (cemetery_boundary)
   wmaGeoLayers.boundary = L.geoJSON(data.boundary, {
     style: {
       color: '#38bdf8',
@@ -232,19 +237,19 @@ function loadGisLayers() {
     }
   }).addTo(wmaMap);
 
-  // 2. All Chronological Phases (428 spatial units)
+  // 2. All Chronological Phases (428 spatial sectors, 651 burials)
   wmaGeoLayers.all = L.geoJSON(data.hex_all, {
     style: getSectorStyle,
     onEachFeature: attachHexInteractions
   }).addTo(wmaMap);
 
-  // 3. Female Burials (182 units)
+  // 3. Female Burials (182 sectors, 194 burials)
   wmaGeoLayers.female = L.geoJSON(data.hex_female, {
     style: getSectorStyle,
     onEachFeature: attachHexInteractions
   });
 
-  // 4. Male Burials (178 units)
+  // 4. Male Burials (178 sectors, 191 burials)
   wmaGeoLayers.male = L.geoJSON(data.hex_male, {
     style: getSectorStyle,
     onEachFeature: attachHexInteractions
@@ -253,6 +258,7 @@ function loadGisLayers() {
   // Fit bounds precisely so the entire cemetery with all northern and southern sectors is visible
   fitCemeteryBounds(false);
 
+  updatePhaseButtonCounts();
   updateMapStatusPill();
   renderDynamicLegend();
 }
@@ -271,6 +277,62 @@ function fitCemeteryBounds(animated = false) {
   }
 }
 
+// Compute live statistics for the currently active subset ('all' | 'female' | 'male')
+function getActiveSubsetStats() {
+  const data = window.CSOKORGASSE_DATA;
+  let geo = data ? data.hex_all : null;
+  if (activeHexLayerName === 'female' && data && data.hex_female) geo = data.hex_female;
+  else if (activeHexLayerName === 'male' && data && data.hex_male) geo = data.hex_male;
+
+  const stats = {
+    totalSectors: 0,
+    totalBurials: 0,
+    EAP: 0,
+    MAP: 0,
+    LAP: 0,
+    tie: 0,
+    dens1: 0,
+    dens2: 0,
+    dens3: 0,
+    dens4plus: 0
+  };
+
+  if (!geo || !geo.features) return stats;
+  stats.totalSectors = geo.features.length;
+
+  geo.features.forEach(ft => {
+    const p = ft.properties || {};
+    const n = p.n_total || p.count || 1;
+    stats.totalBurials += n;
+
+    if (p.dominant === 'EAP') stats.EAP++;
+    else if (p.dominant === 'MAP') stats.MAP++;
+    else if (p.dominant === 'LAP') stats.LAP++;
+    else stats.tie++;
+
+    if (n === 1) stats.dens1++;
+    else if (n === 2) stats.dens2++;
+    else if (n === 3) stats.dens3++;
+    else stats.dens4plus++;
+  });
+
+  return stats;
+}
+
+// Update phase filter buttons with exact counts for active subset
+function updatePhaseButtonCounts() {
+  const s = getActiveSubsetStats();
+  const btnAll = document.querySelector('.phase-toggle[data-phase="all"]');
+  const btnEap = document.querySelector('.phase-toggle[data-phase="EAP"]');
+  const btnMap = document.querySelector('.phase-toggle[data-phase="MAP"]');
+  const btnLap = document.querySelector('.phase-toggle[data-phase="LAP"]');
+
+  if (btnAll) btnAll.textContent = `All (${s.totalSectors})`;
+  if (btnEap) btnEap.textContent = `Early (${s.EAP})`;
+  if (btnMap) btnMap.textContent = `Middle (${s.MAP})`;
+  if (btnLap) btnLap.textContent = `Late (${s.LAP})`;
+}
+
 // Styling for Spatial Units (Adaptive to Thematic Mode, Phase Filters, and Selection)
 function getSectorStyle(feature) {
   const p = feature.properties;
@@ -281,23 +343,19 @@ function getSectorStyle(feature) {
   let fillColor = '#94a3b8';
 
   if (currentThematicMode === 'density') {
-    // Graduated density scale (1 to 5 burials per sector)
     if (total === 1) fillColor = '#38bdf8';      // 1: Sky Blue
     else if (total === 2) fillColor = '#2dd4bf'; // 2: Mint/Teal
     else if (total === 3) fillColor = '#fbbf24'; // 3: Amber
     else fillColor = '#f43f5e';                  // 4-5: Crimson Flame
   } else {
-    // Chronology Mode: Early, Middle, Late, Tie
     if (dominant === 'EAP') fillColor = '#22d3ee';      // Early Avar Cyan
     else if (dominant === 'MAP') fillColor = '#ff4d29'; // Middle Avar Terracotta
     else if (dominant === 'LAP') fillColor = '#f8b838'; // Late Avar Gold
     else if (dominant === 'tie') fillColor = '#c084fc'; // Mixed Purple
   }
 
-  // Check if matching current Phase Filter
   const matchesPhase = currentPhaseFilter === 'all' || dominant === currentPhaseFilter;
 
-  // Selected State: Bright luminous accent outline
   if (isSelected) {
     return {
       fillColor: fillColor,
@@ -308,24 +366,22 @@ function getSectorStyle(feature) {
     };
   }
 
-  // Dimmed State: When a specific phase is isolated and this sector does not match
   if (!matchesPhase) {
     return {
       fillColor: fillColor,
-      fillOpacity: 0.1,
-      color: currentBasemap === 'none' ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.05)',
-      weight: 0.35,
+      fillOpacity: 0.12,
+      color: 'rgba(255, 255, 255, 0.08)',
+      weight: 0.4,
       opacity: 0.25
     };
   }
 
-  // Standard State: Clean, refined semi-transparent border avoiding visual clumping
-  const strokeColor = currentBasemap === 'none' ? 'rgba(255, 255, 255, 0.3)' : 'rgba(15, 23, 42, 0.4)';
+  // Crisp contrast over 70%-transparent muted basemap
   return {
     fillColor: fillColor,
-    fillOpacity: 0.85,
-    color: strokeColor,
-    weight: 0.75,
+    fillOpacity: 0.88,
+    color: 'rgba(5, 8, 15, 0.65)',
+    weight: 0.85,
     opacity: 0.95
   };
 }
@@ -343,14 +399,13 @@ function refreshAllHexStyles() {
   });
 }
 
-// Sector Hover & Click Interactions (High Performance, No bringToFront DOM Stutter)
+// Sector Hover & Click Interactions
 function attachHexInteractions(feature, layer) {
   const p = feature.properties;
   const dominant = p.dominant;
   const phaseName = dominant === 'EAP' ? 'Early Avar (EAP)' : (dominant === 'MAP' ? 'Middle Avar (MAP)' : (dominant === 'LAP' ? 'Late Avar (LAP)' : 'Mixed / Tie'));
   const burialsCount = p.n_total || p.count || 1;
 
-  // Lightweight cursor-tracking tooltip (No DOM reordering, zero flicker)
   layer.bindTooltip(`
     <div style="font-family: var(--font-sans); font-size: 0.8rem; line-height: 1.4;">
       <div style="font-family: var(--font-mono); font-weight: 700; color: #fff;">Sector ${p.hex_id}</div>
@@ -367,7 +422,7 @@ function attachHexInteractions(feature, layer) {
     mouseover: (e) => {
       const l = e.target;
       if (p.hex_id !== selectedHexId) {
-        l.setStyle({ weight: 2.2, color: '#ffffff', fillOpacity: 0.96 });
+        l.setStyle({ weight: 2.2, color: '#ffffff', fillOpacity: 0.98 });
       }
       updateHexInspector(p);
     },
@@ -378,7 +433,6 @@ function attachHexInteractions(feature, layer) {
       }
     },
     click: (e) => {
-      // Clear previous selection
       const prevSelectedLayer = selectedHexLayer;
       selectedHexId = p.hex_id;
       selectedHexLayer = layer;
@@ -393,7 +447,7 @@ function attachHexInteractions(feature, layer) {
   });
 }
 
-// Update the Sector Inspector
+// Update the Sector Inspector (Note: #inspect-legend-target is a sibling outside #inspect-stats, so it is never overwritten)
 function updateHexInspector(props) {
   const titleEl = document.getElementById('inspect-title');
   const descEl = document.getElementById('inspect-desc');
@@ -429,7 +483,7 @@ function updateHexInspector(props) {
 
   titleEl.innerHTML = `
     Sector <span style="font-family: var(--font-mono); color: var(--accent-amber);">${props.hex_id}</span>
-    <span style="display: block; font-size: 0.88rem; font-weight: 600; color: ${badgeColor}; margin-top: 0.2rem;">
+    <span style="display: block; font-size: 0.85rem; font-weight: 600; color: ${badgeColor}; margin-top: 0.2rem;">
       ● Dominant: ${phaseText} (${sharePercent}%)
     </span>
   `;
@@ -439,60 +493,54 @@ function updateHexInspector(props) {
   }
 
   statsEl.innerHTML = `
-    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; margin-bottom: 1rem;">
-      <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); padding: 0.75rem; border-radius: 6px;">
-        <span style="font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase; font-family: var(--font-mono);">Total Burials</span>
-        <div style="font-size: 1.45rem; font-weight: 800; color: #fff;">${total}</div>
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.65rem; margin-bottom: 0.85rem;">
+      <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); padding: 0.65rem 0.75rem; border-radius: 6px;">
+        <span style="font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; font-family: var(--font-mono);">Total Burials</span>
+        <div style="font-size: 1.35rem; font-weight: 800; color: #fff;">${total}</div>
       </div>
-      <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); padding: 0.75rem; border-radius: 6px;">
-        <span style="font-size: 0.72rem; color: var(--text-dim); text-transform: uppercase; font-family: var(--font-mono);">Dated Graves</span>
-        <div style="font-size: 1.45rem; font-weight: 800; color: var(--accent-cyan);">${dated}</div>
+      <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); padding: 0.65rem 0.75rem; border-radius: 6px;">
+        <span style="font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; font-family: var(--font-mono);">Dated Graves</span>
+        <div style="font-size: 1.35rem; font-weight: 800; color: var(--accent-cyan);">${dated}</div>
       </div>
     </div>
 
-    <div style="font-family: var(--font-mono); font-size: 0.82rem; background: #03060c; border: 1px solid var(--border-subtle); padding: 0.85rem; border-radius: 6px; margin-bottom: 1rem;">
-      <div style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; letter-spacing: 0.05em;">
+    <div style="font-family: var(--font-mono); font-size: 0.8rem; background: #03060c; border: 1px solid var(--border-subtle); padding: 0.75rem 0.85rem; border-radius: 6px; margin-bottom: 0.85rem;">
+      <div style="font-size: 0.72rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.45rem; letter-spacing: 0.05em;">
         Chronological Breakdown
       </div>
-      <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+      <div style="display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
         <span style="color: var(--accent-cyan);">● Early Avar (EAP):</span>
         <strong style="color: #fff;">${eap}</strong>
       </div>
-      <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+      <div style="display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
         <span style="color: var(--accent-ember);">● Middle Avar (MAP):</span>
         <strong style="color: #fff;">${map}</strong>
       </div>
-      <div style="display: flex; justify-content: space-between; margin-bottom: 0.4rem;">
+      <div style="display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
         <span style="color: var(--accent-amber);">● Late Avar (LAP):</span>
         <strong style="color: #fff;">${lap}</strong>
       </div>
-      <div style="display: flex; justify-content: space-between; padding-top: 0.4rem; border-top: 1px solid rgba(255,255,255,0.08); color: var(--text-dim);">
+      <div style="display: flex; justify-content: space-between; padding-top: 0.35rem; border-top: 1px solid rgba(255,255,255,0.08); color: var(--text-dim);">
         <span>Undated Burials:</span>
         <span>${undated}</span>
       </div>
     </div>
 
-    <!-- Quick Isolation Action -->
-    <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
-      <button class="btn-prog btn-prog-secondary" onclick="window.filterMapByPhase('${dom}')" style="font-size: 0.75rem; padding: 0.4rem 0.75rem; width: 100%;">
-        🎯 Highlight All ${dom} Sectors
+    <div style="display: flex; gap: 0.5rem;">
+      <button class="btn-prog btn-prog-secondary" onclick="window.filterMapByPhase('${dom}')" style="font-size: 0.74rem; padding: 0.42rem 0.75rem; width: 100%;">
+        🎯 Isolate ${dom} Sectors
       </button>
-      <button class="btn-prog btn-prog-secondary" onclick="window.filterMapByPhase('all')" style="font-size: 0.75rem; padding: 0.4rem 0.75rem;">
+      <button class="btn-prog btn-prog-secondary" onclick="window.filterMapByPhase('all')" style="font-size: 0.74rem; padding: 0.42rem 0.75rem;">
         Reset
       </button>
-    </div>
-
-    <div style="font-size: 0.78rem; color: #94a3b8; line-height: 1.5;">
-      Burials are aggregated into 3-meter spatial sectors to protect sensitive excavation record confidentiality (© Wien Museum).
     </div>
   `;
 }
 
-// Global phase filter function (called from buttons or inspector)
+// Global phase filter function
 window.filterMapByPhase = function(phase) {
   currentPhaseFilter = phase;
 
-  // Update phase toggle buttons UI
   const phaseButtons = document.querySelectorAll('.phase-toggle');
   phaseButtons.forEach(btn => {
     btn.classList.toggle('active', btn.getAttribute('data-phase') === phase);
@@ -502,7 +550,7 @@ window.filterMapByPhase = function(phase) {
   updateMapStatusPill();
 };
 
-// Wire all Map Controls (Subsets, Thematic Mode, Phase Filter, Basemap, Recenter)
+// Wire all Map Controls
 function wireMapControls() {
   // 1. Subset layer toggles (All, Female, Male, Boundary)
   const layerButtons = document.querySelectorAll('.btn-layer-chip[data-layer]');
@@ -539,11 +587,13 @@ function wireMapControls() {
         activeHexLayerName = layerType;
       }
 
+      updatePhaseButtonCounts();
+      renderDynamicLegend();
       updateMapStatusPill();
     });
   });
 
-  // 2. Thematic Mode toggle (Chronology vs Density Heat)
+  // 2. Thematic Mode toggle (Chronology vs Density)
   const themeButtons = document.querySelectorAll('.theme-toggle');
   themeButtons.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -586,6 +636,7 @@ function wireMapControls() {
       if (targetBmap === 'none') {
         currentBasemap = 'none';
       } else if (wmaBaseLayers[targetBmap]) {
+        wmaBaseLayers[targetBmap].setOpacity(currentBasemapOpacity);
         wmaBaseLayers[targetBmap].addTo(wmaMap);
         currentBasemap = targetBmap;
       }
@@ -595,7 +646,26 @@ function wireMapControls() {
     });
   });
 
-  // 5. Recenter Button
+  // 5. Basemap Transparency Slider (Default: 70% transparency = 30% opacity)
+  const transpSlider = document.getElementById('basemap-transp-slider');
+  const transpValEl = document.getElementById('basemap-transp-val');
+  if (transpSlider) {
+    transpSlider.addEventListener('input', (e) => {
+      const transpPct = Number(e.target.value); // e.g. 70 means 70% transparent -> opacity 0.30
+      currentBasemapOpacity = Math.max(0, Math.min(1, (100 - transpPct) / 100));
+      if (transpValEl) {
+        transpValEl.textContent = `${transpPct}%`;
+      }
+      Object.values(wmaBaseLayers).forEach(layer => {
+        if (layer && typeof layer.setOpacity === 'function') {
+          layer.setOpacity(currentBasemapOpacity);
+        }
+      });
+      updateMapStatusPill();
+    });
+  }
+
+  // 6. Recenter Button
   const recenterBtn = document.getElementById('btn-recenter-map');
   if (recenterBtn) {
     recenterBtn.addEventListener('click', () => {
@@ -604,79 +674,83 @@ function wireMapControls() {
   }
 }
 
-// Dynamic Legend Rendering (Switches between Chronology & Density)
+// Dynamic Legend Rendering (Switches between Chronology & Density and reflects active subset counts)
 function renderDynamicLegend() {
   const legendContainer = document.getElementById('inspect-legend-target');
   if (!legendContainer) return;
 
+  const s = getActiveSubsetStats();
+  const total = s.totalSectors || 1;
+  const pct = (n) => `${Math.round((n / total) * 100)}%`;
+
   if (currentThematicMode === 'density') {
     legendContainer.innerHTML = `
-      <div style="font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.6rem; letter-spacing: 0.05em;">
-        Burial Density Legend (Burials per 3m Sector)
+      <div style="font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.55rem; letter-spacing: 0.05em;">
+        Burial Density Legend (${s.totalBurials} Graves in ${s.totalSectors} Sectors)
       </div>
       <div class="chronology-legend-grid">
         <div class="chrono-item">
           <span class="chrono-dot" style="background: #38bdf8;"></span>
           <div>
             <strong>1 Burial</strong>
-            <span>260 sectors (60.7%)</span>
+            <span>${s.dens1} sectors (${pct(s.dens1)})</span>
           </div>
         </div>
         <div class="chrono-item">
           <span class="chrono-dot" style="background: #2dd4bf;"></span>
           <div>
             <strong>2 Burials</strong>
-            <span>121 sectors (28.3%)</span>
+            <span>${s.dens2} sectors (${pct(s.dens2)})</span>
           </div>
         </div>
         <div class="chrono-item">
           <span class="chrono-dot" style="background: #fbbf24;"></span>
           <div>
             <strong>3 Burials</strong>
-            <span>40 sectors (9.3%)</span>
+            <span>${s.dens3} sectors (${pct(s.dens3)})</span>
           </div>
         </div>
         <div class="chrono-item">
           <span class="chrono-dot" style="background: #f43f5e;"></span>
           <div>
             <strong>4–5 Burials</strong>
-            <span>7 sectors (1.6% cores)</span>
+            <span>${s.dens4plus} sectors (${pct(s.dens4plus)})</span>
           </div>
         </div>
       </div>
     `;
   } else {
     legendContainer.innerHTML = `
-      <div style="font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.6rem; letter-spacing: 0.05em;">
+      <div style="font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.55rem; letter-spacing: 0.05em;">
         Chronological Horizon Legend (Click to Isolate)
       </div>
       <div class="chronology-legend-grid">
-        <div class="chrono-item" onclick="window.filterMapByPhase('EAP')" style="cursor: pointer;" title="Filter Early Avar">
+        <div class="chrono-item" onclick="window.filterMapByPhase('EAP')" style="cursor: pointer;" title="Isolate Early Avar Period">
           <span class="chrono-dot" style="background: #22d3ee;"></span>
           <div>
             <strong>Early Avar (EAP)</strong>
-            <span>167 sectors (c. 568–650)</span>
+            <span>${s.EAP} sectors (c. 568–650)</span>
           </div>
         </div>
-        <div class="chrono-item" onclick="window.filterMapByPhase('MAP')" style="cursor: pointer;" title="Filter Middle Avar">
+        <div class="chrono-item" onclick="window.filterMapByPhase('MAP')" style="cursor: pointer;" title="Isolate Middle Avar Period">
           <span class="chrono-dot" style="background: #ff4d29;"></span>
           <div>
             <strong>Middle Avar (MAP)</strong>
-            <span>142 sectors (c. 650–700)</span>
+            <span>${s.MAP} sectors (c. 650–700)</span>
           </div>
         </div>
-        <div class="chrono-item" onclick="window.filterMapByPhase('LAP')" style="cursor: pointer;" title="Filter Late Avar">
+        <div class="chrono-item" onclick="window.filterMapByPhase('LAP')" style="cursor: pointer;" title="Isolate Late Avar Period">
           <span class="chrono-dot" style="background: #f8b838;"></span>
           <div>
             <strong>Late Avar (LAP)</strong>
-            <span>112 sectors (c. 700–800)</span>
+            <span>${s.LAP} sectors (c. 700–800)</span>
           </div>
         </div>
-        <div class="chrono-item" onclick="window.filterMapByPhase('all')" style="cursor: pointer;" title="Reset filter">
+        <div class="chrono-item" onclick="window.filterMapByPhase('all')" style="cursor: pointer;" title="Show All Phases">
           <span class="chrono-dot" style="background: #c084fc;"></span>
           <div>
-            <strong>Mixed / All</strong>
-            <span>7 ties · Reset All</span>
+            <strong>Mixed / Reset All</strong>
+            <span>${s.tie} ties · Show All (${s.totalSectors})</span>
           </div>
         </div>
       </div>
@@ -689,14 +763,15 @@ function updateMapStatusPill() {
   const pill = document.getElementById('map-status-pill');
   if (!pill) return;
 
+  const transpPct = Math.round((1 - currentBasemapOpacity) * 100);
   let bmapName = 'Dark Canvas';
-  if (currentBasemap === 'grau') bmapName = 'basemap.at Grau';
-  else if (currentBasemap === 'ortho') bmapName = 'basemap.at Orthofoto 30cm';
-  else if (currentBasemap === 'standard') bmapName = 'basemap.at Standard';
+  if (currentBasemap === 'grau') bmapName = `basemap.at Grau (${transpPct}% transp.)`;
+  else if (currentBasemap === 'ortho') bmapName = `basemap.at Orthofoto (${transpPct}% transp.)`;
+  else if (currentBasemap === 'standard') bmapName = `basemap.at Standard (${transpPct}% transp.)`;
 
-  let subsetLabel = '428 Sectors';
-  if (activeHexLayerName === 'female') subsetLabel = '182 Female Burials';
-  else if (activeHexLayerName === 'male') subsetLabel = '178 Male Burials';
+  let subsetLabel = '428 Sectors (651 Burials)';
+  if (activeHexLayerName === 'female') subsetLabel = '182 Female Sectors (194 Burials)';
+  else if (activeHexLayerName === 'male') subsetLabel = '178 Male Sectors (191 Burials)';
 
   let filterLabel = '';
   if (currentPhaseFilter !== 'all') {
@@ -705,7 +780,7 @@ function updateMapStatusPill() {
 
   const modeLabel = currentThematicMode === 'density' ? 'Density View' : 'Chronology View';
 
-  pill.textContent = `${bmapName} · ${subsetLabel} (${modeLabel}${filterLabel})`;
+  pill.textContent = `${bmapName} · ${subsetLabel} · ${modeLabel}${filterLabel}`;
 }
 
 // Citation Copy Utility

@@ -1,10 +1,43 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" fill="none">
-  <!-- Geometric Hexagon & Compass Mark -->
-  <polygon points="24,6 40,15 40,33 24,42 8,33 8,15" stroke="#ff4d29" stroke-width="2.5" fill="none"/>
-  <circle cx="24" cy="24" r="4.5" fill="#38bdf8"/>
-  <line x1="24" y1="11" x2="24" y2="17" stroke="#38bdf8" stroke-width="1.8"/>
-  <line x1="24" y1="31" x2="24" y2="37" stroke="#38bdf8" stroke-width="1.8"/>
-  <!-- Typography -->
-  <text x="48" y="27" font-family="'Space Grotesk', -apple-system, sans-serif" font-size="20" font-weight="800" fill="#ffffff" letter-spacing="-0.5">VIENNA<tspan fill="#ff4d29">VARS</tspan></text>
-  <text x="49" y="40" font-family="'JetBrains Mono', monospace" font-size="7.5" font-weight="600" fill="#94a3b8" letter-spacing="1.2">RESEARCH PORTAL</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 360" width="400" height="360" fill="none">
+  <!-- Minimalist Monochrome Hexagon Frame -->
+  <polygon points="200,24 316,91 316,225 200,292 84,225 84,91"
+           stroke="#ffffff" stroke-width="5.5" stroke-linejoin="miter" fill="none"/>
+
+  <!-- Early Medieval Avar Female Crescent Hoop Earring with Grape-Cluster Pendant (Traubenohrgehänge) -->
+  <!-- Top Thin Wire Ear Loop -->
+  <path d="M 164 80 A 46 46 0 0 1 236 80"
+        stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" fill="none"/>
+  <!-- Crescent-Shaped Hollow Hoop Body (Lunula / Sichelkörper) -->
+  <path d="M 164 80 C 122 108, 128 178, 193 190 L 193 176 C 142 166, 138 112, 168 86 Z"
+        stroke="#ffffff" stroke-width="4.5" stroke-linejoin="round" fill="none"/>
+  <path d="M 236 80 C 278 108, 272 178, 207 190 L 207 176 C 258 166, 262 112, 232 86 Z"
+        stroke="#ffffff" stroke-width="4.5" stroke-linejoin="round" fill="none"/>
+
+  <!-- Vertical Suspension Collar -->
+  <rect x="193" y="168" width="14" height="28" rx="7" stroke="#ffffff" stroke-width="4.5" fill="#080c14"/>
+
+  <!-- Grape-Cluster Granulation Pendant (Traubenanhänger: 3 - 4 - 3 - 2 - 1) -->
+  <!-- Row 1 (3 spheres) -->
+  <circle cx="182" cy="203" r="8.5" stroke="#ffffff" stroke-width="4" fill="#080c14"/>
+  <circle cx="200" cy="203" r="8.5" stroke="#ffffff" stroke-width="4" fill="#080c14"/>
+  <circle cx="218" cy="203" r="8.5" stroke="#ffffff" stroke-width="4" fill="#080c14"/>
+  <!-- Row 2 (4 spheres) -->
+  <circle cx="173" cy="217" r="8.5" stroke="#ffffff" stroke-width="4" fill="#080c14"/>
+  <circle cx="191" cy="217" r="8.5" stroke="#ffffff" stroke-width="4" fill="#080c14"/>
+  <circle cx="209" cy="217" r="8.5" stroke="#ffffff" stroke-width="4" fill="#080c14"/>
+  <circle cx="227" cy="217" r="8.5" stroke="#ffffff" stroke-width="4" fill="#080c14"/>
+  <!-- Row 3 (3 spheres) -->
+  <circle cx="182" cy="231" r="8.5" stroke="#ffffff" stroke-width="4" fill="#080c14"/>
+  <circle cx="200" cy="231" r="8.5" stroke="#ffffff" stroke-width="4" fill="#080c14"/>
+  <circle cx="218" cy="231" r="8.5" stroke="#ffffff" stroke-width="4" fill="#080c14"/>
+  <!-- Row 4 (2 spheres) -->
+  <circle cx="191" cy="245" r="8.5" stroke="#ffffff" stroke-width="4" fill="#080c14"/>
+  <circle cx="209" cy="245" r="8.5" stroke="#ffffff" stroke-width="4" fill="#080c14"/>
+  <!-- Row 5 (1 terminal sphere) -->
+  <circle cx="200" cy="259" r="8.5" stroke="#ffffff" stroke-width="4" fill="#080c14"/>
+
+  <!-- Wordmark: Montserrat / Space Grotesk Bold — VIENNA (#ffffff) + VARS (#d49b35) -->
+  <text x="200" y="342" text-anchor="middle" font-family="'Montserrat', 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif" font-size="40" font-weight="800" letter-spacing="2">
+    <tspan fill="#ffffff">VIENNA</tspan><tspan fill="#d49b35">VARS</tspan>
+  </text>
 </svg>

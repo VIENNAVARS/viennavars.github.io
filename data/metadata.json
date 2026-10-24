@@ -1,5 +1,5 @@
 {
-  "title": "VIENNAVARS: Visualization and Interpretation of the early medieval fEmale avar populatioN from Vienna/Austria (csokorgasse-buRialS)",
+  "title": "VIENNAVARS: Visualization and Interpretation of the early medieval fEmale avar populatioN through archaeothaNAthology from Vienna/Austria (csokorgasse-buRialS)",
   "acronym": "VIENNAVARS",
   "persistent_identifier": {
     "phaidra_id": "o:2091644",
@@ -44,6 +44,7 @@
   "collaborating_institutions": [
     "Vienna Institute for Archaeological Science (VIAS), University of Vienna",
     "Department of Evolutionary Anthropology, University of Vienna",
+    "Research Network Human Evolution and Archaeological Sciences (HEAS), University of Vienna",
     "Wien Museum",
     "City of Vienna Culture (Stadt Wien Kultur)"
   ],
@@ -54,5 +55,7 @@
     "district": "11th District of Vienna (Simmering)",
     "spatial_copyright": "© Wien Museum"
   },
-  "abstract": "The VIENNAVARS project investigates the early medieval Avar-period cemetery of Vienna 11-Csokorgasse, the largest known early medieval burial ground in the Vienna metropolitan area. It combines bioarchaeological skeletal analysis with studies of material culture and spatial visualization to reconstruct female lifeworlds, health status, and social stratification during the 7th and 8th centuries AD. Datasets are permanently archived via PHAIDRA and curated under controlled scientific access in compliance with Wien Museum intellectual property rights."
+  "abstract": "The VIENNAVARS project investigates the early medieval Avar-period cemetery of Vienna 11-Csokorgasse, the largest known early medieval burial ground in the Vienna metropolitan area. It combines bioarchaeological skeletal analysis with studies of material culture and spatial visualization to reconstruct female lifeworlds, health status, and social stratification during the 7th and 8th centuries AD. Datasets are permanently archived via PHAIDRA and curated under controlled scientific access in compliance with Wien Museum intellectual property rights.",
+  "subtitle_en": "Visualization and Interpretation of Female Lifeworlds in the Avar Period (7th–8th Centuries AD): The Population of the Csokorgasse Cemetery, Vienna 11",
+  "subtitle_de": "Visualisierung und Interpretation weiblicher Lebenswelten in der Awarenzeit (7. – 8. Jhdt. n. Chr.) am Beispiel der Population des Gräberfeldes Csokorgasse, Wien 11"
 }

@@ -3,21 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VIENNAVARS — The Avar-Period Cemetery of Vienna 11 – Csokorgasse</title>
+  <title>VIENNAVARS — Visualization and Interpretation of Female Lifeworlds in the Avar Period (Csokorgasse, Vienna 11)</title>
   
-  <meta name="description" content="Open research data and interactive map for the 7th–8th century Avar cemetery at Vienna 11 – Csokorgasse, featuring bioarchaeological findings, equestrian burials, and peer-reviewed publications.">
+  <meta name="description" content="VIENNAVARS: Visualization and Interpretation of Female Lifeworlds in the Avar Period (7th–8th Centuries AD) at the Csokorgasse Cemetery, Vienna 11. Interactive cemetery map, bioarchaeological findings, and PHAIDRA data archive.">
   <meta name="author" content="Dr. Dominik Hagmann, Univ.-Prof. Dr. Sylvia Kirchengast, Dr. Birgit Bühler">
   <meta name="theme-color" content="#05080f">
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/logos/viennavars_emblem.png">
+
   <!-- Open Graph -->
-  <meta property="og:title" content="VIENNAVARS — The Avar-Period Cemetery of Vienna 11 – Csokorgasse">
-  <meta property="og:description" content="Interactive map, bioarchaeological findings, equestrian graves, and research publications for Vienna 11 – Csokorgasse. Vibe-coded with Google Antigravity.">
+  <meta property="og:title" content="VIENNAVARS — Visualization and Interpretation of Female Lifeworlds in the Avar Period">
+  <meta property="og:description" content="Open research portal for the 7th–8th century Avar cemetery at Vienna 11 – Csokorgasse (PHAIDRA o:2091644 · DOI 10.25365/phaidra.537).">
+  <meta property="og:image" content="assets/logos/viennavars_logo_square.jpg">
   <meta property="og:type" content="website">
 
-  <!-- Google Fonts: Space Grotesk & JetBrains Mono -->
+  <!-- Google Fonts: Montserrat, Space Grotesk & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Montserrat:wght@700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
@@ -27,11 +31,12 @@
 </head>
 <body id="top">
 
-  <!-- Clean Single-Line Navigation -->
+  <!-- Single-Line Navigation with Reduced Monochrome Avar Earring Emblem -->
   <header class="navbar">
     <div class="container nav-container">
-      <a href="#top" class="brand-badge" title="VIENNAVARS Portal">
-        <span style="color: #ff4d29; margin-right: 2px;">⬡</span> VIENNAVARS
+      <a href="#top" class="brand-badge" title="VIENNAVARS Research Portal">
+        <img src="assets/logos/viennavars_emblem.png" alt="VIENNAVARS Emblem" class="brand-emblem-nav">
+        <span><span class="brand-wordmark-vienna">VIENNA</span><span class="brand-wordmark-vars">VARS</span></span>
       </a>
 
       <nav class="nav-wrapper">
@@ -41,6 +46,7 @@
           <li><a href="#publications" class="nav-link">Publications</a></li>
           <li><a href="#data-archive" class="nav-link">Archive</a></li>
           <li><a href="#team" class="nav-link">Team</a></li>
+          <li><a href="#impressum" class="nav-link">Imprint</a></li>
         </ul>
       </nav>
 
@@ -55,74 +61,86 @@
     </div>
   </header>
 
-  <!-- Clear, Balanced Hero Section -->
+  <!-- Hero Section with Official PHAIDRA Project Subtitle & New Minimalist Logo -->
   <section class="hero">
     <div class="hero-grid-pattern"></div>
     <div class="container hero-content">
-      <div class="hero-top-strip">
-        <span class="pill-mono">Vienna 11 – Csokorgasse · Early Medieval Cemetery</span>
-        <span class="pill-mono doi">DOI: 10.25365/phaidra.537</span>
-        <span class="pill-mono vibe-badge" title="Vibe-coded platform architecture">
-          <img src="assets/logos/google_antigravity.svg" alt="Google Antigravity" class="inline-vibe-logo">
-          Vibe-Coded with Google Antigravity
-        </span>
-      </div>
+      <div class="hero-main-split">
+        <div>
+          <div class="hero-top-strip">
+            <span class="pill-mono">Vienna 11 – Csokorgasse · Early Medieval Cemetery</span>
+            <a href="https://doi.org/10.25365/phaidra.537" target="_blank" rel="noopener" class="pill-mono doi">DOI: 10.25365/phaidra.537</a>
+            <a href="https://phaidra.univie.ac.at/detail/o:2091644" target="_blank" rel="noopener" class="pill-mono">PHAIDRA: o:2091644</a>
+          </div>
 
-      <h1 class="hero-title-main">
-        VIENNAVARS
-      </h1>
+          <h1 class="hero-title-main">
+            VIENNA<span class="vars-gold">VARS</span>
+          </h1>
 
-      <!-- Explicit Acronym Resolution -->
-      <div class="hero-acronym-expansion">
-        <strong>V</strong>isualization and <strong>I</strong>nterpretation of the <strong>e</strong>arly medieval f<strong>E</strong>male avar populatio<strong>N</strong> through archaeotha<strong>NA</strong>thology from <strong>V</strong>ienna/<strong>A</strong>ustria (csoko<strong>R</strong>gasse-burial<strong>S</strong>)
-      </div>
+          <!-- Official Subtitle (Translated from PHAIDRA o:2091644) -->
+          <p class="hero-tagline">
+            Visualization and Interpretation of Female Lifeworlds in the Avar Period (7th–8th Centuries AD): The Population of the Csokorgasse Cemetery, Vienna 11
+          </p>
 
-      <p class="hero-tagline">
-        The Early Medieval Avar-Period Cemetery of Vienna 11 – Csokorgasse (7th–8th c. AD)
-      </p>
+          <!-- Explicit Acronym Resolution -->
+          <div class="hero-acronym-expansion">
+            <strong>V</strong>isualization and <strong>I</strong>nterpretation of the <strong>e</strong>arly medieval f<strong>E</strong>male avar populatio<strong>N</strong> through archaeotha<strong>NA</strong>thology from <strong>V</strong>ienna/<strong>A</strong>ustria (csoko<strong>R</strong>gasse-burial<strong>S</strong>)
+          </div>
 
-      <p class="hero-description">
-        Documenting the largest early medieval burial ground in the Vienna metropolitan area with over 700 excavated graves. This portal provides an interactive cemetery map, key bioarchaeological results, authentic published figures, and direct access to peer-reviewed publications.
-      </p>
+          <!-- Official Project Description (Translated from PHAIDRA o:2091644) -->
+          <p class="hero-description">
+            Within the framework of the VIENNAVARS project, we aim to deepen our understanding of women's lifeworlds during the Avar period (7th and 8th centuries AD) while contributing to the early medieval urban history of Vienna. Centered on the Avar-period cemetery of Vienna 11 – Csokorgasse — the largest known early medieval burial ground within the municipal area of Vienna — the project combines anthropological analyses of skeletal remains, selected investigations of funerary customs and material culture, and the digitization and long-term archiving of bioarchaeological data.
+          </p>
 
-      <div class="hero-cta-row">
-        <a href="#gis-wma" class="btn-prog btn-prog-primary">
-          🗺️ Explore Cemetery Map
-        </a>
-        <a href="#publications" class="btn-prog btn-prog-secondary">
-          📚 Research Publications (13)
-        </a>
+          <div class="hero-cta-row">
+            <a href="#gis-wma" class="btn-prog btn-prog-primary">
+              🗺️ Explore Cemetery Map
+            </a>
+            <a href="#publications" class="btn-prog btn-prog-secondary">
+              📚 Research Publications (14)
+            </a>
+            <a href="https://phaidra.univie.ac.at/detail/o:2091644" target="_blank" rel="noopener" class="btn-prog btn-prog-secondary">
+              🏛️ PHAIDRA Repository ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Project Logo Showcase: Reduced Monochrome Avar Female Earring inside Hexagon -->
+        <div class="hero-logo-showcase">
+          <img src="assets/logos/viennavars_logo.png" alt="VIENNAVARS Project Logo — Monochrome Avar Female Grape-Cluster Earring inside Spatial Hexagon" class="hero-project-logo-img">
+          <span class="hero-logo-caption">Avar Female Adornment · Spatial Grid</span>
+        </div>
       </div>
 
       <!-- Quick Metrics Strip: Pure Archaeological & Bioarchaeological Facts -->
       <div class="hero-metrics-strip">
         <div class="metric-cell">
-          <span class="metric-val">700+</span>
-          <span class="metric-lbl">Documented Burials</span>
+          <span class="metric-val">705</span>
+          <span class="metric-lbl">Excavated Burials (Streinz 1976–1977)</span>
+        </div>
+        <div class="metric-cell">
+          <span class="metric-val">651</span>
+          <span class="metric-lbl">Mapped Graves across 428 GIS Sectors</span>
         </div>
         <div class="metric-cell">
           <span class="metric-val">348</span>
-          <span class="metric-lbl">Anthropological Skeletons</span>
-        </div>
-        <div class="metric-cell">
-          <span class="metric-val">428</span>
-          <span class="metric-lbl">Spatial Burial Sectors</span>
+          <span class="metric-lbl">Adult Skeletons (182 Male · 166 Female)</span>
         </div>
         <div class="metric-cell">
           <span class="metric-val">7th–8th c.</span>
-          <span class="metric-lbl">Chronological Horizon</span>
+          <span class="metric-lbl">Avar Period Chronological Horizon</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Section 01: Interactive Cemetery Map (basemap.at & Dark Canvas) -->
+  <!-- Section 01: Interactive Cemetery Map (70% Basemap Transparency & Dark Canvas) -->
   <section id="gis-wma" class="section">
     <div class="container">
       <span class="section-idx">// 01 · INTERACTIVE CEMETERY MAP</span>
       <h2 class="section-head">Spatial Distribution & Chronology</h2>
       <p class="section-p">
-        Interactive geospatial plan of the Vienna 11 – Csokorgasse cemetery. Burials are aggregated into spatial sectors to illustrate horizontal stratigraphy and chronological progression from the Early to Late Avar period while preserving sensitive excavation coordinates.
+        Interactive geospatial plan of the Vienna 11 – Csokorgasse cemetery. Burials are aggregated into 3-meter spatial sectors to illustrate horizontal stratigraphy and chronological progression from the Early to Late Avar period while preserving sensitive excavation coordinates. Base maps are rendered at 70% transparency so the archaeological features stand out clearly.
       </p>
 
       <div class="wma-stage-card">
@@ -133,7 +151,7 @@
             <div class="wma-ctrl-grp">
               <span class="ctrl-group-lbl">Subset:</span>
               <button class="btn-layer-chip active" id="btn-layer-all" data-layer="all">
-                <span>●</span> All Burials (428)
+                <span>●</span> All Sectors (428)
               </button>
               <button class="btn-layer-chip" id="btn-layer-female" data-layer="female">
                 <span>●</span> Female (182)
@@ -157,8 +175,8 @@
             </div>
           </div>
 
-          <!-- Row 2: Phase Isolation & Base Map -->
-          <div class="wma-ctrl-row" style="margin-top: 0.5rem; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 0.5rem;">
+          <!-- Row 2: Phase Isolation, Base Map & 70% Transparency Control -->
+          <div class="wma-ctrl-row" style="margin-top: 0.45rem; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 0.55rem;">
             <div class="wma-ctrl-grp">
               <span class="ctrl-group-lbl">Isolate Phase:</span>
               <button class="btn-layer-chip phase-toggle active" data-phase="all">
@@ -189,6 +207,13 @@
               <button class="btn-layer-chip basemap-toggle" data-bmap="standard">
                 Standard
               </button>
+
+              <div style="display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(255,255,255,0.04); border: 1px solid var(--border-subtle); padding: 0.28rem 0.65rem; border-radius: var(--radius-sm); font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted);" title="Adjust basemap transparency (Default: 70% transparency so archaeological layers stand out)">
+                <span>Transp.:</span>
+                <input type="range" id="basemap-transp-slider" min="0" max="90" step="5" value="70" style="width: 64px; accent-color: var(--accent-cyan); cursor: pointer;">
+                <span id="basemap-transp-val" style="color: #fff; font-weight: 700; min-width: 28px;">70%</span>
+              </div>
+
               <button id="btn-recenter-map" class="btn-layer-chip" title="Recenter and fit cemetery bounds" style="background: rgba(56, 189, 248, 0.12); border-color: rgba(56, 189, 248, 0.4); color: #38bdf8;">
                 ⌖ Fit View
               </button>
@@ -204,41 +229,41 @@
 
             <!-- Floating Map Status Bar -->
             <div class="wma-map-floating-pill">
-              <span id="map-status-pill">basemap.at Grau · 428 Spatial Sectors</span>
+              <span id="map-status-pill">basemap.at Grau (70% transp.) · 428 Sectors (651 Burials) · Chronology View</span>
             </div>
           </div>
 
-          <!-- Right: Dynamic Sector Inspector -->
+          <!-- Right: Dynamic Sector Inspector & Permanent Legend -->
           <div class="wma-inspector-panel">
             <div class="inspector-header">
               <span class="inspector-badge">SECTOR INSPECTOR</span>
               <h3 id="inspect-title" class="inspector-title">Select a Sector</h3>
               <p id="inspect-desc" class="inspector-subtitle">
-                Click or hover over any spatial unit on the cemetery plan to inspect burial counts, chronological breakdown, and dominant period.
+                Click or hover over any spatial sector on the cemetery plan to inspect burial counts, chronological breakdown, and dominant period.
               </p>
             </div>
 
+            <!-- Dynamic Sector Details Target -->
             <div id="inspect-stats" class="inspector-content">
-              <!-- Default Prompt -->
               <div class="inspector-prompt-box">
-                <div style="font-size: 2rem; margin-bottom: 0.75rem;">🔍</div>
-                <div style="font-size: 0.95rem; font-weight: 600; color: #ffffff; margin-bottom: 0.35rem;">
+                <div style="font-size: 1.75rem; margin-bottom: 0.5rem;">🔍</div>
+                <div style="font-size: 0.92rem; font-weight: 600; color: #ffffff; margin-bottom: 0.25rem;">
                   Interactive Cemetery Plan
                 </div>
-                <div style="font-size: 0.82rem; color: var(--text-dim); line-height: 1.5;">
-                  Select a sector to view burial numbers, dated phases, and chronological dominance.
+                <div style="font-size: 0.8rem; color: var(--text-dim); line-height: 1.5;">
+                  Hover or click any sector on the map to inspect its burial count, dated graves, and chronological dominance.
                 </div>
               </div>
-
-              <!-- Dynamic Legend Container (Chronology / Density) -->
-              <div id="inspect-legend-target"></div>
             </div>
+
+            <!-- Permanent Dynamic Legend Container (Outside #inspect-stats so it is never overwritten) -->
+            <div id="inspect-legend-target" class="inspector-legend-box"></div>
 
             <!-- Spatial Rights Note -->
             <div class="spatial-rights-card">
               <span class="spatial-rights-title">Spatial Data Governance</span>
               <p>
-                Excavation plans and survey documentation belong to the <strong>Wien Museum (© Wien Museum)</strong>. Individual burial coordinates are aggregated into spatial sectors to preserve excavation confidentiality.
+                Excavation plans and primary survey documentation belong to the <strong>Wien Museum (© Wien Museum)</strong>. Individual burial coordinates are aggregated into 3-meter spatial sectors to protect excavation confidentiality.
               </p>
             </div>
           </div>
@@ -247,13 +272,13 @@
     </div>
   </section>
 
-  <!-- Section 02: Merged Research Highlights & Published Evidence -->
+  <!-- Section 02: Research Highlights & Published Evidence -->
   <section id="research" class="section" style="background: rgba(8, 14, 26, 0.6); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
     <div class="container">
       <span class="section-idx">// 02 · RESEARCH HIGHLIGHTS & EVIDENCE</span>
-      <h2 class="section-head">Key Findings & Published Evidence</h2>
+      <h2 class="section-head">Key Findings & Published Figures</h2>
       <p class="section-p">
-        Peer-reviewed bioarchaeological results and authentic figures extracted from the Csokorgasse literature corpus in Zotero.
+        Peer-reviewed bioarchaeological results and authentic figures from the Csokorgasse research literature.
       </p>
 
       <div class="figures-grid">
@@ -263,13 +288,13 @@
             <img src="assets/figures/csokorgasse_stature_social_signal.jpg" alt="Bioarchaeological study: Stature as a Social Signal among Early Medieval Avars" class="figure-photo">
           </div>
           <div class="figure-info">
-            <div class="figure-tag">Bioarchaeology & Status</div>
-            <h3 class="figure-name">Stature as a Social Signal (Study of 284 Adults)</h3>
+            <div class="figure-tag">Bioarchaeology & Social Stratification</div>
+            <h3 class="figure-name">Stature as a Social Signal & Female Lifeworlds</h3>
             <p class="figure-desc">
-              Investigation of 148 males and 136 females revealed that body height was a biological proxy for high social status in males: elite equestrian males averaged 175.1 cm (+6.5 cm over non-elite). In contrast, female prestige jewelry showed no correlation with increased stature, documenting a clear sex-specific social divergence.
+              Out of 348 anthropologically documented adults (182 males, 166 females), analysis of 284 undisturbed adult burials (148 males, 136 females) demonstrated that body height was strongly linked to social status in males: high-status equestrian males averaged 175.1 cm (+6.5 cm over low-status males). Among females, however, stature did not vary across grave-good status tiers, pointing to distinct sex-specific social mobility and living conditions.
             </p>
             <div class="figure-citation">
-              Source: Kirchengast, Bühler & Hagmann (2026, <em>Nature & Anthropology</em> 4 (1): 10004, Graphical Abstract).
+              Source: Kirchengast, Bühler & Hagmann (2026, <em>Nature & Anthropology</em> 4 (1): 10004, Graphical Abstract, CC-BY 4.0).
             </div>
           </div>
         </article>
@@ -280,27 +305,27 @@
             <img src="assets/figures/csokorgasse_reitergrab_650.png" alt="In-situ plan of Equestrian Grave 650 with horse, dog, weapons, and offerings" class="figure-photo">
           </div>
           <div class="figure-info">
-            <div class="figure-tag">Equestrian Funerary Archaeology</div>
-            <h3 class="figure-name">Equestrian Burial 650 (Warrior, Horse & Dog)</h3>
+            <div class="figure-tag">Funerary Archaeology & Anthrozoology</div>
+            <h3 class="figure-name">Late Avar Equestrian Burial 650 (Warrior, Horse & Dog)</h3>
             <p class="figure-desc">
-              Detailed in-situ plan of Grave 650 showing the adult male warrior buried alongside his horse in parallel orientation (W–E), an adult hunting dog with a bronze bell, reflex bow antler fittings, iron arrowheads, stirrups, harness fittings, and rich meat offerings (cattle, sheep, pig, chicken, and goose).
+              In the southern periphery of the cemetery, four Late Avar equestrian burials (Graves 650, 690, 692, 693; c. 730–800 AD) were uncovered. Grave 650 contained an adult male buried alongside his bridled horse in W–E orientation, an adult hunting dog with a bronze bell, reflex bow antler mounts, iron arrowheads, stirrups, and food offerings (cattle, sheep, pig, chicken, and goose).
             </p>
             <div class="figure-citation">
-              Source: Baron et al. (2024, <em>Monographien des RGZM 143</em> / Propylaeum, Abb. 198, CC-BY 4.0 Open Access).
+              Source: Baron (2018 / 2024, <em>Monographien des RGZM 143</em> / Propylaeum, Abb. 198, CC-BY 4.0 Open Access).
             </div>
           </div>
         </article>
 
-        <!-- Figure 3: Full Cemetery Excavation Plan (700+ Burials) -->
+        <!-- Figure 3: Full Cemetery Excavation Plan (705 Burials) -->
         <article class="figure-card">
           <div class="figure-img-wrap">
-            <img src="assets/figures/csokorgasse_excavation_plan_700burials.png" alt="Complete excavation plan of Vienna-Csokorgasse with 700+ burials" class="figure-photo">
+            <img src="assets/figures/csokorgasse_excavation_plan_700burials.png" alt="Complete excavation plan of Vienna-Csokorgasse with 705 burials" class="figure-photo">
           </div>
           <div class="figure-info">
-            <div class="figure-tag">Cemetery Topography</div>
-            <h3 class="figure-name">Complete Cemetery Excavation Plan</h3>
+            <div class="figure-tag">Cemetery Topography & Excavation History</div>
+            <h3 class="figure-name">Complete Cemetery Excavation Plan (705 Graves)</h3>
             <p class="figure-desc">
-              Excavated in the 1970s along Vienna's southeastern periphery, the cemetery yielded over 700 documented burials. The complete topographical plan illustrates the spatial density and orientation of burial rows across approximately 124 meters of horizontal growth.
+              Uncovered during construction work in 1976 and 1977 under Ludwig Streinz, Vienna 11 – Csokorgasse comprises 705 documented graves (with 755 total burial contexts), making it the largest early medieval cemetery in Vienna. The site plan captures the dense NW–SE aligned grave rows across more than 120 meters of horizontal growth.
             </p>
             <div class="figure-citation">
               Source: Wien Museum / Streinz (1977); published in Kirchengast, Bühler & Hagmann (2026, Fig. 2). Primary geometries © Wien Museum.
@@ -314,13 +339,13 @@
             <img src="assets/figures/csokorgasse_geographic_location.jpg" alt="Macro-topographic location of Csokorgasse in the Upper Danube River Basin" class="figure-photo">
           </div>
           <div class="figure-info">
-            <div class="figure-tag">Regional Geography</div>
-            <h3 class="figure-name">Danube Crossroads & Regional Setting</h3>
+            <div class="figure-tag">Historical Topography & Urban History</div>
+            <h3 class="figure-name">Early Medieval Vienna & the Danube Borderland</h3>
             <p class="figure-desc">
-              Situated on the elevated gravel terrace of the Danube in Vienna's 11th district (Simmering/Kaiserebersdorf), the community occupied a strategically vital location in the southeastern Upper Danube River Basin, linking the eastern Alpine foothills with the Avar Khaganate.
+              Located on the Danube terrace in Vienna's 11th district (Simmering / Kaiserebersdorf), the cemetery reflects a permanent 7th–8th century settlement community at the northwestern borderland of the Avar Khaganate, bridging the Vienna Basin and the Carpathian Basin.
             </p>
             <div class="figure-citation">
-              Source: Kirchengast, Bühler & Hagmann (2026, <em>Nature & Anthropology</em> 4: 10004, Fig. 1).
+              Source: Kirchengast, Bühler & Hagmann (2026, <em>Nature & Anthropology</em> 4 (1): 10004, Fig. 1).
             </div>
           </div>
         </article>
@@ -329,14 +354,14 @@
   </section>
 
   <!-- Section 03: Publications & Research Corpus (Default: 3 Articles with Load More) -->
-  <section id="publications" class="section" style="background: rgba(8, 14, 26, 0.75); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+  <section id="publications" class="section" style="background: rgba(8, 14, 26, 0.78); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
     <div class="container">
       <div class="pub-header-row">
         <div>
           <span class="section-idx">// 03 · RESEARCH LITERATURE</span>
           <h2 class="section-head">Publications & Articles</h2>
           <p class="section-p" style="margin-bottom: 0;">
-            Peer-reviewed articles, monographs, and academic theses addressing the Vienna 11 – Csokorgasse cemetery. All registered DOIs are directly linked.
+            Peer-reviewed articles, monographs, book chapters, and academic theses investigating the Vienna 11 – Csokorgasse cemetery. All registered DOIs are directly linked.
           </p>
         </div>
       </div>
@@ -344,7 +369,7 @@
       <!-- Real-Time Search Bar -->
       <div class="pub-search-bar-wrap">
         <input type="text" id="pub-search-input" class="pub-search-input" placeholder="Search by author, title keyword, year, or journal..." aria-label="Search publications">
-        <span id="pub-count-status" class="pub-count-status">Showing 3 of 13 publications</span>
+        <span id="pub-count-status" class="pub-count-status">Showing 3 of 14 publications</span>
       </div>
 
       <!-- Dynamic Publications Grid (Rendered by js/app.js) -->
@@ -355,38 +380,51 @@
     </div>
   </section>
 
-  <!-- Section 04: Institutional Long-Term Archive (PHAIDRA) -->
+  <!-- Section 04: Institutional Long-Term Archive (PHAIDRA o:2091644) -->
   <section id="data-archive" class="section">
     <div class="container">
       <span class="section-idx">// 04 · INSTITUTIONAL REPOSITORY</span>
       <h2 class="section-head">Long-Term Archiving & Data Governance</h2>
       <p class="section-p">
-        Permanent curation via the University of Vienna's institutional repository infrastructure.
+        Permanent curation and indexing via the University of Vienna's institutional repository PHAIDRA.
       </p>
 
       <div class="phaidra-spotlight">
         <div class="spotlight-top">
           <div>
-            <span class="pill-mono rights">Controlled Scientific Access</span>
-            <h3 class="spotlight-h3" style="margin-top: 0.5rem;">PHAIDRA Repository (University of Vienna)</h3>
+            <span class="pill-mono rights">Controlled Scientific Access · PHAIDRA o:2091644</span>
+            <h3 class="spotlight-h3" style="margin-top: 0.5rem;">VIENNAVARS Digital Research Collection</h3>
+            <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">
+              Original PHAIDRA Subtitle (DE): <em>„Visualisierung und Interpretation weiblicher Lebenswelten in der Awarenzeit (7. – 8. Jhdt. n. Chr.) am Beispiel der Population des Gräberfeldes Csokorgasse, Wien 11“</em>
+            </div>
           </div>
           <a href="https://phaidra.univie.ac.at/detail/o:2091644" target="_blank" rel="noopener" class="btn-prog btn-prog-primary" style="font-size: 0.88rem;">
-            Visit PHAIDRA Object (o:2091644) ↗
+            Open PHAIDRA Record (o:2091644) ↗
           </a>
         </div>
 
         <div class="spotlight-cols">
           <div>
             <p>
-              The digital research corpus of the VIENNAVARS project is permanently preserved and indexed within <strong>PHAIDRA</strong> (<em>Permanent Hosting, Archiving and Indexing of Digital Resources and Assets</em>) under object identifier <strong>o:2091644</strong> and registered DOI <a href="https://doi.org/10.25365/phaidra.537" target="_blank" rel="noopener"><strong>10.25365/phaidra.537</strong></a>.
+              The digital research corpus of the VIENNAVARS project is permanently archived and indexed in <strong>PHAIDRA</strong> (<em>Permanent Hosting, Archiving and Indexing of Digital Resources and Assets</em>) at the University of Vienna under persistent identifier <strong>o:2091644</strong> and registered DataCite DOI <a href="https://doi.org/10.25365/phaidra.537" target="_blank" rel="noopener"><strong>10.25365/phaidra.537</strong></a>.
             </p>
             <p>
-              In accordance with professional archaeological standards and agreements with the <strong>Wien Museum</strong>, raw individual osteological catalogs and primary trench vector geometries are curated under controlled scientific access. Qualified researchers may request access to full tabular datasets.
+              The repository encompasses the anthropological analyses of the skeletal remains, selected investigations of funerary customs and female material culture, and the digital cartographic documentation of the cemetery. In accordance with archaeological heritage governance and copyright agreements with the <strong>Wien Museum</strong>, primary osteological catalogs and unaggregated excavation coordinates are curated under controlled scientific access.
             </p>
 
+            <!-- Official ÖFOS 2012 Subject Classifications from PHAIDRA -->
+            <div style="display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0;">
+              <span class="pill-mono" style="font-size: 0.7rem;">ÖFOS 601003 · Archaeology</span>
+              <span class="pill-mono" style="font-size: 0.7rem;">ÖFOS 106056 · Biological Anthropology</span>
+              <span class="pill-mono" style="font-size: 0.7rem;">ÖFOS 601026 · Virtual Archaeology</span>
+              <span class="pill-mono" style="font-size: 0.7rem;">Bioarchaeology</span>
+              <span class="pill-mono" style="font-size: 0.7rem;">Gender Archaeology</span>
+              <span class="pill-mono" style="font-size: 0.7rem;">Early Middle Ages · Avars</span>
+            </div>
+
             <div class="rights-box-strip">
-              <strong>Access Protocol:</strong>
-              Data access requests are subject to scholarly verification and archival agreements. Requests should specify institutional affiliation, research objectives, and target variables.
+              <strong>Scientific Access Protocol</strong>
+              Data access requests are evaluated for scholarly research purposes in consultation with the principal investigators and in compliance with Wien Museum archival policies.
             </div>
           </div>
 
@@ -397,7 +435,7 @@
               <span class="request-num">1</span>
               <div class="request-info">
                 <strong>Project Verification</strong>
-                <span>Submission of academic research proposal and institutional credentials.</span>
+                <span>Submission of academic research outline and institutional affiliation.</span>
               </div>
             </div>
 
@@ -405,21 +443,21 @@
               <span class="request-num">2</span>
               <div class="request-info">
                 <strong>Consultation with Project Lead</strong>
-                <span>Scoping of tabular datasets with Dr. Dominik Hagmann.</span>
+                <span>Scoping of osteological and archaeological datasets with Dr. Dominik Hagmann.</span>
               </div>
             </div>
 
             <div class="request-step">
               <span class="request-num">3</span>
               <div class="request-info">
-                <strong>PHAIDRA Repository Activation</strong>
-                <span>Authorized access granted to curated datasets via institutional credentials.</span>
+                <strong>PHAIDRA Repository Release</strong>
+                <span>Authorized release of curated research packages via PHAIDRA.</span>
               </div>
             </div>
 
-            <div style="margin-top: 1.5rem;">
+            <div style="margin-top: 1.4rem;">
               <a href="mailto:dominik.hagmann@univie.ac.at?subject=VIENNAVARS%20Data%20Access%20Request%20(PHAIDRA%20o:2091644)" class="btn-prog btn-prog-secondary" style="width: 100%; font-size: 0.85rem;">
-                ✉️ Initiate Dataset Access Request
+                ✉️ Contact Project Lead for Data Access
               </a>
             </div>
           </div>
@@ -428,11 +466,14 @@
     </div>
   </section>
 
-  <!-- Section 05: Team, Portraits & Cooperating Institutions -->
+  <!-- Section 05: Team, Portraits & Cooperating Institutions (including HEAS) -->
   <section id="team" class="section" style="background: rgba(8, 14, 26, 0.6); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
     <div class="container">
-      <span class="section-idx">// 05 · PROJECT INVESTIGATORS</span>
+      <span class="section-idx">// 05 · PROJECT INVESTIGATORS & NETWORK</span>
       <h2 class="section-head">Research Team & Cooperations</h2>
+      <p class="section-p">
+        Interdisciplinary collaboration across the Vienna Institute for Archaeological Science (VIAS), the Department of Evolutionary Anthropology, and the Research Network Human Evolution and Archaeological Sciences (HEAS) at the University of Vienna, in cooperation with the Wien Museum and funded by the City of Vienna.
+      </p>
 
       <div class="team-grid-prog">
         <!-- Dr. Dominik Hagmann -->
@@ -441,9 +482,10 @@
             <img src="assets/team/dominik_hagmann.jpg" alt="Dr. Dominik Hagmann portrait" loading="lazy">
           </div>
           <h3 class="team-name-prog">Dr. Dominik Hagmann</h3>
-          <div class="team-role-prog">Project Lead / Digital Archaeology</div>
+          <div class="team-role-prog">Project Lead · Digital Archaeology</div>
           <div class="team-affil-prog">
-            Vienna Institute for Archaeological Science<br>University of Vienna
+            Vienna Institute for Archaeological Science (VIAS)<br>
+            &amp; HEAS Research Network · University of Vienna
           </div>
         </div>
 
@@ -453,51 +495,58 @@
             <img src="assets/team/sylvia_kirchengast.jpg" alt="Univ.-Prof. Dr. Sylvia Kirchengast portrait" loading="lazy">
           </div>
           <h3 class="team-name-prog">Univ.-Prof. Dr. Sylvia Kirchengast</h3>
-          <div class="team-role-prog">Bioarchaeology & Anthropology</div>
+          <div class="team-role-prog">Bioarchaeology &amp; Evolutionary Anthropology</div>
           <div class="team-affil-prog">
-            Department of Evolutionary Anthropology<br>University of Vienna
+            Department of Evolutionary Anthropology<br>
+            &amp; HEAS Research Network · University of Vienna
           </div>
         </div>
 
         <!-- Dr. Birgit Bühler -->
         <div class="team-card-prog">
           <div class="team-avatar-prog">
-            <img src="assets/team/birgit_buehler.svg" alt="Dr. Birgit Bühler bioarchaeology avatar" loading="lazy">
+            <img src="assets/team/birgit_buehler.svg" alt="Dr. Birgit Bühler monogram" loading="lazy">
           </div>
           <h3 class="team-name-prog">Dr. Birgit Bühler</h3>
-          <div class="team-role-prog">Material Culture & Archaeometry</div>
+          <div class="team-role-prog">Material Culture &amp; Archaeometry</div>
           <div class="team-affil-prog">
-            Vienna Institute for Archaeological Science<br>University of Vienna
+            Vienna Institute for Archaeological Science (VIAS)<br>
+            &amp; HEAS Research Network · University of Vienna
           </div>
         </div>
       </div>
 
-      <!-- Partner & Technology Logos Grid -->
+      <!-- Official Project & Institutional Logos Grid (5 Authentic Logos) -->
       <div class="partner-logos-grid">
-        <a href="#top" class="partner-logo-item" title="VIENNAVARS Project">
-          <img src="assets/logos/viennavars.svg" alt="VIENNAVARS Logo">
+        <a href="#top" class="partner-logo-item" title="VIENNAVARS Research Project">
+          <img src="assets/logos/viennavars_logo.png" alt="VIENNAVARS Project Logo" style="height: 54px;">
+          <span class="partner-logo-lbl">VIENNAVARS Project</span>
         </a>
-        <a href="https://www.univie.ac.at" target="_blank" rel="noopener" class="partner-logo-item" title="University of Vienna">
-          <img src="assets/logos/univie.svg" alt="Universität Wien Logo">
+        <a href="https://www.univie.ac.at" target="_blank" rel="noopener" class="partner-logo-item" title="University of Vienna (Universität Wien)">
+          <img src="assets/logos/univie.svg" alt="Universität Wien Official Logo" style="height: 44px;">
+          <span class="partner-logo-lbl">University of Vienna</span>
+        </a>
+        <a href="https://www.heas.at" target="_blank" rel="noopener" class="partner-logo-item" title="HEAS — Human Evolution and Archaeological Sciences">
+          <img src="assets/logos/heas.svg" alt="HEAS Official Logo" style="height: 48px;">
+          <span class="partner-logo-lbl">HEAS Research Network</span>
         </a>
         <a href="https://www.wienmuseum.at" target="_blank" rel="noopener" class="partner-logo-item" title="Wien Museum">
-          <img src="assets/logos/wien_museum.svg" alt="Wien Museum Logo">
+          <img src="assets/logos/wien_museum.svg" alt="Wien Museum Official Logo" style="height: 36px;">
+          <span class="partner-logo-lbl">Wien Museum</span>
         </a>
-        <a href="https://www.wien.gv.at/kultur/abteilung/" target="_blank" rel="noopener" class="partner-logo-item" title="Stadt Wien Kultur · Hochschuljubiläumsfonds">
-          <img src="assets/logos/stadt_wien.svg" alt="Stadt Wien Kultur Logo">
+        <a href="https://www.wien.gv.at/kultur/abteilung/" target="_blank" rel="noopener" class="partner-logo-item" title="City of Vienna · Hochschuljubiläumsstiftung der Stadt Wien">
+          <img src="assets/logos/stadt_wien.svg" alt="Stadt Wien Official Logo" style="height: 42px;">
+          <span class="partner-logo-lbl">City of Vienna (Grant H-448297/2023)</span>
         </a>
-        <div class="partner-logo-item" title="Vibe-coded with Google Antigravity">
-          <img src="assets/logos/google_antigravity.svg" alt="Google Antigravity Logo">
-        </div>
       </div>
     </div>
   </section>
 
   <!-- Section 06: Citation Box -->
-  <section class="section" style="padding-top: 1rem;">
+  <section class="section" style="padding-top: 3.5rem; padding-bottom: 4rem;">
     <div class="container">
       <span class="section-idx">// 06 · CITATION</span>
-      <h2 class="section-head">Cite this Dataset</h2>
+      <h2 class="section-head">Cite this Project &amp; Dataset</h2>
 
       <div class="terminal-box">
         <div class="terminal-top">
@@ -515,10 +564,10 @@
         </div>
 
         <pre id="citation-code" class="terminal-pre">@dataset{viennavars_csokorgasse_2024,
-  author    = {Hagmann, Dominik and Kirchengast, Sylvia and B{\"u}hler, Birgit},
-  title     = {{VIENNAVARS: Visualization and Interpretation of the early medieval fEmale avar populatioN through archaeothaNAthology from Vienna/Austria (csokorgasse-buRialS)}},
+  author    = {Hagmann, Dominik and B{\"u}hler, Birgit and Kirchengast, Sylvia},
+  title     = {{VIENNAVARS: Visualisierung und Interpretation weiblicher Lebenswelten in der Awarenzeit (7. -- 8. Jhdt. n. Chr.) am Beispiel der Population des Gr{\"a}berfeldes Csokorgasse, Wien 11 / Visualization and Interpretation of the early medieval fEmale avar populatioN through archaeothaNAthology from Vienna/Austria (csokorgasse-buRialS)}},
   year      = {2024},
-  publisher = {PHAIDRA - University of Vienna},
+  publisher = {PHAIDRA -- University of Vienna},
   doi       = {10.25365/phaidra.537},
   url       = {https://phaidra.univie.ac.at/detail/o:2091644}
 }</pre>
@@ -526,50 +575,86 @@
     </div>
   </section>
 
-  <!-- Progressive Footer -->
+  <!-- Footer with Complete Statutory Imprint (Impressum) & Bottom-Only Antigravity Reference -->
   <footer class="footer-prog">
     <div class="container">
       <div class="footer-grid-prog">
         <div>
-          <div class="footer-brand-title">VIENNAVARS</div>
-          <p style="color: var(--text-muted); line-height: 1.6; max-width: 480px; margin-bottom: 1.25rem;">
+          <div class="footer-brand-row">
+            <img src="assets/logos/viennavars_emblem.png" alt="VIENNAVARS Emblem" style="height: 34px; width: auto;">
+            <div class="footer-brand-title">VIENNA<span style="color: var(--accent-amber);">VARS</span></div>
+          </div>
+          <p style="color: #cbd5e1; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem;">
+            Visualization and Interpretation of Female Lifeworlds in the Avar Period (7th–8th Centuries AD): The Population of the Csokorgasse Cemetery, Vienna 11
+          </p>
+          <p style="color: var(--text-muted); line-height: 1.55; max-width: 520px; margin-bottom: 1rem; font-size: 0.82rem;">
             Visualization and Interpretation of the early medieval fEmale avar populatioN through archaeothaNAthology from Vienna/Austria (csokorgasse-buRialS).
           </p>
           <p style="font-size: 0.8rem; color: var(--text-dim);">
-            Supported by the Hochschuljubiläumsstiftung der Stadt Wien (Grant H-448297/2023).
+            Funded by the Hochschuljubiläumsstiftung der Stadt Wien (Project Grant H-448297/2023).
           </p>
         </div>
 
         <div>
-          <strong style="color: #fff; font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 1rem;">
-            Key Project Links
+          <strong style="color: #fff; font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 0.9rem;">
+            Project &amp; Institutional Links
           </strong>
           <ul class="footer-links-prog">
             <li><a href="https://phaidra.univie.ac.at/detail/o:2091644" target="_blank" rel="noopener">PHAIDRA Archive (o:2091644)</a></li>
-            <li><a href="https://doi.org/10.25365/phaidra.537" target="_blank" rel="noopener">Persistent DOI: 10.25365/phaidra.537</a></li>
+            <li><a href="https://doi.org/10.25365/phaidra.537" target="_blank" rel="noopener">DOI: 10.25365/phaidra.537</a></li>
             <li><a href="https://vias.univie.ac.at/projekte/viennavars/" target="_blank" rel="noopener">VIAS Project Page (Univ. of Vienna)</a></li>
-            <li><a href="https://anthro.univie.ac.at" target="_blank" rel="noopener">Dept. of Evolutionary Anthropology</a></li>
+            <li><a href="https://www.heas.at" target="_blank" rel="noopener">HEAS Research Network</a></li>
+            <li><a href="https://anthropology.univie.ac.at" target="_blank" rel="noopener">Dept. of Evolutionary Anthropology</a></li>
           </ul>
         </div>
 
         <div>
-          <strong style="color: #fff; font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 1rem;">
-            Source & Rights
+          <strong style="color: #fff; font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 0.9rem;">
+            Repositories &amp; Rights
           </strong>
           <ul class="footer-links-prog">
-            <li><a href="https://github.com/VIENNAVARS" target="_blank" rel="noopener">GitHub Organization</a></li>
-            <li><span style="color: var(--text-dim);">Spatial Documentation: © Wien Museum</span></li>
-            <li><span style="color: var(--text-dim);">Base Maps: © basemap.at</span></li>
+            <li><a href="https://github.com/VIENNAVARS" target="_blank" rel="noopener">GitHub Organization (VIENNAVARS)</a></li>
+            <li><a href="#impressum">Imprint &amp; Legal Disclosure (Impressum)</a></li>
+            <li><span style="color: var(--text-dim);">Portal &amp; Research Data: © VIENNAVARS</span></li>
+            <li><span style="color: var(--text-dim);">Excavation Documentation: © Wien Museum</span></li>
+            <li><span style="color: var(--text-dim);">Base Map Tiles: © basemap.at</span></li>
           </ul>
         </div>
       </div>
 
+      <!-- Statutory Imprint / Legal Disclosure (Impressum pursuant to § 25 Mediengesetz & § 5 ECG) -->
+      <div id="impressum" class="impressum-box">
+        <span class="impressum-title">Imprint &amp; Legal Disclosure (Impressum pursuant to § 25 Austrian Media Act &amp; § 5 ECG)</span>
+        <div class="impressum-grid">
+          <div>
+            <strong>Media Owner &amp; Project Responsibility</strong>
+            VIENNAVARS Research Project<br>
+            Project Lead: Dr. Dominik Hagmann<br>
+            Vienna Institute for Archaeological Science (VIAS), University of Vienna<br>
+            Franz-Klein-Gasse 1, 1190 Vienna, Austria<br>
+            Email: <a href="mailto:dominik.hagmann@univie.ac.at">dominik.hagmann@univie.ac.at</a>
+          </div>
+          <div>
+            <strong>Scientific Purpose &amp; Editorial Policy (Blattlinie)</strong>
+            Non-commercial open academic research portal dedicated to disseminating bioarchaeological, osteological, and archaeological findings on female lifeworlds at the early medieval Avar-period cemetery of Vienna 11 – Csokorgasse (7th–8th centuries AD).<br>
+            Co-Investigators: Univ.-Prof. Dr. Sylvia Kirchengast, Dr. Birgit Bühler.
+          </div>
+          <div>
+            <strong>Copyright, Data Governance &amp; Liability</strong>
+            Website architecture, texts, project emblem, and synthesized research visualizations are <strong>© 2024–2026 VIENNAVARS</strong>. Primary excavation documentation, survey plans, and raw trench geometries are the intellectual property of the <strong>Wien Museum (© Wien Museum)</strong>. Published figures are reproduced under their respective open-access licenses (CC-BY 4.0). External links are provided for scholarly reference without liability for third-party content.
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Strip: Copyright © VIENNAVARS & Bottom-Only Google Antigravity Attribution -->
       <div class="footer-bottom-prog">
         <div>
-          &copy; 2024–2026 VIENNAVARS. All rights reserved. Vibe-coded with <a href="https://github.com/VIENNAVARS" target="_blank" rel="noopener" style="color: #38bdf8; text-decoration: none;">Google Antigravity</a>.
+          &copy; 2024–2026 <strong>VIENNAVARS</strong>. All rights reserved. · Primary Excavation Geometries &copy; Wien Museum · Base Maps &copy; basemap.at
         </div>
-        <div>
-          Spatial Documentation &copy; Wien Museum · Base Maps &copy; basemap.at
+
+        <div class="antigravity-footer-badge" title="Vibe-coded with Google Antigravity">
+          <img src="assets/logos/antigravity_icon.png" alt="Google Antigravity Official Icon">
+          <span>Vibe-coded with <strong>Google Antigravity</strong></span>
         </div>
       </div>
     </div>
