@@ -128,7 +128,7 @@ function renderPublicationCard(pub) {
 
   return `
     <article class="pub-card ${pub.highlight ? 'pub-highlight' : ''}">
-      <div>
+      <div style="display: flex; flex-direction: column; flex: 1;">
         <div class="pub-card-top">
           <span class="pub-badge-year">${pub.year}</span>
           ${pub.open_access ? '<span class="pub-badge-oa">Open Access</span>' : ''}
