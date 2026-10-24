@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initPublicationsData();
   renderPublications();
   initPublicationSearch();
+  initBibliographyDownload();
   initGisWma();
   initCitationCopy();
 });
@@ -162,6 +163,114 @@ function initPublicationSearch() {
       renderPublications();
     });
   }
+}
+
+// Direct Bibliography Export (BibTeX, RIS, CSV, JSON) — Works both online & offline via Blob
+function initBibliographyDownload() {
+  const dlLinks = document.querySelectorAll('[data-bib-download]');
+  dlLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      if (!publicationsList || publicationsList.length === 0) return;
+      e.preventDefault();
+      const format = link.getAttribute('data-bib-download');
+      let content = '';
+      let mime = 'text/plain;charset=utf-8';
+      let filename = `viennavars_publications.${format}`;
+
+      if (format === 'bib') {
+        const header = [
+          '% VIENNAVARS Project & Vienna 11 - Csokorgasse Research Bibliography',
+          '% Portal: https://github.com/VIENNAVARS | PHAIDRA: https://phaidra.univie.ac.at/detail/o:2091644 (DOI: 10.25365/phaidra.537)',
+          ''
+        ];
+        const entries = publicationsList.map(p => {
+          const key = (p.id || 'pub').replace(/-/g, '_');
+          const j = p.journal || '';
+          let type = 'article';
+          if (j.includes('Monographien')) type = 'book';
+          else if (j.includes('In:')) type = 'incollection';
+          else if (j.includes('Dissertation')) type = 'phdthesis';
+
+          const lines = [
+            `@${type}{${key},`,
+            `  author    = {${p.authors}},`,
+            `  title     = {{${p.title}}},`,
+            `  year      = {${p.year}},`
+          ];
+          if (type === 'phdthesis') {
+            lines.push(`  school    = {University of Vienna},`);
+          } else if (type === 'incollection') {
+            lines.push(`  booktitle = {${j.replace(/^In:\s*/, '')}},`);
+          } else {
+            lines.push(`  journal   = {${j}},`);
+          }
+          if (p.volume) lines.push(`  volume    = {${p.volume}},`);
+          if (p.doi) lines.push(`  doi       = {${p.doi}},`);
+          if (p.url) lines.push(`  url       = {${p.url}},`);
+          lines.push(`  note      = {${p.open_access ? 'Open Access' : 'Print / Publisher Access'}}`);
+          lines.push(`}`);
+          return lines.join('\n');
+        });
+        content = header.concat(entries).join('\n\n') + '\n';
+        mime = 'application/x-bibtex;charset=utf-8';
+      } else if (format === 'ris') {
+        content = publicationsList.map(p => {
+          const j = p.journal || '';
+          let ty = 'JOUR';
+          if (j.includes('Monographien')) ty = 'BOOK';
+          else if (j.includes('In:')) ty = 'CHAP';
+          else if (j.includes('Dissertation')) ty = 'THES';
+          const lines = [
+            `TY  - ${ty}`,
+            `ID  - ${p.id}`,
+            `TI  - ${p.title}`,
+            `AU  - ${p.authors}`,
+            `PY  - ${p.year}`,
+            `T2  - ${j}`
+          ];
+          if (p.volume) lines.push(`VL  - ${p.volume}`);
+          if (p.doi) lines.push(`DO  - ${p.doi}`);
+          if (p.url) lines.push(`UR  - ${p.url}`);
+          lines.push('ER  - ');
+          return lines.join('\n');
+        }).join('\n\n') + '\n';
+        mime = 'application/x-research-info-systems;charset=utf-8';
+      } else if (format === 'csv') {
+        const escCsv = val => `"${String(val == null ? '' : val).replace(/"/g, '""')}"`;
+        const rows = [
+          ['id', 'authors', 'year', 'title', 'journal_or_source', 'volume_pages', 'doi', 'url', 'open_access'].join(',')
+        ];
+        publicationsList.forEach(p => {
+          rows.push([
+            escCsv(p.id),
+            escCsv(p.authors),
+            escCsv(p.year),
+            escCsv(p.title),
+            escCsv(p.journal),
+            escCsv(p.volume || ''),
+            escCsv(p.doi || ''),
+            escCsv(p.url || ''),
+            escCsv(p.open_access ? 'Yes' : 'No')
+          ].join(','));
+        });
+        content = '\uFEFF' + rows.join('\r\n') + '\r\n';
+        mime = 'text/csv;charset=utf-8';
+      } else if (format === 'json') {
+        content = JSON.stringify(publicationsList, null, 2) + '\n';
+        mime = 'application/json;charset=utf-8';
+      }
+
+      const blob = new Blob([content], { type: mime });
+      const blobUrl = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = blobUrl;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(blobUrl), 1500);
+    });
+  });
 }
 
 // Escape HTML utility
