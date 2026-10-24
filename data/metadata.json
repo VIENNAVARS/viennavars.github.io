@@ -1,6 +1,6 @@
 {
   "title": {
-    "en": "VIENNAVARS: Visualization and Interpretation of the early medieval fEmale avar populatioN through archaeothaNAthology from Vienna/Austria (csokorgasse-buRialS)",
+    "en": "VIENNAVARS: Visualization and Interpretation of the early medieval fEmale avar populatioN from Vienna/Austria (csokorgasse-buRialS)",
     "de": "VIENNAVARS — Visualisierung und Interpretation weiblicher Lebenswelten in der Awarenzeit (7. – 8. Jhdt. n. Chr.) am Beispiel der Population des Gräberfeldes Csokorgasse, Wien 11"
   },
   "acronym": "VIENNAVARS",
@@ -15,11 +15,15 @@
     "github_organization": "https://github.com/VIENNAVARS",
     "github_pages": "https://viennavars.github.io"
   },
-  "publication_date": "2024-09-01",
-  "license": {
-    "name": "Creative Commons Attribution 4.0 International (CC BY 4.0)",
-    "url": "https://creativecommons.org/licenses/by/4.0/"
+  "data_policy": {
+    "archiving_repository": "PHAIDRA (Universität Wien)",
+    "access_rights": "Restricted Access / Auf Anfrage",
+    "access_statement_de": "Die Forschungsdaten des Projekts VIENNAVARS sind über das Repositorium PHAIDRA der Universität Wien langzeitarchiviert. Primärdaten, detaillierte osteologische Inventare sowie Grabungsdaten werden zum Schutz der Funddaten und aufgrund institutioneller Vereinbarungen nur kontrolliert und teilweise auf Anfrage nach Rücksprache mit der Projektleitung bereitgestellt.",
+    "access_statement_en": "Research datasets of the VIENNAVARS project are long-term archived via the PHAIDRA repository of the University of Vienna. Primary records, detailed osteological inventories, and excavation documentation are curated under restricted/controlled access and provided upon request following consultation with the project investigators.",
+    "geometry_rights_notice_de": "Rechtehinweis Geometrien: Die Grabungsgeometrien, Pläne und räumlichen Primärverortungen unterliegen dem Urheber- und Nutzungsrecht des Wien Museums (© Wien Museum). Eine freie Dissemination roher Vektorkoordinaten im Internet findet daher nicht statt.",
+    "geometry_rights_notice_en": "Notice on Geometries: Excavation geometries, site plans, and primary spatial coordinates are the intellectual and legal property of the Wien Museum (© Wien Museum). Raw vector coordinates are not disseminated publicly."
   },
+  "publication_date": "2024-09-01",
   "funding": {
     "funder": "Hochschuljubiläumsfonds der Stadt Wien",
     "grant_number": "H-448297/2023",
@@ -28,44 +32,36 @@
   "principal_investigators": [
     {
       "name": "Dr. Dominik Hagmann",
-      "role": "Project Lead / Digital Archaeology & Archaeothanatology",
+      "role": "Projektleitung / Digitale Archäologie",
       "affiliation": "Vienna Institute for Archaeological Science (VIAS), Universität Wien"
     },
     {
       "name": "Univ.-Prof. Dr. Sylvia Kirchengast",
-      "role": "Bioarchaeology & Human Osteology",
-      "affiliation": "Department of Evolutionary Anthropology, Universität Wien"
+      "role": "Bioarchäologie & Anthropologie",
+      "affiliation": "Department für Evolutionäre Anthropologie, Universität Wien"
     },
     {
       "name": "Dr. Birgit Bühler",
-      "role": "Material Culture & Archaeometry",
+      "role": "Materielle Kultur & Archäometrie",
       "affiliation": "Vienna Institute for Archaeological Science (VIAS), Universität Wien"
     }
   ],
   "collaborating_institutions": [
     "Vienna Institute for Archaeological Science (VIAS), Universität Wien",
-    "Department of Evolutionary Anthropology, Universität Wien",
+    "Department für Evolutionäre Anthropologie, Universität Wien",
     "Wien Museum",
     "Stadt Wien Kultur"
   ],
   "site": {
     "name": "Wien 11 – Csokorgasse (Kaiserebersdorf)",
-    "period": "Frühmittelalter (Awarenzeit, 7.–8. Jh. n. Chr.)",
+    "period_de": "Frühmittelalter (Awarenzeit, 7.–8. Jh. n. Chr.)",
     "period_en": "Early Medieval (Avar Period, 7th–8th centuries AD)",
     "total_graves": "700+",
-    "coordinates": {
-      "latitude": 48.1568,
-      "longitude": 16.4712,
-      "crs": "EPSG:4326"
-    }
+    "district": "11. Wiener Gemeindebezirk (Simmering)",
+    "copyright_spatial": "© Wien Museum"
   },
-  "subject_classifications": [
-    { "code": "601003", "name": "Archaeology / Archäologie" },
-    { "code": "106056", "name": "Biological anthropology / Biologische Anthropologie" },
-    { "code": "601026", "name": "Virtual archaeology / Virtuelle Archäologie" }
-  ],
   "abstract": {
-    "de": "Im Fokus des Projekts VIENNAVARS liegt das awarenzeitliche Gräberfeld Wien 11-Csokorgasse, das bisher größte frühmittelalterliche Gräberfeld im Wiener Stadtgebiet. Das Projekt verknüpft bioarchäologische und anthropologische Untersuchungen der Skelettreste mit einer detaillierten Analyse materieller Grabbeigaben sowie digitaler Archäothanatologie. Auf dieser Grundlage werden weibliche Lebenswelten, Mobilität, Gesundheit und Bestattungsrituale im awarischen Kulturkreis visualisiert und rekonstruiert. Die gewonnenen Forschungsdaten werden dauerhaft über PHAIDRA langzeitarchiviert und im Sinne der FAIR-Prinzipien Open Access bereitgestellt.",
-    "en": "The VIENNAVARS project focuses on the early medieval Avar-period cemetery of Vienna 11-Csokorgasse, the largest known early medieval burial ground in the Vienna metropolitan area. It combines bioarchaeological and anthropological skeletal analysis with detailed material culture studies and digital archaeothanatology. This multi-proxy approach provides unprecedented insights into the lifeworlds, health status, and burial rituals of female individuals during the 7th and 8th centuries AD. All datasets are permanently archived via PHAIDRA and provided open access adhering to FAIR data principles."
+    "de": "Im Fokus des Projekts VIENNAVARS liegt das awarenzeitliche Gräberfeld Wien 11-Csokorgasse, das bisher größte frühmittelalterliche Gräberfeld im Wiener Stadtgebiet. Das Projekt verknüpft bioarchäologische Untersuchungen der Skelettreste mit einer exemplarischen Analyse der materiellen Grabbeigaben sowie digitaler Dokumentation zur Erforschung weiblicher Lebenswelten im awarischen Kulturkreis. Die Forschungsdaten werden dauerhaft über PHAIDRA langzeitarchiviert und gemäß Vereinbarungen mit dem Wien Museum für berechtigte wissenschaftliche Anfragen erschlossen.",
+    "en": "The VIENNAVARS project focuses on the early medieval Avar-period cemetery of Vienna 11-Csokorgasse, the largest known early medieval burial ground in Vienna. It combines bioarchaeological skeletal analysis with studies of material culture and digital documentation to investigate female lifeworlds during the 7th and 8th centuries AD. Datasets are permanently archived via PHAIDRA and curated under controlled scientific access in accordance with agreements with the Wien Museum."
   }
 }
