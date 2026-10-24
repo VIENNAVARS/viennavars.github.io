@@ -132,6 +132,15 @@ a:hover {
   color: #ffffff;
 }
 
+.brand-wordmark-pivot-a {
+  color: var(--accent-amber);
+  font-size: 1.26em;
+  font-weight: 800;
+  display: inline-block;
+  line-height: 0.85;
+  margin: 0 0.01em;
+}
+
 .brand-wordmark-vars {
   color: var(--accent-amber);
 }
@@ -278,12 +287,21 @@ a:hover {
 }
 
 .hero-title-main {
+  font-family: 'Montserrat', var(--font-sans);
   font-size: 4rem;
   font-weight: 800;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
   line-height: 1.05;
   margin-bottom: 0.75rem;
   color: #ffffff;
+}
+
+.hero-title-main .vars-pivot-a {
+  color: var(--accent-amber);
+  font-size: 1.26em;
+  display: inline-block;
+  line-height: 0.85;
+  margin: 0 0.01em;
 }
 
 .hero-title-main .vars-gold {
@@ -1135,8 +1153,8 @@ a:hover {
 
 .partner-logos-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1.25rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
   padding: 1.75rem 2rem;
   background: rgba(11, 17, 32, 0.82);
   border: 1px solid var(--border-subtle);

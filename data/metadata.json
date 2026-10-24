@@ -20,7 +20,7 @@
   },
   "publication_date": "2024-09-01",
   "funding": {
-    "funder": "Hochschuljubiläumsfonds der Stadt Wien",
+    "funder": "City of Vienna — Hochschuljubiläumsstiftung der Stadt Wien",
     "grant_number": "H-448297/2023",
     "city": "Vienna, Austria"
   },
@@ -44,9 +44,7 @@
   "collaborating_institutions": [
     "Vienna Institute for Archaeological Science (VIAS), University of Vienna",
     "Department of Evolutionary Anthropology, University of Vienna",
-    "Research Network Human Evolution and Archaeological Sciences (HEAS), University of Vienna",
-    "Wien Museum",
-    "City of Vienna Culture (Stadt Wien Kultur)"
+    "Research Network Human Evolution and Archaeological Sciences (HEAS), University of Vienna"
   ],
   "site": {
     "name": "Vienna 11 – Csokorgasse (Kaiserebersdorf)",
