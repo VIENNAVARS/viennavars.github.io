@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VIENNAVARS — Geospatial WMA & Research Portal | Vienna 11 Csokorgasse</title>
+  <title>VIENNAVARS — The Avar-Period Cemetery of Vienna 11 – Csokorgasse</title>
   
-  <meta name="description" content="Interactive 3-meter GIS hexbin visualization on basemap.at, authentic publication figures, and bioarchaeological research for Vienna 11 - Csokorgasse (7th–8th c. AD).">
+  <meta name="description" content="Open research data and interactive map for the 7th–8th century Avar cemetery at Vienna 11 – Csokorgasse, featuring bioarchaeological findings and publications.">
   <meta name="author" content="Dr. Dominik Hagmann, Univ.-Prof. Dr. Sylvia Kirchengast, Dr. Birgit Bühler">
   <meta name="theme-color" content="#05080f">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="VIENNAVARS — Geospatial WMA & Research Portal">
-  <meta property="og:description" content="Interactive 3m GIS hexbin maps on basemap.at, publication figures, and bioarchaeological data for Vienna 11 Csokorgasse.">
+  <meta property="og:title" content="VIENNAVARS — The Avar-Period Cemetery of Vienna 11 – Csokorgasse">
+  <meta property="og:description" content="Interactive map on basemap.at, bioarchaeological findings, and research publications for Vienna 11 Csokorgasse.">
   <meta property="og:type" content="website">
 
   <!-- Google Fonts: Space Grotesk & JetBrains Mono -->
@@ -27,16 +27,15 @@
 </head>
 <body id="top">
 
-  <!-- Top Avant-Garde Navigation (Single-Line, Non-Wrapping) -->
+  <!-- Clean Single-Line Navigation -->
   <header class="navbar">
     <div class="container nav-container">
       <a href="#top" class="brand-badge" title="VIENNAVARS Portal">VIENNAVARS</a>
 
       <nav class="nav-wrapper">
         <ul class="nav-menu">
-          <li><a href="#gis-wma" class="nav-link">Web Map</a></li>
-          <li><a href="#insights" class="nav-link">Insights</a></li>
-          <li><a href="#figures" class="nav-link">Figures</a></li>
+          <li><a href="#gis-wma" class="nav-link">Map</a></li>
+          <li><a href="#research" class="nav-link">Research</a></li>
           <li><a href="#publications" class="nav-link">Publications</a></li>
           <li><a href="#data-archive" class="nav-link">Archive</a></li>
           <li><a href="#team" class="nav-link">Team</a></li>
@@ -52,12 +51,12 @@
     </div>
   </header>
 
-  <!-- Clean, Modern Hero Section -->
+  <!-- Clear, Balanced Hero Section -->
   <section class="hero">
     <div class="hero-grid-pattern"></div>
     <div class="container hero-content">
       <div class="hero-top-strip">
-        <span class="pill-mono">Vienna 11 – Csokorgasse · 7th–8th c. AD</span>
+        <span class="pill-mono">Vienna 11 – Csokorgasse · Early Medieval Cemetery</span>
         <span class="pill-mono doi">DOI: 10.25365/phaidra.537</span>
       </div>
 
@@ -66,19 +65,19 @@
       </h1>
 
       <p class="hero-tagline">
-        Early Medieval Avar Cemetery of Vienna 11 – Csokorgasse
+        The Early Medieval Cemetery of Vienna 11 – Csokorgasse
       </p>
 
       <p class="hero-description">
-        Interactive 3-meter GIS hexbin visualization on <strong>basemap.at</strong>, authentic publication figures, and bioarchaeological research findings from the largest early medieval burial site in Vienna.
+        Documenting the largest 7th–8th century burial ground in the Vienna region, with over 700 excavated graves. This portal delivers an interactive cemetery map on <strong>basemap.at</strong>, key bioarchaeological results, and direct access to peer-reviewed research publications.
       </p>
 
       <div class="hero-cta-row">
         <a href="#gis-wma" class="btn-prog btn-prog-primary">
-          🗺️ Explore Web Map
+          🗺️ Explore Cemetery Map
         </a>
         <a href="#publications" class="btn-prog btn-prog-secondary">
-          📚 Publications & DOIs (13)
+          📚 Research Publications (13)
         </a>
       </div>
 
@@ -93,34 +92,34 @@
           <span class="metric-lbl">Adult Skeletons</span>
         </div>
         <div class="metric-cell">
-          <span class="metric-val">3 m</span>
-          <span class="metric-lbl">Hexbin Resolution</span>
+          <span class="metric-val">7th–8th c.</span>
+          <span class="metric-lbl">Chronological Horizon</span>
         </div>
         <div class="metric-cell">
           <span class="metric-val">13</span>
-          <span class="metric-lbl">Research Publications</span>
+          <span class="metric-lbl">Core Publications</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Section 01: Real Geospatial Web Map Application (WMA) on basemap.at -->
+  <!-- Section 01: Interactive Cemetery Map on basemap.at -->
   <section id="gis-wma" class="section">
     <div class="container">
-      <span class="section-idx">// 01 · INTERACTIVE GEOSPATIAL WEB MAP</span>
-      <h2 class="section-head">3-Meter Hexbin Map on basemap.at</h2>
+      <span class="section-idx">// 01 · INTERACTIVE CEMETERY MAP</span>
+      <h2 class="section-head">Spatial Distribution on basemap.at</h2>
       <p class="section-p">
-        Direct exploration of authentic GIS spatial layers derived from the Csokorgasse research database, rendered over official Austrian <strong>basemap.at</strong> tiles. Burials are aggregated into 3-meter hexagons, preserving sensitive burial coordinates while showing horizontal cemetery stratigraphy.
+        Interactive overview of the Csokorgasse burial ground rendered over official Austrian <strong>basemap.at</strong> base layers. Burials are displayed in aggregated spatial units to illustrate chronological development from the Early to Late Avar period while preserving sensitive excavation coordinates.
       </p>
 
       <div class="wma-stage-card">
         <!-- Control Bar: Layer Toggles & basemap.at Switcher -->
         <div class="wma-ctrl-bar">
-          <!-- GIS Layer Toggles -->
+          <!-- Layer Toggles -->
           <div class="wma-layer-toggles">
             <span class="ctrl-group-lbl">Layers:</span>
             <button class="btn-layer-chip active" id="btn-layer-all" data-layer="all">
-              <span>●</span> Chronology (All 428 Hexbins)
+              <span>●</span> All Chronological Phases
             </button>
             <button class="btn-layer-chip" id="btn-layer-female" data-layer="female">
               <span>●</span> Female Burials (n=182)
@@ -129,7 +128,7 @@
               <span>●</span> Male Burials (n=178)
             </button>
             <button class="btn-layer-chip active" id="btn-layer-boundary" data-layer="boundary">
-              <span>⬡</span> Boundary
+              <span>⬡</span> Cemetery Perimeter
             </button>
           </div>
 
@@ -154,18 +153,18 @@
           <div class="wma-leaflet-wrapper">
             <div id="gis-wma-map"></div>
             <div class="map-layer-indicator" id="map-status-pill">
-              basemap.at Grau · 428 Hexbins Rendered
+              basemap.at Grau · 428 Spatial Units Rendered
             </div>
           </div>
 
           <!-- Right: Inspector Sidebar -->
           <div class="wma-inspector-sidebar">
             <div class="inspector-panel">
-              <span class="inspector-title">Active Hexbin Inspector</span>
-              <h3 class="inspector-main-h3" id="inspect-title">Hover or Click a Hexagon</h3>
+              <span class="inspector-title">Cemetery Sector Inspector</span>
+              <h3 class="inspector-main-h3" id="inspect-title">Hover or Click a Cell</h3>
               <div id="inspect-desc" class="inspector-desc-wrap">
                 <p class="inspector-desc-p">
-                  Select any 3-meter hexagonal cell on the live map to display burial counts, dated phase distributions, and horizontal stratigraphy attributes.
+                  Select any cell on the live map to display burial numbers, dominant chronological phase, and horizontal stratigraphy attributes.
                 </p>
               </div>
 
@@ -202,7 +201,7 @@
             <div class="spatial-rights-card">
               <span class="spatial-rights-title">Spatial Data Governance</span>
               <p>
-                Excavation plans and trench geometries belong to the <strong>Wien Museum (© Wien Museum)</strong>. Individual burial coordinates are aggregated into 3-meter spatial bins to preserve excavation confidentiality.
+                Excavation plans and survey documentation belong to the <strong>Wien Museum (© Wien Museum)</strong>. Individual burial coordinates are aggregated to preserve excavation record confidentiality.
               </p>
             </div>
           </div>
@@ -211,78 +210,63 @@
     </div>
   </section>
 
-  <!-- Section 02: Research Findings & Paper Teasers -->
-  <section id="insights" class="section" style="background: rgba(8, 14, 26, 0.6); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+  <!-- Section 02: Merged Research Highlights & Published Evidence -->
+  <section id="research" class="section" style="background: rgba(8, 14, 26, 0.6); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
     <div class="container">
-      <span class="section-idx">// 02 · SCIENTIFIC RESEARCH & INSIGHTS</span>
-      <h2 class="section-head">Key Research Findings</h2>
+      <span class="section-idx">// 02 · RESEARCH HIGHLIGHTS & EVIDENCE</span>
+      <h2 class="section-head">Key Findings & Published Evidence</h2>
       <p class="section-p">
-        Core results stemming from bioarchaeological skeletal examinations, material status classifications, and spatial horizontal stratigraphy.
-      </p>
-
-      <div class="insights-row" id="paper-insights-target">
-        <!-- Rendered by js/app.js -->
-      </div>
-    </div>
-  </section>
-
-  <!-- Section 03: Authentic Publication Figures & Visual Evidence -->
-  <section id="figures" class="section">
-    <div class="container">
-      <span class="section-idx">// 03 · PUBLICATION FIGURES</span>
-      <h2 class="section-head">Figures from Publications</h2>
-      <p class="section-p">
-        Original excavation plans, regional maps, and spatial diagrams directly from the Csokorgasse peer-reviewed publications.
+        Core bioarchaeological results and official cartographic figures directly from the peer-reviewed Csokorgasse publications.
       </p>
 
       <div class="figures-grid">
-        <!-- Figure 1: Excavation Plan -->
+        <!-- Card 1: Excavation Plan & Skeletal Demography -->
         <article class="figure-card">
           <div class="figure-img-wrap">
             <img src="assets/figures/csokorgasse_excavation_plan_700burials.png" alt="Vienna-Csokorgasse cemetery excavation plan with 700 burials" class="figure-photo">
           </div>
           <div class="figure-info">
-            <div class="figure-tag">Excavation Plan · Vienna 11</div>
-            <h3 class="figure-name">Vienna-Csokorgasse Site & Excavated Graves</h3>
+            <div class="figure-tag">Site Plan & Demography</div>
+            <h3 class="figure-name">Excavation Record & Childhood Stress</h3>
             <p class="figure-desc">
-              The cemetery site with more than 700 burials (grave outlines marked in green) excavated in the 1970s during housing redevelopment at Vienna's southeastern border.
+              Excavated in the 1970s along Vienna's southeastern periphery, the cemetery yielded over 700 burials. Female skeletons revealed an average body height of 158.4 cm. Linear enamel hypoplasias (LEH) indicate periodic physiological stress during early childhood (ages 2–4), with noticeable stabilization in adolescence.
             </p>
             <div class="figure-citation">
-              Source: Kirchengast, Bühler & Hagmann (2026, Nature & Anthropology, Fig. 2). Geometries © Wien Museum.
+              Source: Kirchengast, Bühler & Hagmann (2026, Nature & Anthropology 4: 10004, Fig. 2). Primary geometries © Wien Museum.
             </div>
           </div>
         </article>
 
-        <!-- Figure 2: Regional Setting -->
+        <!-- Card 2: Regional Setting in Danube Basin -->
         <article class="figure-card">
           <div class="figure-img-wrap">
-            <img src="assets/figures/csokorgasse_geographic_location.jpg" alt="Regional location of Csokorgasse in Vienna and Danube basin" class="figure-photo">
+            <img src="assets/figures/csokorgasse_geographic_location.jpg" alt="Regional location of Csokorgasse in Vienna and Upper Danube basin" class="figure-photo">
           </div>
           <div class="figure-info">
-            <div class="figure-tag">Regional Topography</div>
-            <h3 class="figure-name">Geographic Setting in Upper Danube Basin</h3>
+            <div class="figure-tag">Regional Geography</div>
+            <h3 class="figure-name">Danube Crossroads & Regional Setting</h3>
             <p class="figure-desc">
-              Macro-topographic position of the Csokorgasse burial ground in Vienna at the southeastern Upper Danube River Basin (sUDRB), along vital medieval communication routes.
+              Situated on the southern bank of the Danube in Vienna's 11th district, the community occupied a strategically vital location in the southeastern Upper Danube River Basin (sUDRB), connecting the eastern Alpine periphery with the central territories of the Avar Khaganate.
             </p>
             <div class="figure-citation">
-              Source: Kirchengast, Bühler & Hagmann (2026, Nature & Anthropology, Fig. 1).
+              Source: Kirchengast, Bühler & Hagmann (2026, Nature & Anthropology 4: 10004, Fig. 1).
             </div>
           </div>
         </article>
 
-        <!-- Figure 3: Chronological Small Multiples -->
+        <!-- Card 3: Warrior Elite & Horse Riding Syndrome -->
         <article class="figure-card">
           <div class="figure-img-wrap">
-            <img src="assets/figures/csokorgasse_chronology_phases.png" alt="Chronological small multiples of cemetery expansion" class="figure-photo">
+            <img src="assets/figures/csokorgasse_sampling_strategy.png" alt="Sampling strategy and cohort selection of Csokorgasse adult burials" class="figure-photo">
           </div>
           <div class="figure-info">
-            <div class="figure-tag">Spatial Dynamics</div>
-            <h3 class="figure-name">Horizontal Stratigraphy by Phase</h3>
+            <div class="figure-tag">Equestrian Bioarchaeology</div>
+            <h3 class="figure-name">Warrior Status & Habitual Riding</h3>
             <p class="figure-desc">
-              Spatial cemetery trajectories showing horizontal grave growth across the Early Avar period (EAP), Middle Avar peak (MAP), and Late Avar horizon (LAP).
+              Osteological indicators of habitual equestrian activity (Horse Riding Syndrome, HRS) were significantly more prevalent in high-status adult males buried with weaponry and ornate belt fittings compared to lower-status males, directly identifying the mounted warrior elite.
             </p>
             <div class="figure-citation">
-              Source: VIENNAVARS Project Spatial Analysis Series.
+              Source: Bühler & Kirchengast (2022, Acta Archaeologica 73: 81–92); Kirchengast et al. (2026, Fig. 3).
             </div>
           </div>
         </article>
@@ -290,15 +274,15 @@
     </div>
   </section>
 
-  <!-- Section 04: Publications & Research Corpus (All DOIs Clickable) -->
+  <!-- Section 03: Publications & Research Corpus (All DOIs Directly Linked) -->
   <section id="publications" class="section" style="background: rgba(8, 14, 26, 0.75); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
     <div class="container">
       <div class="pub-header-row">
         <div>
-          <span class="section-idx">// 04 · SCIENTIFIC CORPUS & BIBLIOGRAPHY</span>
+          <span class="section-idx">// 03 · RESEARCH LITERATURE</span>
           <h2 class="section-head">Publications & Articles</h2>
           <p class="section-p" style="margin-bottom: 0;">
-            Peer-reviewed research articles, monographs, and dissertations covering the Vienna 11 – Csokorgasse cemetery and Avar population. All available DOIs are directly linked.
+            Peer-reviewed articles, monographs, and academic theses addressing the Vienna 11 – Csokorgasse cemetery and its early medieval population. All registered DOIs are directly linked.
           </p>
         </div>
       </div>
@@ -316,10 +300,10 @@
     </div>
   </section>
 
-  <!-- Section 05: Institutional Long-Term Archive (PHAIDRA) -->
+  <!-- Section 04: Institutional Long-Term Archive (PHAIDRA) -->
   <section id="data-archive" class="section">
     <div class="container">
-      <span class="section-idx">// 05 · INSTITUTIONAL REPOSITORY</span>
+      <span class="section-idx">// 04 · INSTITUTIONAL REPOSITORY</span>
       <h2 class="section-head">Long-Term Archiving & Data Governance</h2>
       <p class="section-p">
         Permanent curation via the University of Vienna's institutional repository infrastructure.
@@ -342,7 +326,7 @@
               The digital research corpus of the VIENNAVARS project is permanently preserved and indexed within <strong>PHAIDRA</strong> (<em>Permanent Hosting, Archiving and Indexing of Digital Resources and Assets</em>) under object identifier <strong>o:2091644</strong> and registered DOI <a href="https://doi.org/10.25365/phaidra.537" target="_blank" rel="noopener"><strong>10.25365/phaidra.537</strong></a>.
             </p>
             <p>
-              In accordance with archaeological archive conventions and agreements with the <strong>Wien Museum</strong>, raw individual osteological catalogs and primary trench vector geometries are curated under controlled scientific access. Qualified researchers may request access to full tabular datasets.
+              In accordance with professional archaeological standards and agreements with the <strong>Wien Museum</strong>, raw individual osteological catalogs and primary trench vector geometries are curated under controlled scientific access. Qualified researchers may request access to full tabular datasets.
             </p>
 
             <div class="rights-box-strip">
@@ -390,10 +374,10 @@
     </div>
   </section>
 
-  <!-- Section 06: Team & Cooperating Institutions -->
+  <!-- Section 05: Team & Cooperating Institutions -->
   <section id="team" class="section" style="background: rgba(8, 14, 26, 0.6); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
     <div class="container">
-      <span class="section-idx">// 06 · PROJECT INVESTIGATORS</span>
+      <span class="section-idx">// 05 · PROJECT INVESTIGATORS</span>
       <h2 class="section-head">Research Team & Institutions</h2>
 
       <div class="team-grid-prog">
@@ -446,10 +430,10 @@
     </div>
   </section>
 
-  <!-- Section 07: Citation Box -->
+  <!-- Section 06: Citation Box -->
   <section class="section" style="padding-top: 1rem;">
     <div class="container">
-      <span class="section-idx">// 07 · CITATION</span>
+      <span class="section-idx">// 06 · CITATION</span>
       <h2 class="section-head">Cite this Dataset</h2>
 
       <div class="terminal-box">
