@@ -223,6 +223,21 @@ a:hover {
   background: rgba(248, 184, 56, 0.1);
 }
 
+.pill-mono.vibe-badge {
+  background: rgba(66, 133, 244, 0.12);
+  border-color: rgba(66, 133, 244, 0.4);
+  color: #e2e8f0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.inline-vibe-logo {
+  height: 18px;
+  width: auto;
+  vertical-align: middle;
+}
+
 .hero-title-main {
   font-size: 4rem;
   font-weight: 800;
@@ -232,6 +247,24 @@ a:hover {
   background: linear-gradient(115deg, #ffffff 20%, var(--accent-amber) 65%, var(--accent-ember) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.hero-acronym-expansion {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.06);
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 1rem;
+  max-width: 860px;
+  margin: 0 0 1rem 0;
+}
+
+.hero-acronym-expansion strong {
+  color: #ffffff;
+  font-weight: 800;
 }
 
 .hero-tagline {
@@ -1040,19 +1073,25 @@ a:hover {
 }
 
 .team-avatar-prog {
-  width: 68px;
-  height: 68px;
+  width: 96px;
+  height: 96px;
   border-radius: var(--radius-pill);
-  background: linear-gradient(135deg, rgba(255, 77, 41, 0.2), rgba(248, 184, 56, 0.2));
-  border: 2px solid var(--accent-amber);
+  border: 2px solid var(--accent-ember);
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  background: var(--bg-surface);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-mono);
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: #ffffff;
-  margin-bottom: 1.25rem;
+}
+
+.team-avatar-prog img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
 }
 
 .team-name-prog {
@@ -1096,6 +1135,38 @@ a:hover {
   background: rgba(255, 255, 255, 0.1);
   color: #ffffff;
   border-color: var(--accent-cyan);
+}
+
+.partner-logos-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2.25rem;
+  padding: 1.75rem 2rem;
+  background: rgba(11, 17, 32, 0.7);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  margin-top: 2rem;
+}
+
+.partner-logo-item {
+  display: flex;
+  align-items: center;
+  opacity: 0.82;
+  transition: var(--transition-fast);
+  text-decoration: none;
+}
+
+.partner-logo-item:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.partner-logo-item img {
+  height: 36px;
+  width: auto;
+  display: block;
 }
 
 /* ==================== Section 07: Citation Terminal ==================== */

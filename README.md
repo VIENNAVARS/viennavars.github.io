@@ -1,14 +1,15 @@
-# VIENNAVARS — Open Research Data & Geospatial WMA Portal
+# VIENNAVARS — The Early Medieval Avar-Period Cemetery of Vienna 11 – Csokorgasse
 
 [![DOI](https://img.shields.io/badge/DOI-10.25365%2Fphaidra.537-orange.svg)](https://doi.org/10.25365/phaidra.537)
 [![PHAIDRA](https://img.shields.io/badge/PHAIDRA-o%3A2091644-blueviolet.svg)](https://phaidra.univie.ac.at/detail/o:2091644)
-[![Base Maps](https://img.shields.io/badge/Base_Maps-basemap.at-teal.svg)](https://www.basemap.at)
+[![Base Maps](https://img.shields.io/badge/Base_Maps-basemap.at_%26_Dark_Canvas-teal.svg)](https://www.basemap.at)
 [![Spatial Data](https://img.shields.io/badge/Geometries-%C2%A9_Wien_Museum-red.svg)](https://www.wienmuseum.at)
-[![GitHub Pages](https://img.shields.io/badge/GitHub-Pages_Deployed-success.svg)](https://viennavars.github.io)
+[![Platform](https://img.shields.io/badge/Vibe--Coded_with-Google_Antigravity-4285F4.svg)](https://github.com/VIENNAVARS)
+[![License](https://img.shields.io/badge/Copyright-%C2%A9_VIENNAVARS-brightgreen.svg)](https://github.com/VIENNAVARS)
 
-**VIENNAVARS** — *Visualization and Interpretation of the early medieval fEmale avar populatioN from Vienna/Austria (csokorgasse-buRialS)*  
+**VIENNAVARS** — *Visualization and Interpretation of the early medieval fEmale avar populatioN through archaeothaNAthology from Vienna/Austria (csokorgasse-buRialS)*  
 
-Official open research data, interactive GIS Web Map Application (WMA), and scientific visualization portal for the GitHub Organization [github.com/VIENNAVARS](https://github.com/VIENNAVARS).
+Official open research data portal and interactive cemetery map for the early medieval Avar burial ground of **Vienna 11 – Csokorgasse** (7th–8th c. AD, 700+ graves). Built for the GitHub Organization [github.com/VIENNAVARS](https://github.com/VIENNAVARS). Vibe-coded with **Google Antigravity**.
 
 ---
 
@@ -46,18 +47,21 @@ This portal provides:
 
 ### 3. Authentic Publication Figures
 * High-resolution figures directly from peer-reviewed Csokorgasse publications:
-  * **Fig. 1:** Cemetery Excavation Plan with 700+ Burials (*Nature & Anthropology* 2026, Fig. 2).
-  * **Fig. 2:** Geographic Topography in Upper Danube Basin (*Nature & Anthropology* 2026, Fig. 1).
-  * **Fig. 3:** Sampling Strategy Flowchart of 284 Studied Adults (*Nature & Anthropology* 2026, Fig. 3).
-  * **Bioarchaeological finding:** Warrior Status & Habitual Riding (HRS) identified in weapon-bearing males (Bühler & Kirchengast 2022a, *Acta Archaeologica*).
+  * **Fig. 1:** Stature as a Social Signal Graphical Abstract (*Nature & Anthropology* 2026).
+  * **Fig. 2:** Equestrian Grave 650 with Horse & Dog (*Monographien des RGZM 143* / Propylaeum, Baron 2024, Abb. 198).
+  * **Fig. 3:** Cemetery Excavation Plan with 700+ Burials (*Nature & Anthropology* 2026, Fig. 2 / Wien Museum).
+  * **Fig. 4:** Geographic Topography in Upper Danube Basin (*Nature & Anthropology* 2026, Fig. 1).
 
 ### 4. Publications & Research Corpus
 * 13 core publications directly covering the Vienna 11 – Csokorgasse cemetery and Avar population.
+* Default display of first 3 articles with an interactive "Load More Publications" button.
 * All registered DOIs are directly clickable (`https://doi.org/...`) on titles and action buttons.
 * Real-time search by author, keyword, or year.
 
 ### 5. Data Governance & Single-Point PHAIDRA Access
 * Datasets are permanently curated in the University of Vienna repository **PHAIDRA** under DOI `10.25365/phaidra.537`.
+* Primary excavation geometries belong to **Wien Museum (© Wien Museum)**.
+* Synthesis, visualizations, and project assets are **© 2024–2026 VIENNAVARS**.
 
 ---
 
@@ -65,26 +69,36 @@ This portal provides:
 
 ```text
 viennavars/
-├── index.html                   # Avant-garde dark portal (English only)
+├── index.html                   # Avant-garde dark portal (English only, vibe-coded)
 ├── css/
-│   └── styles.css               # Clean stylesheet (non-wrapping navbar, sleek hero, Leaflet WMA)
+│   └── styles.css               # Clean stylesheet (non-wrapping navbar, team avatars, Leaflet map)
 ├── js/
-│   └── app.js                   # Interactive Leaflet engine with basemap.at and search
+│   └── app.js                   # Interactive Leaflet engine with basemap.at, dark canvas & search
 ├── data/
 │   ├── csokorgasse_data.js           # Embedded data engine (enables instant offline file:// execution)
 │   ├── cemetery_boundary.geojson     # Cemetery perimeter boundary (friedhof_huelle)
-│   ├── hex_chronology_all.geojson    # 428 3m-hexbins with phase attributes
-│   ├── hex_chronology_female.geojson # 182 female 3m-hexbins
-│   ├── hex_chronology_male.geojson   # 178 male 3m-hexbins
+│   ├── hex_chronology_all.geojson    # 428 spatial sectors with phase attributes
+│   ├── hex_chronology_female.geojson # 182 female spatial sectors
+│   ├── hex_chronology_male.geojson   # 178 male spatial sectors
 │   ├── publications.json             # 13 core peer-reviewed publications with DOIs
 │   ├── summary_statistics.json       # Aggregated metrics and paper insights
 │   └── metadata.json                 # DataCite/Dublin Core metadata schema
 ├── assets/
-│   ├── figures/                 # Authentic Csokorgasse publication figures
+│   ├── figures/                 # Authentic published figures extracted from Zotero
+│   │   ├── csokorgasse_stature_social_signal.jpg
+│   │   ├── csokorgasse_reitergrab_650.png
 │   │   ├── csokorgasse_excavation_plan_700burials.png
-│   │   ├── csokorgasse_geographic_location.jpg
-│   │   └── csokorgasse_sampling_strategy.png
-│   └── maps/                    # High-resolution 300 dpi publication hexbin maps (SP01–SP06)
+│   │   └── csokorgasse_geographic_location.jpg
+│   ├── logos/                   # High-fidelity SVG brand & partner logos
+│   │   ├── google_antigravity.svg
+│   │   ├── viennavars.svg
+│   │   ├── univie.svg
+│   │   ├── wien_museum.svg
+│   │   └── stadt_wien.svg
+│   └── team/                    # Project team portraits
+│       ├── dominik_hagmann.jpg
+│       ├── sylvia_kirchengast.jpg
+│       └── birgit_buehler.svg
 ├── .github/
 │   └── workflows/
 │       └── deploy.yml           # Automated GitHub Actions Pages deployment

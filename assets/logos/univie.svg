@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 44" fill="none">
+  <!-- Univie Seal Monogram -->
+  <circle cx="22" cy="22" r="18" stroke="#38bdf8" stroke-width="1.5" fill="none"/>
+  <circle cx="22" cy="22" r="14" stroke="#94a3b8" stroke-width="0.8" stroke-dasharray="2 2" fill="none"/>
+  <text x="22" y="27" font-family="'Space Grotesk', serif" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">u</text>
+  <!-- Text -->
+  <text x="48" y="21" font-family="'Space Grotesk', sans-serif" font-size="13" font-weight="700" fill="#ffffff" letter-spacing="-0.2">universität</text>
+  <text x="48" y="34" font-family="'Space Grotesk', sans-serif" font-size="13" font-weight="700" fill="#38bdf8" letter-spacing="-0.2">wien</text>
+</svg>
