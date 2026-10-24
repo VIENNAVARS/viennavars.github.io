@@ -1,100 +1,107 @@
 {
   "project": "VIENNAVARS",
-  "site": "Wien 11 - Csokorgasse (Kaiserebersdorf)",
+  "site": "Vienna 11 - Csokorgasse (Kaiserebersdorf)",
   "archival_id": "PHAIDRA o:2091644",
   "doi": "10.25365/phaidra.537",
   "summary": {
     "total_graves_documented": "700+",
-    "chronology": "7.–8. Jahrhundert n. Chr. (Awarenzeit)",
+    "chronology": "7th–8th Century AD (Avar Period)",
     "female_individuals_analyzed": 128,
     "dating_distribution": [
-      { "period": "Frühawarenzeit (ca. 568–650 n. Chr.)", "period_en": "Early Avar Period", "share_pct": 14 },
-      { "period": "Mittelawarenzeit (ca. 650–700 n. Chr.)", "period_en": "Middle Avar Period", "share_pct": 49 },
-      { "period": "Spätawarenzeit (ca. 700–800 n. Chr.)", "period_en": "Late Avar Period", "share_pct": 37 }
+      { "period": "Early Avar Period (c. 568–650 AD)", "share_pct": 14 },
+      { "period": "Middle Avar Period (c. 650–700 AD)", "share_pct": 49 },
+      { "period": "Late Avar Period (c. 700–800 AD)", "share_pct": 37 }
     ],
     "age_distribution": [
-      { "age_class": "Infans I/II (0–12 Jahre)", "age_class_en": "Infans I/II (0–12 yrs)", "share_pct": 18 },
-      { "age_class": "Juvenis (13–19 Jahre)", "age_class_en": "Juvenis (13–19 yrs)", "share_pct": 12 },
-      { "age_class": "Adultus (20–39 Jahre)", "age_class_en": "Adultus (20–39 yrs)", "share_pct": 42 },
-      { "age_class": "Maturus (40–59 Jahre)", "age_class_en": "Maturus (40–59 yrs)", "share_pct": 21 },
-      { "age_class": "Senilis (60+ Jahre)", "age_class_en": "Senilis (60+ yrs)", "share_pct": 7 }
+      { "age_class": "Infans I/II (0–12 yrs)", "share_pct": 18 },
+      { "age_class": "Juvenis (13–19 yrs)", "share_pct": 12 },
+      { "age_class": "Adultus (20–39 yrs)", "share_pct": 42 },
+      { "age_class": "Maturus (40–59 yrs)", "share_pct": 21 },
+      { "age_class": "Senilis (60+ yrs)", "share_pct": 7 }
     ],
     "material_categories": [
-      { "category": "Tracht & Schmuck (Ohrringe, Perlen)", "category_en": "Costume & Jewelry", "frequency_pct": 68 },
-      { "category": "Keramikgefäße", "category_en": "Pottery", "frequency_pct": 54 },
-      { "category": "Textilhandwerk (Spinnwirtel)", "category_en": "Textile craft (Spindle whorls)", "frequency_pct": 32 },
-      { "category": "Werkzeuge (Eisenmesser)", "category_en": "Tools (Knives)", "frequency_pct": 46 },
-      { "category": "Tierische Speisebeigaben", "category_en": "Animal food offerings", "frequency_pct": 28 }
+      { "category": "Costume & Jewelry (Earrings, Beads)", "frequency_pct": 68 },
+      { "category": "Ceramic Pottery Vessels", "frequency_pct": 54 },
+      { "category": "Textile Craft (Spindle Whorls)", "frequency_pct": 32 },
+      { "category": "Tools (Iron Knives)", "frequency_pct": 46 },
+      { "category": "Animal Food Offerings", "frequency_pct": 28 }
     ]
   },
   "paper_insights": [
     {
       "id": "insight-bioarch",
-      "tag_de": "Anthropologie & Lebensbedingungen",
-      "tag_en": "Anthropology & Lifeworlds",
-      "title_de": "Demographie, Körperhöhe & physiologischer Stress",
-      "title_en": "Demography, Stature & Physiological Stress",
+      "tag": "Anthropology & Lifeworlds",
+      "title": "Demography, Stature & Physiological Childhood Stress",
       "highlight_metric": "158.4 cm",
-      "metric_label_de": "Mittlere weibliche Körperhöhe",
-      "metric_label_en": "Mean female body height",
-      "summary_de": "Die bioarchäologische Auswertung der weiblichen Individuen zeigt eine mittlere Körperhöhe von 158.4 cm mit charakteristischem Geschlechtsdimorphismus. Lineare Schmelzhypoplasien (LEH) an den Zähnen belegen physiologische Stressphasen in der frühen Kindheit (2.–4. Lebensjahr), gefolgt von einer Stabilisierung im Jugendalter.",
-      "summary_en": "Bioarchaeological analysis of female individuals reveals a mean stature of 158.4 cm reflecting clear sexual dimorphism. Linear enamel hypoplasias (LEH) identify childhood physiological stress episodes (ages 2–4), with relative stabilization during adolescence.",
-      "reference": "VIENNAVARS Bioarchaeology Series / PHAIDRA o:2091644"
+      "metric_label": "Mean female body height",
+      "summary": "Bioarchaeological assessment of female skeletons reveals a mean stature of 158.4 cm reflecting distinct sexual dimorphism. Linear enamel hypoplasias (LEH) on permanent dentition indicate recurrent physiological stress episodes during early childhood (ages 2–4), with stabilization in adolescence.",
+      "reference": "VIENNAVARS Bioarchaeology Series"
     },
     {
       "id": "insight-status",
-      "tag_de": "Materielle Kultur & Sozialstruktur",
-      "tag_en": "Material Culture & Social Status",
-      "title_de": "Trachtbestandteile & Handwerk als Statussymbole",
-      "title_en": "Costume Elements & Crafts as Status Markers",
+      "tag": "Material Culture & Social Stratification",
+      "title": "Costume Jewelry & Crafts as Markers of Social Status",
       "highlight_metric": "68%",
-      "metric_label_de": "Gräber mit Schmuckbeigaben",
-      "metric_label_en": "Burials with jewelry offerings",
-      "summary_de": "Die Vergesellschaftung von vergoldeten Bronze- und Silberohrringen (z. B. mit Polyeder- und Traubenanhängern) mit aufwendigen Perlenkollieren aus Importglas indiziert ausgeprägte soziale Hierarchien. Spinnwirtel in knapp einem Drittel der Gräber betonen die zentrale wirtschaftliche und gesellschaftliche Rolle der Textilproduktion.",
-      "summary_en": "The association of gilded bronze and silver earrings (e.g. polyhedral and grape pendants) with multi-strand imported glass bead necklaces demonstrates pronounced social stratification. Spindle whorls in nearly one third of female graves underscore the central socio-economic role of textile craftsmanship.",
-      "reference": "VIENNAVARS Material Culture & Craft Analysis / VIAS"
+      "metric_label": "Burials with jewelry offerings",
+      "summary": "The association of gilded bronze and silver earrings (with polyhedral and grape pendants) with multi-strand imported glass bead necklaces demonstrates pronounced hierarchical differentiation. Spindle whorls in nearly one-third of female graves emphasize the socio-economic status of textile production.",
+      "reference": "VIENNAVARS Material Culture & Craft Analysis"
     },
     {
       "id": "insight-spatial",
-      "tag_de": "Räumliche Organisation",
-      "tag_en": "Spatial Organization & Chronology",
-      "title_de": "Belegungsdynamik & Sektorenentwicklung",
-      "title_en": "Spatial Dynamics & Sector Development",
-      "highlight_metric": "3 Phasen",
-      "metric_label_de": "Horizontale Stratigraphie",
-      "metric_label_en": "Horizontal stratigraphy",
-      "summary_de": "Die räumliche Visualisierung belegt eine Belegungskontinuität von der Frühawarenzeit (ab ca. 600 n. Chr.) über den Höhepunkt der Mittelawarenzeit bis in die Spätawarenzeit um 800 n. Chr. Die Grablegen verdichten sich in drei distinkten Arealen, die auf familien- oder sippenbasierte Belegungsstreifen hindeuten.",
-      "summary_en": "Spatial visualization demonstrates cemetery continuity spanning the Early Avar period (from c. 600 AD) through the Middle Avar peak into the Late Avar period around 800 AD. Graves cluster in distinct spatial ribbons, suggesting family- or kin-group burial plots.",
-      "reference": "VIENNAVARS Spatial Dynamics / Wien Museum & VIAS"
+      "tag": "Spatial Organization & Hexbin Mapping",
+      "title": "Horizontal Stratigraphy & Spatial Trajectories",
+      "highlight_metric": "3m Hexbins",
+      "metric_label": "Spatial resolution",
+      "summary": "Hexagonal spatial binning (3-meter cell size) captures horizontal cemetery stratigraphy from the Early Avar period through the Middle Avar peak into the Late Avar period. Burial concentrations follow distinct linear ribbons, pointing to kin-group plots without disclosing individual coordinate points.",
+      "reference": "VIENNAVARS Spatial Dynamics / Statuspaper 2026"
     }
   ],
-  "map_visualizations": [
+  "hexbin_maps": [
     {
-      "id": "vis-density",
-      "name_de": "Auszug 1: Sektorale Belegungsdichte",
-      "name_en": "Excerpt 1: Sector Burial Density",
-      "description_de": "Aggregierte Dichteverteilung der Gräber über das Gräberfeldareal Csokorgasse (Rastermatrix ohne Einzelpunktkoordinaten).",
-      "description_en": "Aggregated density distribution of burials across the Csokorgasse cemetery grid (raster matrix without point coordinates).",
-      "type": "raster_density",
-      "rights": "© Wien Museum / VIENNAVARS"
+      "id": "sp04",
+      "title": "Chronology in 3-Meter Hexagons (Total Cemetery)",
+      "file": "assets/maps/SP04_Hex_Chronologie_Gesamt.png",
+      "badge": "SP04 · Overall Hexbin Map",
+      "description": "Spatial distribution of chronological phases across the entire cemetery using 3-meter hexagonal tessellation. Each cell represents the dominant dated phase among documented burials.",
+      "methodology": "3m inter-edge hexagon distance · Dominant chronological phase per bin · Undated burials neutral"
     },
     {
-      "id": "vis-phases",
-      "name_de": "Auszug 2: Chronologische Phasenverteilung",
-      "name_en": "Excerpt 2: Chronological Phase Distribution",
-      "description_de": "Horizontale Stratigraphie der früh-, mittel- und spätawarischen Belegungszentren.",
-      "description_en": "Horizontal stratigraphy of Early, Middle, and Late Avar burial clusters.",
-      "type": "choropleth_phases",
-      "rights": "© Wien Museum / VIENNAVARS"
+      "id": "sp03",
+      "title": "Chronology in 3-Meter Hexagons by Sex",
+      "file": "assets/maps/SP03_Hex_Chronologie_nach_Geschlecht.png",
+      "badge": "SP03 · Sex-Stratified Hexbins",
+      "description": "Comparative hexagonal binning of male and female spatial trajectories, illuminating gendered cemetery growth and shared burial plots over time.",
+      "methodology": "Dual-panel comparative hexbin matrix · Subadults omitted from sex panels · 3m cell width"
     },
     {
-      "id": "vis-goods",
-      "name_de": "Auszug 3: Fundkonzentration & Trachtschmuck",
-      "name_en": "Excerpt 3: Artifact Density & Costume Jewelry",
-      "description_de": "Verteilungsmuster von Edelmetallohrringen, Perlenketten und Spinnwirteln im Areal.",
-      "description_en": "Spatial distribution pattern of precious metal earrings, bead necklaces, and spindle whorls.",
-      "type": "finds_clusters",
-      "rights": "© Wien Museum / VIENNAVARS"
+      "id": "sp06",
+      "title": "Female Lifeworlds: Social Status and Chronology",
+      "file": "assets/maps/SP06_Status_Chronologie_Female.png",
+      "badge": "SP06 · Female Main Map",
+      "description": "Comprehensive cartographic synthesis of 166 adult female burials, cross-referencing grave good status categories with chronological horizon and spatial clusters.",
+      "methodology": "Multi-tier status classification · Chronological horizon overlay · n = 166 adult females"
+    },
+    {
+      "id": "sp01",
+      "title": "Social Status by Sex Across the Adult Population",
+      "file": "assets/maps/SP01_Status_nach_Geschlecht.png",
+      "badge": "SP01 · Adult Status Map",
+      "description": "Comparative distribution of social status indicators across 348 adult individuals (166 females, 182 males) across the Csokorgasse burial ground.",
+      "methodology": "Costume elements, weaponry, and prestige goods · Disturbed/robbed graves indicated · n = 348"
+    },
+    {
+      "id": "sp05",
+      "title": "Cemetery Extent & Convex Hulls",
+      "file": "assets/maps/SP05_Belegung_Vorhandene_Huellen.png",
+      "badge": "SP05 · Convex Hulls",
+      "description": "Descriptive spatial enclosures and boundary sectors of the cemetery phases. Hulls serve as analytical cluster boundaries.",
+      "methodology": "Descriptive convex hulls per phase · Spatial core density zones · Excludes excavation trench limits"
     }
-  ]
+  ],
+  "rights_notice": {
+    "spatial_geometries": "© Wien Museum",
+    "archival_storage": "PHAIDRA (o:2091644)",
+    "doi": "10.25365/phaidra.537",
+    "access_condition": "Controlled Scientific Access via PHAIDRA"
+  }
 }

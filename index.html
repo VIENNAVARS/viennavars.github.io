@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VIENNAVARS — Research Data & Visualizations | Wien 11 Csokorgasse</title>
+  <title>VIENNAVARS — Open Research Data & Hexbin Visualizations | Vienna 11 Csokorgasse</title>
   
-  <meta name="description" content="Offizielles Forschungsdaten- und Visualisierungsportal des Projekts VIENNAVARS: Weibliche Lebenswelten im awarenzeitlichen Gräberfeld Wien 11-Csokorgasse. Langzeitarchivierung auf PHAIDRA.">
-  <meta name="keywords" content="VIENNAVARS, Csokorgasse, Awarenzeit, Bioarchäologie, PHAIDRA, Universität Wien, VIAS, Wien Museum, Open Science, Kartierung">
+  <meta name="description" content="Official Research Data & Hexbin Visualization Portal for the VIENNAVARS project: Female lifeworlds and spatial trajectories in the early medieval Avar cemetery of Vienna 11-Csokorgasse.">
+  <meta name="keywords" content="VIENNAVARS, Csokorgasse, Avar Period, Bioarchaeology, Hexbin Maps, PHAIDRA, University of Vienna, VIAS, Wien Museum, Open Science">
   <meta name="author" content="Dr. Dominik Hagmann, Univ.-Prof. Dr. Sylvia Kirchengast, Dr. Birgit Bühler">
   <meta name="dc.identifier" content="10.25365/phaidra.537">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="VIENNAVARS — Open Research Data Portal">
-  <meta property="og:description" content="Visualisierung und Analyse der Population des awarenzeitlichen Gräberfeldes Csokorgasse, Wien 11.">
+  <meta property="og:title" content="VIENNAVARS — Open Research Data & Hexbin Maps">
+  <meta property="og:description" content="Spatial analysis and bioarchaeology of the early medieval Avar population at Vienna 11-Csokorgasse.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://viennavars.github.io">
 
@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Leaflet CSS for GIS Mapping Context -->
+  <!-- Leaflet CSS for GIS Geographic Context -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 
   <!-- Progressive Stylesheet -->
@@ -36,76 +36,60 @@
         <a href="#top" class="brand-logo-badge">
           <span class="brand-name">VIENNAVARS</span>
         </a>
-        <div class="live-indicator">
-          <span class="live-pulse"></span>
-          <span>PHAIDRA o:2091644</span>
-        </div>
+        <span class="brand-tag-sub">Research Portal</span>
       </div>
 
       <nav>
         <ul class="nav-menu">
-          <li><a href="#uebersicht" class="nav-link" data-i18n="nav_overview">Übersicht</a></li>
-          <li><a href="#insights" class="nav-link" data-i18n="nav_insights">Paper-Ergebnisse</a></li>
-          <li><a href="#wma-visualisierung" class="nav-link" data-i18n="nav_wma">Webkarte & Auszüge</a></li>
-          <li><a href="#daten-phaidra" class="nav-link" data-i18n="nav_data">Archiv & Datenpolitik</a></li>
-          <li><a href="#team" class="nav-link" data-i18n="nav_team">Team & Partner</a></li>
+          <li><a href="#overview" class="nav-link">Overview</a></li>
+          <li><a href="#insights" class="nav-link">Paper Insights</a></li>
+          <li><a href="#hexbin-maps" class="nav-link">Hexbin Maps & WMA</a></li>
+          <li><a href="#data-archive" class="nav-link">Archive & Governance</a></li>
+          <li><a href="#team" class="nav-link">Team & Partners</a></li>
         </ul>
       </nav>
 
       <div class="nav-actions">
-        <button id="lang-toggle" class="btn-lang" aria-label="Language Toggle">
-          🌐 EN
-        </button>
-        <a href="https://github.com/VIENNAVARS" target="_blank" rel="noopener" class="btn-github-nav" title="GitHub Organisation">
+        <a href="https://github.com/VIENNAVARS" target="_blank" rel="noopener" class="btn-github-nav" title="GitHub Organization">
           <svg height="15" width="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
-          VIENNAVARS
+          github.com/VIENNAVARS
         </a>
       </div>
     </div>
   </header>
 
   <!-- Futuristic Hero Section -->
-  <section id="uebersicht" class="hero">
+  <section id="overview" class="hero">
     <div class="hero-grid-bg"></div>
     <div class="container" style="position: relative; z-index: 2;">
       <div class="hero-pill-bar">
-        <span class="cyber-pill" data-i18n="hero_badge_portal">Open Science Portal & Kartenauszüge</span>
-        <a href="https://doi.org/10.25365/phaidra.537" target="_blank" rel="noopener" class="cyber-pill doi">
-          DOI: 10.25365/phaidra.537
-        </a>
-        <a href="https://phaidra.univie.ac.at/detail/o:2091644" target="_blank" rel="noopener" class="cyber-pill">
-          PHAIDRA PID: o:2091644
-        </a>
-        <span class="cyber-pill restricted" data-i18n="hero_badge_rights">
-          © Geometrien: Wien Museum
-        </span>
+        <span class="cyber-pill">Early Medieval Archaeology</span>
+        <span class="cyber-pill doi">DOI: 10.25365/phaidra.537</span>
+        <span class="cyber-pill restricted">Spatial Data © Wien Museum</span>
       </div>
 
       <h1 class="hero-h1">
         <span class="gradient-text">VIENNAVARS</span><br>
-        Forschungsdaten & Visualisierung
+        Open Research Data & Hexbin Maps
       </h1>
 
-      <p class="hero-sub" data-i18n="hero_sub_en">
+      <p class="hero-sub">
         Visualization and Interpretation of the early medieval fEmale avar populatioN from Vienna/Austria (csokorgasse-buRialS).
       </p>
 
-      <p class="hero-german" data-i18n="hero_german">
-        Visualisierung und Interpretation weiblicher Lebenswelten in der Awarenzeit (7.–8. Jh. n. Chr.) am Beispiel der Population des Gräberfeldes Csokorgasse, Wien 11.
+      <p class="hero-context-p">
+        Centering on the Avar-period cemetery of <strong>Vienna 11 – Csokorgasse (Kaiserebersdorf)</strong>, the largest early medieval burial site discovered within Vienna with over 700 burials (7th–8th centuries AD). This web portal presents publication highlights, 3-meter hexbin spatial models, and metadata governance.
       </p>
 
       <div class="hero-actions">
-        <a href="#insights" class="btn-cyber btn-cyber-primary" data-i18n="btn_view_insights">
-          📊 Paper-Ergebnisse ansehen
+        <a href="#hexbin-maps" class="btn-cyber btn-cyber-primary">
+          🗺️ Explore Hexbin Maps
         </a>
-        <a href="#wma-visualisierung" class="btn-cyber btn-cyber-primary" style="background: linear-gradient(135deg, #1f4e79 0%, #123456 100%);" data-i18n="btn_explore_wma">
-          🗺️ Webkarte & Auszüge öffnen
+        <a href="#insights" class="btn-cyber btn-cyber-secondary">
+          📊 Scientific Paper Insights
         </a>
-        <a href="https://phaidra.univie.ac.at/detail/o:2091644" target="_blank" rel="noopener" class="btn-cyber btn-cyber-phaidra" data-i18n="btn_phaidra_link">
-          🏛️ Langzeitarchivierung (PHAIDRA)
-        </a>
-        <a href="https://vias.univie.ac.at/projekte/viennavars/" target="_blank" rel="noopener" class="btn-cyber btn-cyber-outline" data-i18n="btn_vias_link">
-          🎓 Projektseite (VIAS / Uni Wien)
+        <a href="#data-archive" class="btn-cyber btn-cyber-outline">
+          🏛️ Data Archive & Protocol
         </a>
       </div>
     </div>
@@ -117,244 +101,221 @@
       <div class="stats-grid">
         <div class="stat-cell">
           <div class="stat-figure">700+</div>
-          <div class="stat-name" data-i18n="stat_graves_total">Dokumentierte Gräber</div>
+          <div class="stat-name">Documented Graves</div>
         </div>
         <div class="stat-cell">
-          <div class="stat-figure">128</div>
-          <div class="stat-name" data-i18n="stat_female_sample">Analysierte weibliche Individuen</div>
+          <div class="stat-figure">348</div>
+          <div class="stat-name">Analyzed Adults (166 Females)</div>
         </div>
         <div class="stat-cell">
-          <div class="stat-figure">7.–8. Jh.</div>
-          <div class="stat-name" data-i18n="stat_chronology">Chronologischer Rahmen</div>
+          <div class="stat-figure">7th–8th c.</div>
+          <div class="stat-name">Avar Period Horizon</div>
         </div>
         <div class="stat-cell">
-          <div class="stat-figure">Restricted</div>
-          <div class="stat-name" data-i18n="stat_access_status">Datenzugang via PHAIDRA</div>
+          <div class="stat-figure">3m Hexbins</div>
+          <div class="stat-name">Spatial Aggregation Resolution</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Paper Insights Teaser Section -->
+  <!-- Scientific Paper Insights Section -->
   <section id="insights" class="section">
     <div class="container">
       <div class="section-tag-row">
-        <span class="section-tag" data-i18n="sec_insights_tag">Forschungsergebnisse & Publikationen</span>
+        <span class="section-tag">Scientific Findings & Publication Highlights</span>
       </div>
-      <h2 class="section-title" data-i18n="sec_insights_title">Zentrale Erkenntnisse der Studien</h2>
-      <p class="section-desc" data-i18n="sec_insights_desc">
-        Auszüge und Teaser aus den interdisziplinären Projektpublikationen zu Bioarchäologie, sozialer Stratifikation, Handwerk und Bestattungsbräuchen der awarischen Gemeinschaft in Wien-Simmering.
+      <h2 class="section-title">Key Insights from Recent Studies</h2>
+      <p class="section-desc">
+        A teaser of core findings across physical anthropology, material culture, and cemetery organization of the Avar community in Vienna 11–Csokorgasse.
       </p>
 
-      <div class="team-grid" id="paper-insights-grid" style="margin-top: 2.5rem;">
-        <!-- Injected dynamically by JS based on summary_statistics.json -->
+      <div class="insights-grid" id="paper-insights-container">
+        <!-- Rendered dynamically by js/app.js -->
       </div>
     </div>
   </section>
 
-  <!-- Progressive WMA: Interactive Map Excerpts & Visualizations -->
-  <section id="wma-visualisierung" class="section" style="background: rgba(10, 16, 28, 0.6); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+  <!-- Progressive WMA: Interactive Hexbin Map Viewer -->
+  <section id="hexbin-maps" class="section" style="background: rgba(10, 16, 28, 0.6); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
     <div class="container">
       <div class="section-tag-row">
-        <span class="section-tag" data-i18n="sec_wma_tag">Webkarte & Visualisierung</span>
+        <span class="section-tag">Spatial Visualization & Web Map Application</span>
       </div>
-      <h2 class="section-title" data-i18n="sec_wma_title">Kartenauszüge & Sektorale Visualisierung</h2>
-      <p class="section-desc" data-i18n="sec_wma_desc">
-        Visualisierung räumlicher Phänomene des Gräberfeldes Csokorgasse. Die Darstellung erfolgt datensparsam als generalisierte Rasterkarte und Sektoren-Cluster, um die Urheberrechte des Wien Museums an den Primärgeometrien vollständig zu wahren.
+      <h2 class="section-title">Hexbin Maps & Spatial Trajectories</h2>
+      <p class="section-desc">
+        To visualize cemetery growth, social stratification, and chronology without disclosing sensitive individual coordinates, burials are aggregated into 3-meter hexagonal bins. All primary excavation geometries remain the intellectual property of the Wien Museum (© Wien Museum).
       </p>
 
-      <div class="wma-frame" style="margin-top: 2rem;">
-        <div class="wma-header-bar">
-          <div>
-            <span class="cyber-pill restricted">Rechtehinweis: © Wien Museum / VIAS</span>
-            <h3 id="current-vis-title" style="font-size: 1.3rem; color: #fff; margin-top: 0.4rem;">
-              Auszug 1: Sektorale Belegungsdichte (Rastermatrix)
-            </h3>
-          </div>
-
-          <!-- Interactive Visualization Switcher -->
-          <div class="wma-mode-selector">
-            <button class="wma-mode-btn active" data-vis="density" data-i18n="btn_vis_density">
-              📊 Dichte-Raster
-            </button>
-            <button class="wma-mode-btn" data-vis="phases" data-i18n="btn_vis_phases">
-              ⏳ Phasenkarte
-            </button>
-            <button class="wma-mode-btn" data-vis="goods" data-i18n="btn_vis_goods">
-              💍 Fundverteilung
-            </button>
-            <button class="wma-mode-btn" data-vis="geo" data-i18n="btn_vis_geo">
-              🗺️ Fundplatz-Kontext
-            </button>
-          </div>
+      <div class="hexbin-wma-card">
+        <!-- Hexbin Map Selector Navigation Tabs -->
+        <div class="hexbin-nav-tabs" id="hexbin-tabs">
+          <button class="hexbin-tab-btn active" data-map="sp04">
+            <span>SP04</span> Hexbin Chronology (Total)
+          </button>
+          <button class="hexbin-tab-btn" data-map="sp03">
+            <span>SP03</span> Chronology by Sex
+          </button>
+          <button class="hexbin-tab-btn" data-map="sp06">
+            <span>SP06</span> Female Status & Chronology
+          </button>
+          <button class="hexbin-tab-btn" data-map="sp01">
+            <span>SP01</span> Adult Status by Sex
+          </button>
+          <button class="hexbin-tab-btn" data-map="sp05">
+            <span>SP05</span> Convex Hulls
+          </button>
+          <button class="hexbin-tab-btn" data-map="leaflet">
+            <span>GEO</span> Geographic Context
+          </button>
         </div>
 
-        <!-- Dynamic Visualization Canvas Wrapper -->
-        <div class="raster-matrix-wrap" id="wma-matrix-container">
-          <div class="matrix-legend-row">
-            <span id="matrix-vis-desc" style="color: #cbd5e1;">
-              Relative Grabdichte pro Planquadrat / Rasterfeld (48 Rasterzellen über das Gräberfeldareal)
-            </span>
-            <div style="display: flex; gap: 1rem; align-items: center; font-family: var(--font-mono); font-size: 0.76rem;">
-              <span style="display: flex; align-items: center; gap: 0.35rem;">
-                <span style="width: 12px; height: 12px; background: rgba(56, 189, 248, 0.3); border: 1px solid rgba(56, 189, 248, 0.6); border-radius: 2px;"></span> Gering
-              </span>
-              <span style="display: flex; align-items: center; gap: 0.35rem;">
-                <span style="width: 12px; height: 12px; background: rgba(245, 176, 65, 0.4); border: 1px solid rgba(245, 176, 65, 0.7); border-radius: 2px;"></span> Mittel
-              </span>
-              <span style="display: flex; align-items: center; gap: 0.35rem;">
-                <span style="width: 12px; height: 12px; background: rgba(255, 87, 51, 0.5); border: 1px solid rgba(255, 87, 51, 0.8); border-radius: 2px;"></span> Sehr hoch
-              </span>
+        <!-- Hexbin Stage Display -->
+        <div class="hexbin-stage" id="hexbin-stage-container">
+          <!-- Left: High-Res Map Display Frame -->
+          <div class="hexbin-preview-frame">
+            <img id="hexbin-active-img" src="assets/maps/SP04_Hex_Chronologie_Gesamt.png" alt="Hexbin Map SP04" class="hexbin-map-img" onclick="openLightbox()">
+            <div class="hexbin-zoom-hint">🔍 Click image to enlarge (Full Res)</div>
+          </div>
+
+          <!-- Right: Metadata & Context Sidebar -->
+          <div class="hexbin-meta-sidebar">
+            <div class="hexbin-meta-box">
+              <span id="hexbin-active-badge" class="hexbin-badge-tag">SP04 · Overall Hexbin Map</span>
+              <h3 id="hexbin-active-title" class="hexbin-main-title">Chronology in 3-Meter Hexagons (Total Cemetery)</h3>
+              <p id="hexbin-active-desc" class="hexbin-desc-text">
+                Spatial distribution of chronological phases across the entire cemetery using 3-meter hexagonal tessellation. Each cell represents the dominant dated phase among documented burials.
+              </p>
+
+              <div class="hexbin-method-box">
+                <strong style="color: #fff; display: block; margin-bottom: 0.25rem;">Cartographic Methodology:</strong>
+                <span id="hexbin-active-method">3m inter-edge hexagon distance · Dominant chronological phase per bin · Open Sans typography · EPSG:31256 reference</span>
+              </div>
             </div>
-          </div>
 
-          <!-- 8x6 Progressive Matrix Grid (Generates Visual Map Excerpt) -->
-          <div class="matrix-grid-container" id="matrix-grid">
-            <!-- Injected by app.js -->
-          </div>
-
-          <!-- Matrix Cell Inspection Box -->
-          <div class="matrix-detail-box" id="matrix-detail-card">
-            <div>
-              <strong id="inspect-cell-title" style="font-family: var(--font-mono); font-size: 1rem; color: #fff;">
-                Sektor B3 — Zentrales Belegungscluster
+            <div class="hexbin-meta-box" style="padding: 1.25rem;">
+              <strong style="font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent-ember); display: block; margin-bottom: 0.4rem;">
+                Rights & Protection Notice:
               </strong>
-              <p id="inspect-cell-desc" style="font-size: 0.88rem; color: var(--text-muted); margin-top: 0.2rem;">
-                Klicken Sie auf eine Rasterzelle, um Kennzahlen zu diesem Sektor anzuzeigen.
+              <p style="font-size: 0.85rem; color: #94a3b8; margin: 0; line-height: 1.5;">
+                Primary vector plans and trench survey coordinates: <strong>© Wien Museum</strong>. Aggregated hexagonal maps ensure privacy-preserving dissemination of cemetery structures.
               </p>
             </div>
-            <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-amber);">
-              <span id="inspect-cell-stat">Dichte: 24 Gräber / Cluster</span>
-            </div>
           </div>
         </div>
 
-        <!-- Leaflet Map Container (Shown when 'Fundplatz-Kontext' is selected) -->
-        <div id="wma-leaf-map"></div>
+        <!-- Leaflet Map Container (Shown when 'Geographic Context' tab is active) -->
+        <div id="wma-context-map"></div>
       </div>
     </div>
   </section>
 
-  <!-- Data Governance, Archive & PHAIDRA Access Section -->
-  <section id="daten-phaidra" class="section">
+  <!-- Fullscreen Lightbox Modal for Map Inspection -->
+  <dialog id="lightbox-dialog" class="lightbox-dialog">
+    <div class="lightbox-header">
+      <span id="lightbox-title" style="font-family: var(--font-mono); font-size: 0.9rem; color: var(--accent-amber);">
+        High-Resolution Map Inspection
+      </span>
+      <button class="btn-close-lightbox" onclick="document.getElementById('lightbox-dialog').close()" aria-label="Close">✕</button>
+    </div>
+    <img id="lightbox-img" src="" alt="High resolution map view" class="lightbox-img">
+  </dialog>
+
+  <!-- Data Governance & Singular Prominent PHAIDRA Archive Section -->
+  <section id="data-archive" class="section">
     <div class="container">
       <div class="section-tag-row">
-        <span class="section-tag" data-i18n="sec_gov_tag">Dateninfrastruktur & Rechtlicher Rahmen</span>
+        <span class="section-tag">Institutional Repository & Data Governance</span>
       </div>
-      <h2 class="section-title" data-i18n="sec_gov_title">Langzeitarchivierung & Datenpolitik</h2>
-      <p class="section-desc" data-i18n="sec_gov_desc">
-        Transparenter Umgang mit sensiblen archäologischen Daten, Rechten Dritter und kontrolliertem wissenschaftlichem Zugang über das Repositorium PHAIDRA der Universität Wien.
+      <h2 class="section-title">Long-Term Archiving & Data Access</h2>
+      <p class="section-desc">
+        Permanent preservation, fair data curation, and controlled scientific access via the University of Vienna's official digital repository.
       </p>
 
-      <div class="governance-card" style="margin-top: 2.5rem;">
-        <div class="governance-badge-strip">
-          <span class="cyber-pill restricted">Controlled Scientific Access</span>
-          <a href="https://phaidra.univie.ac.at/detail/o:2091644" target="_blank" rel="noopener" class="cyber-pill doi">
-            PHAIDRA: o:2091644
+      <div class="phaidra-archive-card">
+        <div class="archive-header-row">
+          <div>
+            <span class="cyber-pill restricted">Controlled Scientific Access</span>
+            <h3 class="archive-title-h3" style="margin-top: 0.5rem;">PHAIDRA Repository (University of Vienna)</h3>
+          </div>
+          <a href="https://phaidra.univie.ac.at/detail/o:2091644" target="_blank" rel="noopener" class="btn-cyber btn-cyber-primary" style="font-size: 0.88rem;">
+            Visit PHAIDRA Object (o:2091644) ↗
           </a>
-          <a href="https://doi.org/10.25365/phaidra.537" target="_blank" rel="noopener" class="cyber-pill">
-            DOI: 10.25365/phaidra.537
-          </a>
-          <span class="cyber-pill">Hochschuljubiläumsfonds: H-448297/2023</span>
         </div>
 
-        <div class="gov-grid">
-          <div class="gov-text-block">
-            <h3 class="gov-title">Zentrale Grundsätze der Datenbereitstellung</h3>
+        <div class="archive-cols">
+          <div class="archive-text">
             <p>
-              Die primären Forschungs- und Skelettdaten des Projekts VIENNAVARS sind im institutionellen Repositorium **PHAIDRA** der Universität Wien langzeitgesichert. Im Sinne des Schutzes archäologischer Fundstellen und der Vereinbarungen mit den kooperierenden Institutionen werden Primärdaten nicht uneingeschränkt im Netz disseminiert, sondern stehen für verifizierte wissenschaftliche Forschungszwecke auf Anfrage zur Verfügung.
+              The digital research corpus of the VIENNAVARS project is preserved within <strong>PHAIDRA</strong> (<em>Permanent Hosting, Archiving and Indexing of Digital Resources and Assets</em>) under persistent identifier <strong>o:2091644</strong> and registered DOI <a href="https://doi.org/10.25365/phaidra.537" target="_blank" rel="noopener"><strong>10.25365/phaidra.537</strong></a>.
             </p>
-            <div class="rights-callout">
-              <div class="rights-callout-title">⚠️ Rechtlicher Hinweis zu Geodaten & Plänen</div>
-              <div class="rights-callout-text">
-                Die Grabungspläne, Grabungstagebücher und räumlichen Primärverortungen sind geistiges und rechtliches Eigentum des <strong>Wien Museums (© Wien Museum)</strong>. Eine uneingeschränkte Veröffentlichung exakter Vektorgeometrien oder Grabkoordinaten im Internet findet daher nicht statt.
-              </div>
+            <p>
+              In accordance with ethical standards in archaeological heritage curation and formal agreements with the <strong>Wien Museum</strong>, raw individual osteological tables and primary trench vector geometries are curated under controlled access. Researchers may request access to full tabular datasets for verified academic studies.
+            </p>
+
+            <div class="rights-banner">
+              <strong>Spatial Intellectual Property Notice</strong>
+              <p>Excavation plans, field records, and primary spatial survey coordinates remain the property of the <strong>Wien Museum (© Wien Museum)</strong>. Raw coordinates are not disseminated openly on GitHub.</p>
             </div>
           </div>
 
-          <!-- Scientific Access Protocol Steps -->
-          <div class="protocol-steps">
-            <strong style="font-family: var(--font-mono); font-size: 0.85rem; color: #fff; text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 1rem;">
-              Ablauf für Datenanfragen (PHAIDRA)
-            </strong>
+          <!-- Protocol Steps for Data Requests -->
+          <div class="request-protocol-card">
+            <span class="protocol-title">Access Request Protocol</span>
 
-            <div class="protocol-step-item">
-              <span class="protocol-idx">1</span>
-              <div class="protocol-step-content">
-                <strong>Wissenschaftliche Anfrage stellen</strong>
-                <span>Formlose Kontaktaufnahme unter Angabe von Institution und Forschungsziel.</span>
+            <div class="protocol-step">
+              <span class="protocol-num">1</span>
+              <div class="protocol-content">
+                <strong>Submit Research Inquiry</strong>
+                <span>Contact the project investigators detailing your institutional affiliation and research scope.</span>
               </div>
             </div>
 
-            <div class="protocol-step-item">
-              <span class="protocol-idx">2</span>
-              <div class="protocol-step-content">
-                <strong>Prüfung mit der Projektleitung</strong>
-                <span>Abstimmung der angefragten Datensätze mit Dr. Dominik Hagmann (VIAS).</span>
+            <div class="protocol-step">
+              <span class="protocol-num">2</span>
+              <div class="protocol-content">
+                <strong>Consultation with Project Lead</strong>
+                <span>Verification and dataset scoping with Dr. Dominik Hagmann (VIAS).</span>
               </div>
             </div>
 
-            <div class="protocol-step-item">
-              <span class="protocol-idx">3</span>
-              <div class="protocol-step-content">
-                <strong>Freischaltung in PHAIDRA</strong>
-                <span>Bereitstellung des Zugangs über das universitäre PHAIDRA-Benutzerkonto.</span>
+            <div class="protocol-step">
+              <span class="protocol-num">3</span>
+              <div class="protocol-content">
+                <strong>PHAIDRA Repository Activation</strong>
+                <span>Granting authorized access to the requested data collections via PHAIDRA account credentials.</span>
               </div>
             </div>
 
-            <div style="margin-top: 1.5rem; text-align: center;">
-              <a href="mailto:dominik.hagmann@univie.ac.at?subject=VIENNAVARS%20Datenanfrage%20(PHAIDRA%20o:2091644)" class="btn-cyber btn-cyber-primary" style="width: 100%; font-size: 0.88rem;">
-                ✉️ Datenanfrage initiieren
+            <div style="margin-top: 1.5rem;">
+              <a href="mailto:dominik.hagmann@univie.ac.at?subject=VIENNAVARS%20Data%20Access%20Request%20(PHAIDRA%20o:2091644)" class="btn-cyber btn-cyber-secondary" style="width: 100%; font-size: 0.85rem;">
+                ✉️ Request Dataset Access
               </a>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Aggregated Metrics & Data Dictionary Cards -->
-      <div class="data-summary-grid">
-        <div class="data-panel">
-          <div class="panel-header">
-            <h3 class="panel-title">Chronologische Belegungsanteile</h3>
-            <span class="cyber-pill">Csokorgasse</span>
-          </div>
-          <div id="chronology-bars">
-            <!-- Injected by app.js -->
-          </div>
-        </div>
-
-        <div class="data-panel">
-          <div class="panel-header">
-            <h3 class="panel-title">Häufigkeiten materieller Fundkategorien</h3>
-            <span class="cyber-pill">Weibliche Gräber</span>
-          </div>
-          <div id="material-bars">
-            <!-- Injected by app.js -->
-          </div>
-        </div>
-      </div>
-
       <!-- Data Dictionary Table -->
-      <div class="dictionary-browser">
-        <h3 class="panel-title" style="margin-bottom: 0.5rem;">PHAIDRA Variablen- & Datenwörterbuch</h3>
+      <div class="dictionary-card">
+        <h3 class="panel-title" style="margin-bottom: 0.4rem;">Archived Data Dictionary & Variable Schema</h3>
         <p style="font-size: 0.92rem; color: var(--text-muted); margin-bottom: 1.25rem;">
-          Übersicht der im Repositorium archivierten Datentabellen und Variablen (für Nachnutzungsanträge):
+          Reference schema of data tables curated on PHAIDRA available for academic reuse requests:
         </p>
 
         <div style="overflow-x: auto;">
           <table class="dict-table">
             <thead>
               <tr>
-                <th>Datentabelle</th>
-                <th>Inhalt & Relevanz</th>
-                <th>Variablen / Attribute</th>
-                <th>Zugangskondition</th>
+                <th>Dataset Entity</th>
+                <th>Content Description</th>
+                <th>Core Attributes</th>
+                <th>Access Level</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td><strong style="color: #fff; font-family: var(--font-mono);">Burials_Catalog</strong></td>
-                <td>Grabgrubenmaße, Einbauten, Orientierung und Kontextbeschreibungen.</td>
+                <td>Grave dimensions, construction types, depth, orientation, and taphonomic context.</td>
                 <td>
                   <span class="field-tag">grave_id</span>
                   <span class="field-tag">tomb_type</span>
@@ -362,11 +323,11 @@
                   <span class="field-tag">depth_m</span>
                   <span class="field-tag">coffin_evidence</span>
                 </td>
-                <td><span class="cyber-pill restricted">Auf Anfrage (PHAIDRA)</span></td>
+                <td><span class="cyber-pill restricted">PHAIDRA / On Request</span></td>
               </tr>
               <tr>
                 <td><strong style="color: #fff; font-family: var(--font-mono);">Osteological_Metrics</strong></td>
-                <td>Anthropologische Skelettanalyse: Alter, Geschlecht, Pathologien, Stressmarker.</td>
+                <td>Skeletal analysis: sex, age class, stature estimation, pathologies, and LEH stress markers.</td>
                 <td>
                   <span class="field-tag">individual_id</span>
                   <span class="field-tag">sex</span>
@@ -374,29 +335,31 @@
                   <span class="field-tag">stature_cm</span>
                   <span class="field-tag">hypoplasia</span>
                 </td>
-                <td><span class="cyber-pill restricted">Auf Anfrage (PHAIDRA)</span></td>
+                <td><span class="cyber-pill restricted">PHAIDRA / On Request</span></td>
               </tr>
               <tr>
                 <td><strong style="color: #fff; font-family: var(--font-mono);">Finds_Inventory</strong></td>
-                <td>Detaillierter Beigabenkatalog: Ohrringe, Perlenketten, Spinnwirtel, Keramik.</td>
+                <td>Costume items, earrings, polyhedral pendants, beads, spindle whorls, pottery, tools.</td>
                 <td>
                   <span class="field-tag">find_id</span>
                   <span class="field-tag">category</span>
                   <span class="field-tag">material</span>
                   <span class="field-tag">typology</span>
-                  <span class="field-tag">inv_no</span>
+                  <span class="field-tag">museum_inv</span>
                 </td>
-                <td><span class="cyber-pill restricted">Auf Anfrage (PHAIDRA)</span></td>
+                <td><span class="cyber-pill restricted">PHAIDRA / On Request</span></td>
               </tr>
               <tr>
-                <td><strong style="color: #fff; font-family: var(--font-mono);">Spatial_Context</strong></td>
-                <td>Historische Sektoren & Grabungspläne (Wien Museum).</td>
+                <td><strong style="color: #fff; font-family: var(--font-mono);">Spatial_Hexbins</strong></td>
+                <td>3-meter tessellated hexagon cells, dominant phase, and grave counts per cell.</td>
                 <td>
-                  <span class="field-tag">sector_id</span>
-                  <span class="field-tag">excavation_year</span>
-                  <span class="field-tag">plan_no</span>
+                  <span class="field-tag">hex_id</span>
+                  <span class="field-tag">dominant_phase</span>
+                  <span class="field-tag">grave_count</span>
+                  <span class="field-tag">male_count</span>
+                  <span class="field-tag">female_count</span>
                 </td>
-                <td><span class="cyber-pill" style="border-color: #ef4444; color: #f87171;">© Wien Museum (Gesperrt)</span></td>
+                <td><span class="cyber-pill" style="border-color: var(--accent-success); color: var(--accent-success);">Open Aggregated</span></td>
               </tr>
             </tbody>
           </table>
@@ -409,35 +372,35 @@
   <section id="team" class="section" style="background: rgba(10, 16, 28, 0.4);">
     <div class="container">
       <div class="section-tag-row">
-        <span class="section-tag" data-i18n="sec_team_tag">Projektleitung & Kooperationen</span>
+        <span class="section-tag">Principal Investigators & Cooperation</span>
       </div>
-      <h2 class="section-title" data-i18n="sec_team_title">Beteiligte Wissenschaftler*innen</h2>
+      <h2 class="section-title">Research Team & Institutions</h2>
 
       <div class="team-grid">
         <div class="team-card">
           <div class="team-avatar">DH</div>
           <h3 class="team-name">Dr. Dominik Hagmann</h3>
-          <div class="team-role">Projektleitung / Digitale Archäologie</div>
+          <div class="team-role">Project Lead / Digital Archaeology</div>
           <div class="team-affil">
-            Vienna Institute for Archaeological Science (VIAS)<br>Universität Wien
+            Vienna Institute for Archaeological Science (VIAS)<br>University of Vienna
           </div>
         </div>
 
         <div class="team-card">
           <div class="team-avatar">SK</div>
           <h3 class="team-name">Univ.-Prof. Dr. Sylvia Kirchengast</h3>
-          <div class="team-role">Bioarchäologie & Anthropologie</div>
+          <div class="team-role">Bioarchaeology & Anthropology</div>
           <div class="team-affil">
-            Department für Evolutionäre Anthropologie<br>Universität Wien
+            Department of Evolutionary Anthropology<br>University of Vienna
           </div>
         </div>
 
         <div class="team-card">
           <div class="team-avatar">BB</div>
           <h3 class="team-name">Dr. Birgit Bühler</h3>
-          <div class="team-role">Materielle Kultur & Archäometrie</div>
+          <div class="team-role">Material Culture & Archaeometry</div>
           <div class="team-affil">
-            Vienna Institute for Archaeological Science (VIAS)<br>Universität Wien
+            Vienna Institute for Archaeological Science (VIAS)<br>University of Vienna
           </div>
         </div>
       </div>
@@ -448,10 +411,10 @@
           VIAS — Vienna Institute for Archaeological Science
         </a>
         <a href="https://anthro.univie.ac.at" target="_blank" rel="noopener" class="partner-item">
-          Dept. Evolutionäre Anthropologie
+          Dept. of Evolutionary Anthropology
         </a>
         <a href="https://www.univie.ac.at" target="_blank" rel="noopener" class="partner-item">
-          Universität Wien
+          University of Vienna
         </a>
         <a href="https://www.wienmuseum.at" target="_blank" rel="noopener" class="partner-item">
           Wien Museum
@@ -463,15 +426,15 @@
     </div>
   </section>
 
-  <!-- Citation Terminal Box -->
+  <!-- Terminal Citation Box -->
   <section class="section">
     <div class="container">
       <div class="section-tag-row">
-        <span class="section-tag" data-i18n="sec_citation_tag">Zitation & Persistenz</span>
+        <span class="section-tag">Citation & Scientific Reuse</span>
       </div>
-      <h2 class="section-title" data-i18n="sec_citation_title">Datensatz zitieren</h2>
-      <p class="section-desc" data-i18n="sec_citation_desc">
-        Verwenden Sie für wissenschaftliche Publikationen die offizielle Zitation des PHAIDRA-Datensatzes mit dauerhafter DOI:
+      <h2 class="section-title">Cite this Dataset</h2>
+      <p class="section-desc">
+        When citing research data or spatial distributions from this project, please reference the official PHAIDRA repository record:
       </p>
 
       <div class="citation-terminal">
@@ -482,10 +445,10 @@
             <span class="t-dot green"></span>
           </div>
           <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-dim);">
-            viennavars_csokorgasse.bibtex — DOI 10.25365/phaidra.537
+            viennavars_csokorgasse.bib — DOI 10.25365/phaidra.537
           </span>
           <button id="btn-copy-citation" class="cyber-pill" style="cursor: pointer; background: rgba(255, 87, 51, 0.15); border-color: var(--accent-ember); color: #fff;">
-            📋 Kopieren
+            📋 Copy BibTeX
           </button>
         </div>
 
@@ -511,41 +474,41 @@
             Visualization and Interpretation of the early medieval fEmale avar populatioN from Vienna/Austria (csokorgasse-buRialS).
           </p>
           <p style="font-size: 0.8rem; color: var(--text-dim);">
-            Gefördert durch die Hochschuljubiläumsstiftung der Stadt Wien (Projekt H-448297/2023).
+            Funded by the Hochschuljubiläumsstiftung der Stadt Wien (Grant H-448297/2023).
           </p>
         </div>
 
         <div>
           <strong style="color: #fff; font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 1rem;">
-            Ressourcen & Archiv
+            Key Project Links
           </strong>
           <ul class="footer-links">
-            <li><a href="https://phaidra.univie.ac.at/detail/o:2091644" target="_blank" rel="noopener">PHAIDRA Repositorium (o:2091644)</a></li>
+            <li><a href="https://phaidra.univie.ac.at/detail/o:2091644" target="_blank" rel="noopener">PHAIDRA Archive (o:2091644)</a></li>
             <li><a href="https://doi.org/10.25365/phaidra.537" target="_blank" rel="noopener">Persistent DOI: 10.25365/phaidra.537</a></li>
-            <li><a href="https://vias.univie.ac.at/projekte/viennavars/" target="_blank" rel="noopener">Projektseite VIAS (Uni Wien)</a></li>
-            <li><a href="https://anthro.univie.ac.at" target="_blank" rel="noopener">Dept. Evolutionäre Anthropologie</a></li>
+            <li><a href="https://vias.univie.ac.at/projekte/viennavars/" target="_blank" rel="noopener">VIAS Project Page (Univ. of Vienna)</a></li>
+            <li><a href="https://anthro.univie.ac.at" target="_blank" rel="noopener">Dept. of Evolutionary Anthropology</a></li>
           </ul>
         </div>
 
         <div>
           <strong style="color: #fff; font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 1rem;">
-            Rechte & Code
+            Source & Rights
           </strong>
           <ul class="footer-links">
-            <li><a href="https://github.com/VIENNAVARS" target="_blank" rel="noopener">GitHub Organisation</a></li>
-            <li><span style="color: var(--text-dim);">Geometrien: © Wien Museum</span></li>
-            <li><a href="data/summary_statistics.json" download>Aggregierte Statistiken (JSON)</a></li>
-            <li><a href="data/metadata.json" download>Metadaten Schema (JSON)</a></li>
+            <li><a href="https://github.com/VIENNAVARS" target="_blank" rel="noopener">GitHub Organization</a></li>
+            <li><span style="color: var(--text-dim);">Spatial Geometries: © Wien Museum</span></li>
+            <li><a href="data/summary_statistics.json" download>Summary Statistics (JSON)</a></li>
+            <li><a href="data/metadata.json" download>Metadata Schema (JSON)</a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer-bottom">
         <div>
-          &copy; 2024–2026 VIENNAVARS Forschungsteam • Universität Wien / VIAS.
+          &copy; 2024–2026 VIENNAVARS Research Team · University of Vienna / VIAS.
         </div>
         <div>
-          Open Research Data Portal • Wien Museum Rechte vorbehalten
+          Open Research Data & Hexbin Visualization Portal · All Rights Reserved by Wien Museum
         </div>
       </div>
     </div>

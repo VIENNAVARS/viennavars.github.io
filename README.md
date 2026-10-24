@@ -1,104 +1,113 @@
-# VIENNAVARS — Open Research Data & Visualization Portal
+# VIENNAVARS — Open Research Data & Hexbin Visualization Portal
 
 [![DOI](https://img.shields.io/badge/DOI-10.25365%2Fphaidra.537-orange.svg)](https://doi.org/10.25365/phaidra.537)
 [![PHAIDRA](https://img.shields.io/badge/PHAIDRA-o%3A2091644-blueviolet.svg)](https://phaidra.univie.ac.at/detail/o:2091644)
-[![Access: Restricted](https://img.shields.io/badge/Access-Controlled_Scientific_Access-yellow.svg)](https://phaidra.univie.ac.at/detail/o:2091644)
-[![Rights: Wien Museum](https://img.shields.io/badge/Geometries-%C2%A9_Wien_Museum-red.svg)](https://www.wienmuseum.at)
+[![Spatial Data](https://img.shields.io/badge/Geometries-%C2%A9_Wien_Museum-red.svg)](https://www.wienmuseum.at)
 [![GitHub Pages](https://img.shields.io/badge/GitHub-Pages_Deployed-success.svg)](https://viennavars.github.io)
 
 **VIENNAVARS** — *Visualization and Interpretation of the early medieval fEmale avar populatioN from Vienna/Austria (csokorgasse-buRialS)*  
-*(dt.: Visualisierung und Interpretation weiblicher Lebenswelten in der Awarenzeit [7. – 8. Jhdt. n. Chr.] am Beispiel der Population des Gräberfeldes Csokorgasse, Wien 11)*
 
-Dieses Repository enthält das progressive **Forschungsdaten- und Visualisierungsportal** für die GitHub-Page der Organisation [github.com/VIENNAVARS](https://github.com/VIENNAVARS).
-
----
-
-## 🔗 Zentrale Links & Repositorien
-
-* 🏛️ **Langzeitarchivierung (PHAIDRA):** [https://phaidra.univie.ac.at/detail/o:2091644](https://phaidra.univie.ac.at/detail/o:2091644)  
-  *Persistent Identifier:* `o:2091644` | *DOI:* [10.25365/phaidra.537](https://doi.org/10.25365/phaidra.537)
-* 🎓 **Offizielle Projektseite der Universität Wien (VIAS):** [https://vias.univie.ac.at/projekte/viennavars/](https://vias.univie.ac.at/projekte/viennavars/)
-* 🐙 **GitHub Organisation:** [https://github.com/VIENNAVARS](https://github.com/VIENNAVARS)
+Official research data and spatial visualization portal for the GitHub Organization [github.com/VIENNAVARS](https://github.com/VIENNAVARS).
 
 ---
 
-## 🎯 Konzept: Visualisierung, Paper-Highlights & Datensparsamkeit
+## 🔗 Key Project Resources
 
-Das Gräberfeld **Wien 11 – Csokorgasse** (Kaiserebersdorf) ist mit über 700 Gräbern das größte frühmittelalterliche Gräberfeld im Wiener Stadtgebiet. 
-
-Das Portal erfüllt drei zentrale Kernfunktionen:
-
-### 1. Teaser & Highlights aus den Publikationen
-* **Bioarchäologie & Demographie:** Körperhöhenmetriken (mittlere weibliche Körperhöhe: 158.4 cm), Geschlechtsdimorphismus und frühkindliche physiologische Stressmarker (lineare Schmelzhypoplasien).
-* **Materielle Kultur & Sozialstatus:** Auswertung von Statussymbolen (vergoldete Polyeder-Ohrringe, Perlenkollieren) und Wirtschaftsindikatoren (Spinnwirtel in ~32% der Gräber).
-* **Raum-zeitliche Chronologie:** Horizontale Stratigraphie und Belegungsdynamik über 3 Phasen (Früh-, Mittel- und Spätawarenzeit).
-
-### 2. Progressive WMA (Web Map Application) mit Kartenauszügen
-* **Sektorale Belegungsdichte:** Interaktive Rastermatrix (48 Planquadrate), die die Konzentration im Zentralbereich anzeigt, ohne sensible Vektorkoordinaten zu exponieren.
-* **Chronologische Phasenkarte:** Visualisierung der horizontalen Stratigraphie.
-* **Fundkonzentration:** Clusterdarstellung von Schmuck und Handwerksgeräten.
-* **Fundplatz-Kontext:** Geographische Verortung in Wien 11.
-* **Urheberrechtlicher Schutz:** *Die Primärgeometrien und Grabungspläne unterliegen dem Urheber- und Nutzungsrecht des Wien Museums (© Wien Museum) und werden daher nicht als rohe Vektordaten veröffentlicht.*
-
-### 3. Datenpolitik & Kontrollierter Zugang via PHAIDRA
-* Alle Primärdaten sind dauerhaft im universitären Repositorium **PHAIDRA** archiviert.
-* Der Datenzugang zu Detailinventaren erfolgt kontrolliert auf begründete wissenschaftliche Anfrage nach Rücksprache mit der Projektleitung (Dr. Dominik Hagmann / VIAS).
-* Auf GitHub werden strukturierte Metadaten, aggregierte Kennzahlen und das Datenwörterbuch zur Orientierung für Nachnutzungsanträge bereitgestellt.
+* 🏛️ **Institutional Long-Term Archive (PHAIDRA):** [https://phaidra.univie.ac.at/detail/o:2091644](https://phaidra.univie.ac.at/detail/o:2091644)  
+  *Persistent Identifier:* `o:2091644` · *Registered DOI:* [10.25365/phaidra.537](https://doi.org/10.25365/phaidra.537)
+* 🎓 **University of Vienna Project Page (VIAS):** [https://vias.univie.ac.at/projekte/viennavars/](https://vias.univie.ac.at/projekte/viennavars/)
+* 🐙 **GitHub Organization:** [https://github.com/VIENNAVARS](https://github.com/VIENNAVARS)
 
 ---
 
-## 📁 Repository-Struktur
+## 🎯 Architecture & Visualizations
+
+The cemetery of **Vienna 11 – Csokorgasse (Kaiserebersdorf)** is the largest early medieval burial site discovered in the Vienna metropolitan area, with over 700 burials (7th–8th centuries AD). 
+
+This portal provides:
+
+### 1. Scientific Paper Insights
+* **Demography, Stature & Stress:** Bioarchaeological analysis of female stature (mean: 158.4 cm) and early childhood physiological stress indicators (linear enamel hypoplasias, LEH).
+* **Material Culture & Social Stratification:** Status categories based on gilded bronze/silver earrings (polyhedral, grape pendants), multi-strand glass beads, and economic textile markers (spindle whorls in ~32% of female graves).
+* **Horizontal Stratigraphy:** Chronological trajectories across the Early, Middle, and Late Avar periods.
+
+### 2. Interactive Hexbin Maps (3-Meter Spatial Tessellation)
+To analyze cemetery dynamics without exposing sensitive individual coordinates, burials are aggregated into 3-meter hexagonal spatial bins:
+* **SP04:** Chronology in 3-Meter Hexagons (Total Cemetery)
+* **SP03:** Chronology in 3-Meter Hexagons by Sex (Female vs. Male trajectories)
+* **SP06:** Female Lifeworlds: Social Status and Chronology (Main Map, n=166 females)
+* **SP01:** Social Status by Sex Across the Adult Population (n=348 adults)
+* **SP05:** Cemetery Layout & Descriptive Convex Hulls
+* **Geographic Context:** OpenStreetMap / CartoDB dark site overview in Vienna 11.
+
+> **Intellectual Property Notice:** Primary excavation plans, trench geometries, and raw survey coordinates are the property of the **Wien Museum (© Wien Museum)** and are not disseminated openly as raw vector points.
+
+### 3. Data Governance & Single-Point PHAIDRA Access
+* Datasets are permanently curated in the University of Vienna repository **PHAIDRA**.
+* Access to full tabular osteological catalogs and excavation records is managed through controlled scientific requests.
+
+---
+
+## 📁 Repository Structure
 
 ```text
 viennavars/
-├── index.html                   # Progressive Portal-Hauptseite (zweisprachig DE/EN)
+├── index.html                   # Modern scientific dark portal (English only)
 ├── css/
-│   └── styles.css               # Modernes, progressives Dark-Theme mit Glow-Akzenten
+│   └── styles.css               # Progressive styling with glow meshes and glassmorphism
 ├── js/
-│   └── app.js                   # Interaktive Raster-Matrix, Visualisierungs-Switcher & i18n
+│   └── app.js                   # Hexbin map switcher, lightbox zoom, and Leaflet map
+├── assets/
+│   └── maps/                    # High-resolution 300 dpi publication hexbin maps (SP01–SP06)
+│       ├── SP04_Hex_Chronologie_Gesamt.png
+│       ├── SP03_Hex_Chronologie_nach_Geschlecht.png
+│       ├── SP06_Status_Chronologie_Female.png
+│       ├── SP01_Status_nach_Geschlecht.png
+│       └── SP05_Belegung_Vorhandene_Huellen.png
 ├── data/
-│   ├── summary_statistics.json  # Aggregierte Kennzahlen, Paper-Insights & Visualisierungsdaten
-│   ├── data_dictionary.json     # PHAIDRA Variablenkatalog für Nachnutzungsanträge
-│   └── metadata.json            # Metadaten-Schema mit Datenpolitik & Wien Museum Rechtehinweis
+│   ├── summary_statistics.json  # Aggregated metrics, paper insights, and map metadata
+│   ├── data_dictionary.json     # Variable schema of curated PHAIDRA tables
+│   └── metadata.json            # DataCite/Dublin Core metadata schema
 ├── .github/
 │   └── workflows/
-│       └── deploy.yml           # GitHub Actions Workflow für automatisches Deployment
+│       └── deploy.yml           # Automated GitHub Actions Pages deployment
 ├── .gitignore
 └── README.md
 ```
 
 ---
 
-## 🚀 GitHub Pages Bereitstellung (Deployment)
+## 🚀 GitHub Pages Deployment
 
-1. Repository auf GitHub pushen:
+To publish this portal to GitHub Pages:
+
 ```bash
 cd /Users/oeai_admin/.gemini/antigravity/scratch/viennavars
 
-# Remote hinzufügen (z. B. für viennavars.github.io):
+# Add remote to your organization repo (e.g. viennavars.github.io):
 git remote add origin https://github.com/VIENNAVARS/viennavars.github.io.git
 
-# Main Branch comitten & pushen:
+# Push to main:
 git add .
-git commit -m "feat: progressive research data portal with map excerpts and paper insights"
+git commit -m "feat: progressive hexbin maps portal in English with publication figures"
 git push -u origin main
 ```
 
-2. Auf GitHub unter **Settings** ➔ **Pages** unter *Source* **GitHub Actions** (oder *Deploy from a branch*) auswählen. Nach kurzer Zeit ist die Seite online.
+In GitHub Repository Settings -> **Pages**, ensure the Source is set to **GitHub Actions** (or Deploy from branch `main` / root).
 
 ---
 
-## 👥 Beteiligte Forscher*innen & Kooperationen
+## 👥 Principal Investigators & Cooperations
 
-* **Dr. Dominik Hagmann** (Projektleitung / Digitale Archäologie, VIAS – Universität Wien)
-* **Univ.-Prof. Dr. Sylvia Kirchengast** (Bioarchäologie & Anthropologie, Department für Evolutionäre Anthropologie, Universität Wien)
-* **Dr. Birgit Bühler** (Materielle Kultur & Archäometrie, VIAS – Universität Wien)
-* **Kooperationspartner:** Wien Museum, Stadt Wien Kultur
-* **Gefördert durch:** *Hochschuljubiläumsfonds der Stadt Wien* (Projekt H-448297/2023)
+* **Dr. Dominik Hagmann** (Project Lead / Digital Archaeology, VIAS – University of Vienna)
+* **Univ.-Prof. Dr. Sylvia Kirchengast** (Bioarchaeology & Anthropology, Department of Evolutionary Anthropology, University of Vienna)
+* **Dr. Birgit Bühler** (Material Culture & Archaeometry, VIAS – University of Vienna)
+* **Cooperation:** Wien Museum, City of Vienna Culture (Stadt Wien Kultur)
+* **Funding:** Supported by the *Hochschuljubiläumsfonds der Stadt Wien* (Grant H-448297/2023)
 
 ---
 
-## 📜 Zitation
+## 📜 Citation
 
 ```bibtex
 @dataset{viennavars_csokorgasse_2024,
