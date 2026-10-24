@@ -28,15 +28,14 @@ The cemetery of **Vienna 11 – Csokorgasse (Kaiserebersdorf)** is the largest e
 This portal provides:
 
 ### 1. Interactive Geospatial Web Map Application (WMA) on `basemap.at`
-* Direct rendering of authentic GIS spatial layers derived from the project's analytical QGIS/GeoPackage database.
-* Powered by official Austrian **`basemap.at`** WMTS tile layers (`bmapgrau` Gray, `bmaporthofoto30cm` 30cm Aerial Orthophoto, and `geolandbasemap` Standard).
+* Direct rendering of authentic GIS spatial layers over official Austrian **`basemap.at`** WMTS tile layers (`bmapgrau` Gray, `bmaporthofoto30cm` 30cm Aerial Orthophoto, and `geolandbasemap` Standard).
 * **3-Meter Hexagonal Spatial Tessellation:**
   * **All Burials (428 Hexbins):** Dominant chronological phase per cell (Early Avar [EAP], Middle Avar [MAP], Late Avar [LAP], Tie/Mixed).
-  * **Female Burials (182 Hexbins):** Horizontal trajectory of documented female graves.
-  * **Male Burials (178 Hexbins):** Horizontal trajectory of documented male graves.
+  * **Female Burials (182 Hexbins):** Spatial trajectory of documented female graves.
+  * **Male Burials (178 Hexbins):** Spatial trajectory of documented male graves.
   * **Cemetery Outer Enclosure (`friedhof_huelle`):** Vector boundary polygon.
 * **Dynamic Hexbin Inspector:** Live inspection of cell coordinates, burial totals, dated vs. undated counts, and chronological phase breakdown upon hover and click.
-* **300 DPI Publication Plates Lightbox:** High-resolution plates (`SP01`–`SP06`) accessible via integrated fullscreen viewer.
+* **Embedded Data Engine (`data/csokorgasse_data.js`):** Runs seamlessly offline (local `file://` double-click in Finder) without CORS restrictions, as well as on GitHub Pages.
 
 > **Spatial Intellectual Property Notice:** Primary excavation plans, trench geometries, and raw survey coordinates are the property of the **Wien Museum (© Wien Museum)** and are aggregated into 3-meter bins to ensure ethical confidentiality.
 
@@ -45,16 +44,19 @@ This portal provides:
 * **Material Culture & Social Stratification:** Status categories based on gilded bronze/silver earrings (polyhedral, grape pendants), multi-strand glass beads, and economic textile markers (spindle whorls in ~32% of female graves).
 * **Horizontal Stratigraphy:** Chronological trajectories across the Early, Middle, and Late Avar periods.
 
-### 3. Abstracted Photographic Stream
-* Stylized, progressive duotone photographic documentation of prestige grave goods (filigree gold pendants), excavation ensembles (ceramic vessels, knives, spindle whorls), and Danube Limes environmental topography.
+### 3. Authentic Publication Figures
+* High-resolution figures directly from peer-reviewed Csokorgasse publications:
+  * **Fig. 1:** Cemetery Excavation Plan with 700+ Burials (*Nature & Anthropology* 2026, Fig. 2).
+  * **Fig. 2:** Geographic Topography in Upper Danube Basin (*Nature & Anthropology* 2026, Fig. 1).
+  * **Fig. 3:** Horizontal Stratigraphy by Chronological Phase (*VIENNAVARS Spatial Analysis Series*).
 
-### 4. Comprehensive Scientific Corpus & Bibliography
-* Structured searchable and filterable database of 20 publications and monographs directly covering the Csokorgasse site and associated machine learning/spatial methodology.
-* Direct one-click links to registered DOIs, open-access editions, and institutional repositories.
+### 4. Publications & Research Corpus
+* 13 core publications directly covering the Vienna 11 – Csokorgasse cemetery and Avar population.
+* All registered DOIs are directly clickable (`https://doi.org/...`) on titles and action buttons.
+* Real-time search by author, keyword, or year.
 
 ### 5. Data Governance & Single-Point PHAIDRA Access
-* Datasets are permanently curated in the University of Vienna repository **PHAIDRA**.
-* Access to full tabular osteological catalogs and excavation records is managed through controlled scientific requests.
+* Datasets are permanently curated in the University of Vienna repository **PHAIDRA** under DOI `10.25365/phaidra.537`.
 
 ---
 
@@ -64,28 +66,24 @@ This portal provides:
 viennavars/
 ├── index.html                   # Avant-garde dark portal (English only)
 ├── css/
-│   └── styles.css               # Progressive stylesheet (cyber-terracotta, gold, Leaflet WMA, duotone)
+│   └── styles.css               # Clean stylesheet (non-wrapping navbar, sleek hero, Leaflet WMA)
 ├── js/
-│   └── app.js                   # Interactive Leaflet engine with basemap.at, GeoJSON, search & lightbox
-├── assets/
-│   ├── maps/                    # High-resolution 300 dpi publication hexbin maps (SP01–SP06)
-│   │   ├── SP04_Hex_Chronologie_Gesamt.png
-│   │   ├── SP03_Hex_Chronologie_nach_Geschlecht.png
-│   │   ├── SP06_Status_Chronologie_Female.png
-│   │   ├── SP01_Status_nach_Geschlecht.png
-│   │   └── SP05_Belegung_Vorhandene_Huellen.png
-│   └── photos/                  # Abstracted duotone archaeological photography
-│       ├── grave_gold_pendant.webp
-│       ├── grave_finds_ensemble.jpg
-│       └── viennavars_overview.jpg
+│   └── app.js                   # Interactive Leaflet engine with basemap.at and search
 ├── data/
+│   ├── csokorgasse_data.js           # Embedded data engine (enables instant offline file:// execution)
 │   ├── cemetery_boundary.geojson     # Cemetery perimeter boundary (friedhof_huelle)
 │   ├── hex_chronology_all.geojson    # 428 3m-hexbins with phase attributes
 │   ├── hex_chronology_female.geojson # 182 female 3m-hexbins
 │   ├── hex_chronology_male.geojson   # 178 male 3m-hexbins
-│   ├── publications.json             # 20 peer-reviewed research papers and DOIs
-│   ├── summary_statistics.json       # Aggregated metrics, paper insights, and map metadata
+│   ├── publications.json             # 13 core peer-reviewed publications with DOIs
+│   ├── summary_statistics.json       # Aggregated metrics and paper insights
 │   └── metadata.json                 # DataCite/Dublin Core metadata schema
+├── assets/
+│   ├── figures/                 # Authentic Csokorgasse publication figures
+│   │   ├── csokorgasse_excavation_plan_700burials.png
+│   │   ├── csokorgasse_geographic_location.jpg
+│   │   └── csokorgasse_chronology_phases.png
+│   └── maps/                    # High-resolution 300 dpi publication hexbin maps (SP01–SP06)
 ├── .github/
 │   └── workflows/
 │       └── deploy.yml           # Automated GitHub Actions Pages deployment
@@ -102,16 +100,14 @@ To publish this portal to GitHub Pages:
 ```bash
 cd /Users/oeai_admin/.gemini/antigravity/scratch/viennavars
 
-# Add remote to your organization repo (e.g. viennavars.github.io):
+# Add remote to your organization repo:
 git remote add origin https://github.com/VIENNAVARS/viennavars.github.io.git
 
 # Push to main:
 git add .
-git commit -m "feat: progressive GIS WMA on basemap.at with real hexbins and bibliography"
+git commit -m "feat: streamlined portal with embedded data engine, authentic figures, and DOI links"
 git push -u origin main
 ```
-
-In GitHub Repository Settings -> **Pages**, ensure the Source is set to **GitHub Actions** (or Deploy from branch `main` / root).
 
 ---
 
