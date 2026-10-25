@@ -24,6 +24,7 @@ let currentThematicMode = 'chronology'; // 'chronology' | 'density'
 let currentPhaseFilter = 'all';        // 'all' | 'EAP' | 'MAP' | 'LAP' | 'tie'
 let selectedHexId = null;
 let selectedHexLayer = null;
+let activeTooltipLayer = null;
 
 // DOM Initialization
 document.addEventListener('DOMContentLoaded', () => {
@@ -33,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initBibliographyDownload();
   initGisWma();
   initCitationCopy();
+  initScrollSpy();
 });
 
 // Initialize Publications Data from Embedded Engine
@@ -292,31 +294,52 @@ function initGisWma() {
   const centerLat = 48.15269;
   const centerLng = 16.46775;
 
-  // Fractional zoom snapping for seamless bounds fitting without clipping
+  // Integer zoom levels (zoomSnap: 1) prevent subpixel tile seams; L.svg({ padding: 1.0 }) prevents SVG viewport clipping
   wmaMap = L.map('gis-wma-map', {
     center: [centerLat, centerLng],
-    zoom: 18.25,
-    zoomSnap: 0.1,
-    zoomDelta: 0.5,
+    zoom: 18,
+    zoomSnap: 1,
+    zoomDelta: 1,
     minZoom: 15,
-    maxZoom: 19.5,
-    scrollWheelZoom: true
+    maxZoom: 19,
+    scrollWheelZoom: true,
+    renderer: L.svg({ padding: 1.0 })
   });
 
-  // basemap.at WMTS Tile Layers set to 70% transparency (opacity: 0.30) by default
+  // Ensure any container size change immediately updates Leaflet's internal viewport & SVG bounds
+  if (typeof ResizeObserver !== 'undefined') {
+    const ro = new ResizeObserver(() => {
+      if (wmaMap) {
+        wmaMap.invalidateSize({ animate: false });
+      }
+    });
+    ro.observe(mapContainer);
+  }
+
+  wmaMap.on('mouseout', () => {
+    if (activeTooltipLayer) {
+      activeTooltipLayer.closeTooltip();
+      activeTooltipLayer = null;
+    }
+  });
+
+  // basemap.at WMTS Tile Layers (native max zoom 19)
   wmaBaseLayers = {
     grau: L.tileLayer('https://mapsneu.wien.gv.at/basemap/bmapgrau/normal/google3857/{z}/{y}/{x}.png', {
-      maxZoom: 19.5,
+      maxNativeZoom: 19,
+      maxZoom: 19,
       opacity: currentBasemapOpacity,
       attribution: '&copy; <a href="https://www.basemap.at" target="_blank" rel="noopener">basemap.at</a>'
     }),
     ortho: L.tileLayer('https://mapsneu.wien.gv.at/basemap/bmaporthofoto30cm/normal/google3857/{z}/{y}/{x}.jpeg', {
-      maxZoom: 19.5,
+      maxNativeZoom: 19,
+      maxZoom: 19,
       opacity: currentBasemapOpacity,
       attribution: '&copy; <a href="https://www.basemap.at" target="_blank" rel="noopener">basemap.at</a>'
     }),
     standard: L.tileLayer('https://mapsneu.wien.gv.at/basemap/geolandbasemap/normal/google3857/{z}/{y}/{x}.png', {
-      maxZoom: 19.5,
+      maxNativeZoom: 19,
+      maxZoom: 19,
       opacity: currentBasemapOpacity,
       attribution: '&copy; <a href="https://www.basemap.at" target="_blank" rel="noopener">basemap.at</a>'
     })
@@ -334,15 +357,16 @@ function loadGisLayers() {
   const data = window.CSOKORGASSE_DATA;
   if (!data || !data.boundary || !data.hex_all) return;
 
-  // 1. Boundary Layer (cemetery_boundary)
+  // 1. Boundary Layer (cemetery_boundary — non-interactive so it never intercepts hex hover/click)
   wmaGeoLayers.boundary = L.geoJSON(data.boundary, {
+    interactive: false,
     style: {
       color: '#38bdf8',
       weight: 2,
       dashArray: '6, 6',
       opacity: 0.85,
       fillColor: '#38bdf8',
-      fillOpacity: 0.03
+      fillOpacity: 0.02
     }
   }).addTo(wmaMap);
 
@@ -364,25 +388,26 @@ function loadGisLayers() {
     onEachFeature: attachHexInteractions
   });
 
-  // Fit bounds precisely so the entire cemetery with all northern and southern sectors is visible
+  // Fit bounds precisely so the entire two-sector cemetery is visible at integer zoom 18
   fitCemeteryBounds(false);
 
   updatePhaseButtonCounts();
   updateMapStatusPill();
   renderDynamicLegend();
+  renderDefaultInspector();
 }
 
-// Fit cemetery bounds with generous padding so nothing is ever truncated
+// Fit cemetery bounds cleanly at native integer zoom 18 so both NW and S sectors have comfortable margins
 function fitCemeteryBounds(animated = false) {
   if (!wmaGeoLayers.boundary || !wmaMap) return;
+  wmaMap.invalidateSize({ animate: false });
   const bounds = wmaGeoLayers.boundary.getBounds();
   if (bounds && bounds.isValid()) {
-    const opts = { padding: [35, 35], maxZoom: 18.6 };
-    if (animated) {
-      wmaMap.flyToBounds(bounds, opts);
-    } else {
-      wmaMap.fitBounds(bounds, opts);
-    }
+    wmaMap.fitBounds(bounds, {
+      padding: [24, 24],
+      maxZoom: 18,
+      animate: animated
+    });
   }
 }
 
@@ -396,6 +421,11 @@ function getActiveSubsetStats() {
   const stats = {
     totalSectors: 0,
     totalBurials: 0,
+    datedBurials: 0,
+    undatedBurials: 0,
+    burialsEAP: 0,
+    burialsMAP: 0,
+    burialsLAP: 0,
     EAP: 0,
     MAP: 0,
     LAP: 0,
@@ -413,6 +443,11 @@ function getActiveSubsetStats() {
     const p = ft.properties || {};
     const n = p.n_total || p.count || 1;
     stats.totalBurials += n;
+    stats.datedBurials += (p.n_dated !== undefined ? p.n_dated : n);
+    stats.undatedBurials += (p.n_undated || 0);
+    stats.burialsEAP += (p.n_eap || 0);
+    stats.burialsMAP += (p.n_map || 0);
+    stats.burialsLAP += (p.n_lap || 0);
 
     if (p.dominant === 'EAP') stats.EAP++;
     else if (p.dominant === 'MAP') stats.MAP++;
@@ -521,15 +556,19 @@ function attachHexInteractions(feature, layer) {
       <div style="color: #cbd5e1;">Burials: <strong>${burialsCount}</strong> · ${phaseName}</div>
     </div>
   `, {
-    sticky: true,
+    sticky: false,
     direction: 'top',
-    offset: [0, -10],
+    offset: [0, -8],
     className: 'custom-leaflet-tooltip'
   });
 
   layer.on({
     mouseover: (e) => {
       const l = e.target;
+      if (activeTooltipLayer && activeTooltipLayer !== l) {
+        activeTooltipLayer.closeTooltip();
+      }
+      activeTooltipLayer = l;
       if (p.hex_id !== selectedHexId) {
         l.setStyle({ weight: 2.2, color: '#ffffff', fillOpacity: 0.98 });
       }
@@ -537,8 +576,15 @@ function attachHexInteractions(feature, layer) {
     },
     mouseout: (e) => {
       const l = e.target;
+      l.closeTooltip();
+      if (activeTooltipLayer === l) {
+        activeTooltipLayer = null;
+      }
       if (p.hex_id !== selectedHexId) {
         l.setStyle(getSectorStyle(feature));
+      }
+      if (selectedHexLayer && selectedHexLayer.feature) {
+        updateHexInspector(selectedHexLayer.feature.properties);
       }
     },
     click: (e) => {
@@ -555,6 +601,82 @@ function attachHexInteractions(feature, layer) {
     }
   });
 }
+
+// Render Default Cemetery / Active Subset Overview in the Sector Inspector (identical DOM structure & height)
+function renderDefaultInspector() {
+  const titleEl = document.getElementById('inspect-title');
+  const descEl = document.getElementById('inspect-desc');
+  const statsEl = document.getElementById('inspect-stats');
+  if (!titleEl || !statsEl) return;
+
+  const s = getActiveSubsetStats();
+  let subsetTitle = 'All Sectors';
+  if (activeHexLayerName === 'female') subsetTitle = 'Female Subset';
+  else if (activeHexLayerName === 'male') subsetTitle = 'Male Subset';
+
+  titleEl.innerHTML = `
+    ${subsetTitle} <span style="font-family: var(--font-mono); color: var(--accent-amber);">${s.totalSectors} Units</span>
+    <span style="display: block; font-size: 0.85rem; font-weight: 600; color: var(--accent-cyan); margin-top: 0.2rem;">
+      ● Hover or click any sector on the map to inspect
+    </span>
+  `;
+
+  if (descEl) {
+    descEl.textContent = `Cemetery-wide overview covering ${s.totalBurials} burials across ${s.totalSectors} spatial sectors on the 3-meter aggregation grid.`;
+  }
+
+  statsEl.innerHTML = `
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.65rem; margin-bottom: 0.85rem;">
+      <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); padding: 0.65rem 0.75rem; border-radius: 6px;">
+        <span style="font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; font-family: var(--font-mono);">Total Burials</span>
+        <div style="font-size: 1.35rem; font-weight: 800; color: #fff;">${s.totalBurials}</div>
+      </div>
+      <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); padding: 0.65rem 0.75rem; border-radius: 6px;">
+        <span style="font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; font-family: var(--font-mono);">Dated Graves</span>
+        <div style="font-size: 1.35rem; font-weight: 800; color: var(--accent-cyan);">${s.datedBurials}</div>
+      </div>
+    </div>
+
+    <div style="font-family: var(--font-mono); font-size: 0.8rem; background: #03060c; border: 1px solid var(--border-subtle); padding: 0.75rem 0.85rem; border-radius: 6px; margin-bottom: 0.85rem;">
+      <div style="font-size: 0.72rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.45rem; letter-spacing: 0.05em;">
+        Chronological Breakdown
+      </div>
+      <div style="display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
+        <span style="color: var(--accent-cyan);">● Early Avar (EAP):</span>
+        <strong style="color: #fff;">${s.burialsEAP}</strong>
+      </div>
+      <div style="display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
+        <span style="color: var(--accent-ember);">● Middle Avar (MAP):</span>
+        <strong style="color: #fff;">${s.burialsMAP}</strong>
+      </div>
+      <div style="display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
+        <span style="color: var(--accent-amber);">● Late Avar (LAP):</span>
+        <strong style="color: #fff;">${s.burialsLAP}</strong>
+      </div>
+      <div style="display: flex; justify-content: space-between; padding-top: 0.35rem; border-top: 1px solid rgba(255,255,255,0.08); color: var(--text-dim);">
+        <span>Undated Burials:</span>
+        <span>${s.undatedBurials}</span>
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 0.5rem;">
+      <button class="btn-prog btn-prog-secondary" onclick="window.filterMapByPhase('EAP')" style="font-size: 0.74rem; padding: 0.42rem 0.75rem; width: 100%;">
+        Isolate EAP Sectors
+      </button>
+      <button class="btn-prog btn-prog-secondary" onclick="window.resetMapInspector()" style="font-size: 0.74rem; padding: 0.42rem 0.75rem;">
+        Reset
+      </button>
+    </div>
+  `;
+}
+
+// Reset selected sector and phase filter
+window.resetMapInspector = function() {
+  selectedHexId = null;
+  selectedHexLayer = null;
+  window.filterMapByPhase('all');
+  renderDefaultInspector();
+};
 
 // Update the Sector Inspector (Note: #inspect-legend-target is a sibling outside #inspect-stats, so it is never overwritten)
 function updateHexInspector(props) {
@@ -637,9 +759,9 @@ function updateHexInspector(props) {
 
     <div style="display: flex; gap: 0.5rem;">
       <button class="btn-prog btn-prog-secondary" onclick="window.filterMapByPhase('${dom}')" style="font-size: 0.74rem; padding: 0.42rem 0.75rem; width: 100%;">
-        🎯 Isolate ${dom} Sectors
+        Isolate ${dom} Sectors
       </button>
-      <button class="btn-prog btn-prog-secondary" onclick="window.filterMapByPhase('all')" style="font-size: 0.74rem; padding: 0.42rem 0.75rem;">
+      <button class="btn-prog btn-prog-secondary" onclick="window.resetMapInspector()" style="font-size: 0.74rem; padding: 0.42rem 0.75rem;">
         Reset
       </button>
     </div>
@@ -672,6 +794,9 @@ function wireMapControls() {
         btn.classList.toggle('active', showBoundary);
         if (showBoundary) {
           wmaMap.addLayer(wmaGeoLayers.boundary);
+          if (typeof wmaGeoLayers.boundary.bringToBack === 'function') {
+            wmaGeoLayers.boundary.bringToBack();
+          }
         } else {
           wmaMap.removeLayer(wmaGeoLayers.boundary);
         }
@@ -696,8 +821,11 @@ function wireMapControls() {
         activeHexLayerName = layerType;
       }
 
+      selectedHexId = null;
+      selectedHexLayer = null;
       updatePhaseButtonCounts();
       renderDynamicLegend();
+      renderDefaultInspector();
       updateMapStatusPill();
     });
   });
@@ -912,4 +1040,39 @@ function initCitationCopy() {
       });
     });
   }
+}
+
+// Scroll-Spy for Sticky Navbar Section Highlighting
+function initScrollSpy() {
+  const navLinks = Array.from(document.querySelectorAll('.nav-menu .nav-link[data-section]'));
+  if (navLinks.length === 0) return;
+
+  const sectionIds = navLinks.map(link => link.getAttribute('data-section'));
+  const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+
+  function updateActiveNav() {
+    const scrollY = window.scrollY || window.pageYOffset;
+    const triggerLine = scrollY + 190; // 70px navbar + 120px lookahead
+
+    let currentId = null;
+    for (const sec of sections) {
+      if (sec.offsetTop <= triggerLine) {
+        currentId = sec.id;
+      }
+    }
+
+    // If scrolled near the very bottom of the page, highlight the last tracked section
+    if ((window.innerHeight + scrollY) >= (document.documentElement.scrollHeight - 60) && sections.length > 0) {
+      currentId = sections[sections.length - 1].id;
+    }
+
+    navLinks.forEach(link => {
+      const isMatch = link.getAttribute('data-section') === currentId;
+      link.classList.toggle('active', isMatch);
+    });
+  }
+
+  window.addEventListener('scroll', updateActiveNav, { passive: true });
+  window.addEventListener('resize', updateActiveNav, { passive: true });
+  updateActiveNav();
 }

@@ -39,13 +39,13 @@
         <span><span class="brand-wordmark-vienna">VIENN</span><span class="brand-wordmark-pivot-a">A</span><span class="brand-wordmark-vars">VARS</span></span>
       </a>
 
-      <nav class="nav-wrapper">
+      <nav class="nav-wrapper" aria-label="Primary Navigation">
         <ul class="nav-menu">
-          <li><a href="#gis-wma" class="nav-link">Map</a></li>
-          <li><a href="#research" class="nav-link">Research</a></li>
-          <li><a href="#publications" class="nav-link">Publications</a></li>
-          <li><a href="#data-archive" class="nav-link">Archive</a></li>
-          <li><a href="#team" class="nav-link">Team</a></li>
+          <li><a href="#gis-wma" class="nav-link" data-section="gis-wma">Map</a></li>
+          <li><a href="#research" class="nav-link" data-section="research">Research</a></li>
+          <li><a href="#publications" class="nav-link" data-section="publications">Publications</a></li>
+          <li><a href="#data-archive" class="nav-link" data-section="data-archive">Archive</a></li>
+          <li><a href="#team" class="nav-link" data-section="team">Team</a></li>
           <li><a href="imprint.html" class="nav-link">Imprint &amp; GDPR</a></li>
         </ul>
       </nav>
@@ -76,7 +76,7 @@
           </div>
 
           <div class="hero-acronym-expansion">
-            <span><strong>V</strong>isualization and <strong>I</strong>nterpretation of the <strong>e</strong>arly medieval f<strong>E</strong>male avar populatio<strong>N</strong> through archaeotha<strong>NA</strong>thology from <strong>V</strong>ienna/<strong>A</strong>ustria <span style="white-space: nowrap;">(csokorgasse-bu<strong>R</strong>ial<strong>S</strong>)</span></span>
+            <span><strong>V</strong>isualization and <strong>I</strong>nterpretation of the early medieval f<strong>E</strong>male avar populatio<strong>N</strong> through archaeotha<strong>NA</strong>thology from <strong>V</strong>ienna/<strong>A</strong>ustria <span style="white-space: nowrap;">(csokorgasse-bu<strong>R</strong>ial<strong>S</strong>)</span></span>
           </div>
         </div>
 
@@ -228,21 +228,59 @@
           <div class="wma-inspector-panel">
             <div class="inspector-header">
               <span class="inspector-badge">SECTOR INSPECTOR</span>
-              <h3 id="inspect-title" class="inspector-title">Select a Sector</h3>
+              <h3 id="inspect-title" class="inspector-title">
+                All Sectors <span style="font-family: var(--font-mono); color: var(--accent-amber);">428 Units</span>
+                <span style="display: block; font-size: 0.85rem; font-weight: 600; color: var(--accent-cyan); margin-top: 0.2rem;">
+                  ● Hover or click any sector on the map to inspect
+                </span>
+              </h3>
               <p id="inspect-desc" class="inspector-subtitle">
-                Click or hover over any spatial sector on the cemetery plan to inspect burial counts, chronological breakdown, and dominant period.
+                Cemetery-wide overview covering 651 burials across 428 spatial sectors on the 3-meter aggregation grid.
               </p>
             </div>
 
-            <!-- Dynamic Sector Details Target -->
+            <!-- Dynamic Sector Details Target (Fixed structure so height never jumps) -->
             <div id="inspect-stats" class="inspector-content">
-              <div class="inspector-prompt-box">
-                <div style="font-size: 0.9rem; font-weight: 600; color: #ffffff; margin-bottom: 0.25rem;">
-                  Interactive Sector Details
+              <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.65rem; margin-bottom: 0.85rem;">
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); padding: 0.65rem 0.75rem; border-radius: 6px;">
+                  <span style="font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; font-family: var(--font-mono);">Total Burials</span>
+                  <div style="font-size: 1.35rem; font-weight: 800; color: #fff;">651</div>
                 </div>
-                <div style="font-size: 0.8rem; color: var(--text-dim); line-height: 1.5;">
-                  Hover or click any sector on the map to inspect burial counts, dated graves, and chronological dominance.
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); padding: 0.65rem 0.75rem; border-radius: 6px;">
+                  <span style="font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; font-family: var(--font-mono);">Dated Graves</span>
+                  <div style="font-size: 1.35rem; font-weight: 800; color: var(--accent-cyan);">575</div>
                 </div>
+              </div>
+
+              <div style="font-family: var(--font-mono); font-size: 0.8rem; background: #03060c; border: 1px solid var(--border-subtle); padding: 0.75rem 0.85rem; border-radius: 6px; margin-bottom: 0.85rem;">
+                <div style="font-size: 0.72rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.45rem; letter-spacing: 0.05em;">
+                  Chronological Breakdown
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
+                  <span style="color: var(--accent-cyan);">● Early Avar (EAP):</span>
+                  <strong style="color: #fff;">213</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
+                  <span style="color: var(--accent-ember);">● Middle Avar (MAP):</span>
+                  <strong style="color: #fff;">203</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
+                  <span style="color: var(--accent-amber);">● Late Avar (LAP):</span>
+                  <strong style="color: #fff;">159</strong>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding-top: 0.35rem; border-top: 1px solid rgba(255,255,255,0.08); color: var(--text-dim);">
+                  <span>Undated Burials:</span>
+                  <span>76</span>
+                </div>
+              </div>
+
+              <div style="display: flex; gap: 0.5rem;">
+                <button class="btn-prog btn-prog-secondary" onclick="window.filterMapByPhase('EAP')" style="font-size: 0.74rem; padding: 0.42rem 0.75rem; width: 100%;">
+                  Isolate EAP Sectors
+                </button>
+                <button class="btn-prog btn-prog-secondary" onclick="window.resetMapInspector()" style="font-size: 0.74rem; padding: 0.42rem 0.75rem;">
+                  Reset
+                </button>
               </div>
             </div>
 
@@ -260,7 +298,7 @@
   </section>
 
   <!-- Section 02: Key Findings & Published Figures (3 Open-Access Project Publications) -->
-  <section id="research" class="section" style="background: rgba(8, 14, 26, 0.6); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+  <section id="research" class="section section-alt">
     <div class="container">
       <span class="section-idx">// 02 · KEY FINDINGS &amp; PUBLISHED FIGURES</span>
       <h2 class="section-head">Research Highlights &amp; Evidence</h2>
@@ -339,7 +377,7 @@
   </section>
 
   <!-- Section 03: Publications & Research Corpus (Default: 3 Articles with Load More) -->
-  <section id="publications" class="section" style="background: rgba(8, 14, 26, 0.78); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+  <section id="publications" class="section">
     <div class="container">
       <div class="pub-header-row">
         <div>
@@ -385,7 +423,7 @@
   </section>
 
   <!-- Section 04: Institutional Long-Term Archive (PHAIDRA o:2091644) -->
-  <section id="data-archive" class="section">
+  <section id="data-archive" class="section section-alt">
     <div class="container">
       <span class="section-idx">// 04 · INSTITUTIONAL REPOSITORY</span>
       <h2 class="section-head">Long-Term Archiving & Data Governance</h2>
@@ -456,7 +494,7 @@
   </section>
 
   <!-- Section 05: Team, Portraits, Host Institutions & Funding Body -->
-  <section id="team" class="section" style="background: rgba(8, 14, 26, 0.6); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+  <section id="team" class="section">
     <div class="container">
       <span class="section-idx">// 05 · PROJECT INVESTIGATORS, INSTITUTIONS &amp; FUNDING</span>
       <h2 class="section-head">Research Team &amp; Institutional Framework</h2>
@@ -548,7 +586,7 @@
   </section>
 
   <!-- Section 06: Citation Box -->
-  <section class="section" style="padding-top: 3.5rem; padding-bottom: 4rem;">
+  <section id="citation" class="section section-alt" style="padding-top: 4rem; padding-bottom: 4.5rem;">
     <div class="container">
       <span class="section-idx">// 06 · CITATION</span>
       <h2 class="section-head">Cite this Project &amp; Dataset</h2>
