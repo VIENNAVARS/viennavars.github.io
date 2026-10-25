@@ -22,6 +22,7 @@ let currentBasemap = 'grau';           // 'none' | 'grau' | 'ortho' | 'standard'
 let currentBasemapOpacity = 0.30;      // 0.30 = 70% transparency (so basemaps do not glare and archaeology stands out)
 let currentThematicMode = 'chronology'; // 'chronology' | 'density'
 let currentPhaseFilter = 'all';        // 'all' | 'EAP' | 'MAP' | 'LAP' | 'tie'
+let currentDensityFilter = 'all';      // 'all' | 1 | 2 | 3 | 4
 let selectedHexId = null;
 let selectedHexLayer = null;
 let activeTooltipLayer = null;
@@ -411,8 +412,8 @@ function fitCemeteryBounds(animated = false) {
   }
 }
 
-// Compute live statistics for the currently active subset ('all' | 'female' | 'male')
-function getActiveSubsetStats() {
+// Compute live statistics for the currently active subset ('all' | 'female' | 'male'), optionally filtered
+function getActiveSubsetStats(applyActiveFilters = false) {
   const data = window.CSOKORGASSE_DATA;
   let geo = data ? data.hex_all : null;
   if (activeHexLayerName === 'female' && data && data.hex_female) geo = data.hex_female;
@@ -437,11 +438,21 @@ function getActiveSubsetStats() {
   };
 
   if (!geo || !geo.features) return stats;
-  stats.totalSectors = geo.features.length;
 
   geo.features.forEach(ft => {
     const p = ft.properties || {};
     const n = p.n_total || p.count || 1;
+    const dom = p.dominant;
+
+    if (applyActiveFilters) {
+      if (currentPhaseFilter !== 'all' && dom !== currentPhaseFilter) return;
+      if (currentDensityFilter !== 'all') {
+        if (currentDensityFilter === 4 && n < 4) return;
+        if (currentDensityFilter < 4 && n !== currentDensityFilter) return;
+      }
+    }
+
+    stats.totalSectors++;
     stats.totalBurials += n;
     stats.datedBurials += (p.n_dated !== undefined ? p.n_dated : n);
     stats.undatedBurials += (p.n_undated || 0);
@@ -449,9 +460,9 @@ function getActiveSubsetStats() {
     stats.burialsMAP += (p.n_map || 0);
     stats.burialsLAP += (p.n_lap || 0);
 
-    if (p.dominant === 'EAP') stats.EAP++;
-    else if (p.dominant === 'MAP') stats.MAP++;
-    else if (p.dominant === 'LAP') stats.LAP++;
+    if (dom === 'EAP') stats.EAP++;
+    else if (dom === 'MAP') stats.MAP++;
+    else if (dom === 'LAP') stats.LAP++;
     else stats.tie++;
 
     if (n === 1) stats.dens1++;
@@ -465,19 +476,21 @@ function getActiveSubsetStats() {
 
 // Update phase filter buttons with exact counts for active subset
 function updatePhaseButtonCounts() {
-  const s = getActiveSubsetStats();
+  const s = getActiveSubsetStats(false);
   const btnAll = document.querySelector('.phase-toggle[data-phase="all"]');
   const btnEap = document.querySelector('.phase-toggle[data-phase="EAP"]');
   const btnMap = document.querySelector('.phase-toggle[data-phase="MAP"]');
   const btnLap = document.querySelector('.phase-toggle[data-phase="LAP"]');
+  const btnTie = document.querySelector('.phase-toggle[data-phase="tie"]');
 
   if (btnAll) btnAll.textContent = `All (${s.totalSectors})`;
   if (btnEap) btnEap.textContent = `Early (${s.EAP})`;
   if (btnMap) btnMap.textContent = `Middle (${s.MAP})`;
   if (btnLap) btnLap.textContent = `Late (${s.LAP})`;
+  if (btnTie) btnTie.textContent = `Mixed (${s.tie})`;
 }
 
-// Styling for Spatial Units (Adaptive to Thematic Mode, Phase Filters, and Selection)
+// Styling for Spatial Units (Adaptive to Thematic Mode, Phase & Density Filters, and Selection)
 function getSectorStyle(feature) {
   const p = feature.properties;
   const isSelected = p.hex_id === selectedHexId;
@@ -499,6 +512,8 @@ function getSectorStyle(feature) {
   }
 
   const matchesPhase = currentPhaseFilter === 'all' || dominant === currentPhaseFilter;
+  const matchesDensity = currentDensityFilter === 'all' ||
+    (currentDensityFilter === 4 ? total >= 4 : total === currentDensityFilter);
 
   if (isSelected) {
     return {
@@ -510,13 +525,13 @@ function getSectorStyle(feature) {
     };
   }
 
-  if (!matchesPhase) {
+  if (!matchesPhase || !matchesDensity) {
     return {
       fillColor: fillColor,
-      fillOpacity: 0.12,
-      color: 'rgba(255, 255, 255, 0.08)',
-      weight: 0.4,
-      opacity: 0.25
+      fillOpacity: 0.10,
+      color: 'rgba(255, 255, 255, 0.06)',
+      weight: 0.35,
+      opacity: 0.2
     };
   }
 
@@ -585,6 +600,8 @@ function attachHexInteractions(feature, layer) {
       }
       if (selectedHexLayer && selectedHexLayer.feature) {
         updateHexInspector(selectedHexLayer.feature.properties);
+      } else {
+        renderDefaultInspector();
       }
     },
     click: (e) => {
@@ -602,27 +619,71 @@ function attachHexInteractions(feature, layer) {
   });
 }
 
-// Render Default Cemetery / Active Subset Overview in the Sector Inspector (identical DOM structure & height)
+// Render Default Cemetery / Active Query Overview in the Sector Inspector (identical DOM structure & height)
 function renderDefaultInspector() {
   const titleEl = document.getElementById('inspect-title');
   const descEl = document.getElementById('inspect-desc');
   const statsEl = document.getElementById('inspect-stats');
   if (!titleEl || !statsEl) return;
 
-  const s = getActiveSubsetStats();
-  let subsetTitle = 'All Sectors';
+  const isFiltered = currentPhaseFilter !== 'all' || currentDensityFilter !== 'all';
+  const s = getActiveSubsetStats(isFiltered);
+
+  let subsetTitle = 'All Hexbins';
   if (activeHexLayerName === 'female') subsetTitle = 'Female Subset';
   else if (activeHexLayerName === 'male') subsetTitle = 'Male Subset';
 
+  let headerMain = subsetTitle;
+  let subLine = '● Hover or click any hexbin or legend button to query';
+  let subColor = 'var(--accent-cyan)';
+  let descText = `Cemetery-wide overview covering ${s.totalBurials} burials across ${s.totalSectors} 3 m hexbins.`;
+  let nextIsolatePhase = 'EAP';
+  let nextIsolateLabel = 'Isolate EAP Hexbins';
+
+  if (currentPhaseFilter !== 'all') {
+    if (currentPhaseFilter === 'EAP') {
+      headerMain = 'Early Avar (EAP)';
+      subLine = '● Queried Horizon: Early Avar Period (c. 568–650 AD)';
+      subColor = 'var(--accent-cyan)';
+      nextIsolatePhase = 'MAP';
+      nextIsolateLabel = 'Isolate MAP Hexbins';
+    } else if (currentPhaseFilter === 'MAP') {
+      headerMain = 'Middle Avar (MAP)';
+      subLine = '● Queried Horizon: Middle Avar Period (c. 650–700 AD)';
+      subColor = 'var(--accent-ember)';
+      nextIsolatePhase = 'LAP';
+      nextIsolateLabel = 'Isolate LAP Hexbins';
+    } else if (currentPhaseFilter === 'LAP') {
+      headerMain = 'Late Avar (LAP)';
+      subLine = '● Queried Horizon: Late Avar Period (c. 700–800 AD)';
+      subColor = 'var(--accent-amber)';
+      nextIsolatePhase = 'EAP';
+      nextIsolateLabel = 'Isolate EAP Hexbins';
+    } else if (currentPhaseFilter === 'tie') {
+      headerMain = 'Mixed Horizon (Tie)';
+      subLine = '● Queried Horizon: Equal Chronological Share';
+      subColor = 'var(--accent-purple)';
+      nextIsolatePhase = 'EAP';
+      nextIsolateLabel = 'Isolate EAP Hexbins';
+    }
+    descText = `Filtered query: ${s.totalBurials} burials across ${s.totalSectors} 3 m hexbins (${subsetTitle}).`;
+  } else if (currentDensityFilter !== 'all') {
+    const densLabel = currentDensityFilter === 1 ? '1 Burial / Hexbin' : (currentDensityFilter === 4 ? '4–5 Burials / Hexbin' : `${currentDensityFilter} Burials / Hexbin`);
+    headerMain = `Density: ${densLabel}`;
+    subLine = `● Queried Burial Density Class (${subsetTitle})`;
+    subColor = '#38bdf8';
+    descText = `Filtered density query: ${s.totalBurials} burials across ${s.totalSectors} 3 m hexbins.`;
+  }
+
   titleEl.innerHTML = `
-    ${subsetTitle} <span style="font-family: var(--font-mono); color: var(--accent-amber);">${s.totalSectors} Units</span>
-    <span style="display: block; font-size: 0.85rem; font-weight: 600; color: var(--accent-cyan); margin-top: 0.2rem;">
-      ● Hover or click any sector on the map to inspect
+    ${headerMain} <span style="font-family: var(--font-mono); color: var(--accent-amber);">${s.totalSectors} Units</span>
+    <span style="display: block; font-size: 0.85rem; font-weight: 600; color: ${subColor}; margin-top: 0.2rem;">
+      ${subLine}
     </span>
   `;
 
   if (descEl) {
-    descEl.textContent = `Cemetery-wide overview covering ${s.totalBurials} burials across ${s.totalSectors} spatial sectors on the 3-meter aggregation grid.`;
+    descEl.textContent = descText;
   }
 
   statsEl.innerHTML = `
@@ -660,8 +721,8 @@ function renderDefaultInspector() {
     </div>
 
     <div style="display: flex; gap: 0.5rem;">
-      <button class="btn-prog btn-prog-secondary" onclick="window.filterMapByPhase('EAP')" style="font-size: 0.74rem; padding: 0.42rem 0.75rem; width: 100%;">
-        Isolate EAP Sectors
+      <button class="btn-prog btn-prog-secondary" onclick="window.filterMapByPhase('${nextIsolatePhase}')" style="font-size: 0.74rem; padding: 0.42rem 0.75rem; width: 100%;">
+        ${nextIsolateLabel}
       </button>
       <button class="btn-prog btn-prog-secondary" onclick="window.resetMapInspector()" style="font-size: 0.74rem; padding: 0.42rem 0.75rem;">
         Reset
@@ -670,12 +731,22 @@ function renderDefaultInspector() {
   `;
 }
 
-// Reset selected sector and phase filter
+// Reset selected sector, phase filter, and density filter
 window.resetMapInspector = function() {
   selectedHexId = null;
   selectedHexLayer = null;
-  window.filterMapByPhase('all');
+  currentPhaseFilter = 'all';
+  currentDensityFilter = 'all';
+
+  const phaseButtons = document.querySelectorAll('.phase-toggle');
+  phaseButtons.forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-phase') === 'all');
+  });
+
+  refreshAllHexStyles();
+  renderDynamicLegend();
   renderDefaultInspector();
+  updateMapStatusPill();
 };
 
 // Update the Sector Inspector (Note: #inspect-legend-target is a sibling outside #inspect-stats, so it is never overwritten)
@@ -720,7 +791,7 @@ function updateHexInspector(props) {
   `;
 
   if (descEl) {
-    descEl.textContent = `Spatial sector covering ${total} burial(s) on the 3-meter aggregation grid (q=${props.q}, r=${props.r}).`;
+    descEl.textContent = `3 m hexbin covering ${total} burial(s) (grid coordinates q=${props.q}, r=${props.r}).`;
   }
 
   statsEl.innerHTML = `
@@ -768,16 +839,47 @@ function updateHexInspector(props) {
   `;
 }
 
-// Global phase filter function
-window.filterMapByPhase = function(phase) {
-  currentPhaseFilter = phase;
+// Global phase filter & query function (supports toggle-off when clicking active legend button)
+window.filterMapByPhase = function(phase, toggleIfSame = false) {
+  if (toggleIfSame && currentPhaseFilter === phase && phase !== 'all') {
+    currentPhaseFilter = 'all';
+  } else {
+    currentPhaseFilter = phase;
+  }
+  currentDensityFilter = 'all';
+  selectedHexId = null;
+  selectedHexLayer = null;
 
   const phaseButtons = document.querySelectorAll('.phase-toggle');
   phaseButtons.forEach(btn => {
-    btn.classList.toggle('active', btn.getAttribute('data-phase') === phase);
+    btn.classList.toggle('active', btn.getAttribute('data-phase') === currentPhaseFilter);
   });
 
   refreshAllHexStyles();
+  renderDynamicLegend();
+  renderDefaultInspector();
+  updateMapStatusPill();
+};
+
+// Global burial density filter & query function (for Density Legend buttons)
+window.filterMapByDensity = function(bin, toggleIfSame = false) {
+  if (toggleIfSame && currentDensityFilter === bin && bin !== 'all') {
+    currentDensityFilter = 'all';
+  } else {
+    currentDensityFilter = bin;
+  }
+  currentPhaseFilter = 'all';
+  selectedHexId = null;
+  selectedHexLayer = null;
+
+  const phaseButtons = document.querySelectorAll('.phase-toggle');
+  phaseButtons.forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-phase') === 'all');
+  });
+
+  refreshAllHexStyles();
+  renderDynamicLegend();
+  renderDefaultInspector();
   updateMapStatusPill();
 };
 
@@ -843,16 +945,17 @@ function wireMapControls() {
 
       refreshAllHexStyles();
       renderDynamicLegend();
+      renderDefaultInspector();
       updateMapStatusPill();
     });
   });
 
-  // 3. Phase Filter toggles (All, EAP, MAP, LAP)
+  // 3. Phase Filter toggles (All, EAP, MAP, LAP, tie)
   const phaseButtons = document.querySelectorAll('.phase-toggle');
   phaseButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       const phase = btn.getAttribute('data-phase');
-      window.filterMapByPhase(phase);
+      window.filterMapByPhase(phase, phase !== 'all');
     });
   });
 
@@ -911,85 +1014,93 @@ function wireMapControls() {
   }
 }
 
-// Dynamic Legend Rendering (Switches between Chronology & Density and reflects active subset counts)
+// Dynamic Legend Rendering (Interactive query buttons in both Chronology & Density modes)
 function renderDynamicLegend() {
   const legendContainer = document.getElementById('inspect-legend-target');
   if (!legendContainer) return;
 
-  const s = getActiveSubsetStats();
+  const s = getActiveSubsetStats(false);
   const total = s.totalSectors || 1;
   const pct = (n) => `${Math.round((n / total) * 100)}%`;
 
   if (currentThematicMode === 'density') {
+    const isFiltered = currentDensityFilter !== 'all';
     legendContainer.innerHTML = `
-      <div style="font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.55rem; letter-spacing: 0.05em;">
-        Burial Density Legend (${s.totalBurials} Graves in ${s.totalSectors} Sectors)
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.55rem;">
+        <span style="font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; color: var(--text-dim); letter-spacing: 0.05em;">
+          Burial Density Query (Click to Isolate)
+        </span>
+        ${isFiltered ? `<button type="button" onclick="window.resetMapInspector()" class="legend-reset-mini">Show All (${s.totalSectors})</button>` : ''}
       </div>
       <div class="chronology-legend-grid">
-        <div class="chrono-item">
+        <button type="button" class="chrono-item ${currentDensityFilter === 1 ? 'active' : ''}" onclick="window.filterMapByDensity(1, true)" title="Query hexbins with 1 burial">
           <span class="chrono-dot" style="background: #38bdf8;"></span>
           <div>
             <strong>1 Burial</strong>
-            <span>${s.dens1} sectors (${pct(s.dens1)})</span>
+            <span>${s.dens1} hexbins (${pct(s.dens1)})</span>
           </div>
-        </div>
-        <div class="chrono-item">
+        </button>
+        <button type="button" class="chrono-item ${currentDensityFilter === 2 ? 'active' : ''}" onclick="window.filterMapByDensity(2, true)" title="Query hexbins with 2 burials">
           <span class="chrono-dot" style="background: #2dd4bf;"></span>
           <div>
             <strong>2 Burials</strong>
-            <span>${s.dens2} sectors (${pct(s.dens2)})</span>
+            <span>${s.dens2} hexbins (${pct(s.dens2)})</span>
           </div>
-        </div>
-        <div class="chrono-item">
+        </button>
+        <button type="button" class="chrono-item ${currentDensityFilter === 3 ? 'active' : ''}" onclick="window.filterMapByDensity(3, true)" title="Query hexbins with 3 burials">
           <span class="chrono-dot" style="background: #fbbf24;"></span>
           <div>
             <strong>3 Burials</strong>
-            <span>${s.dens3} sectors (${pct(s.dens3)})</span>
+            <span>${s.dens3} hexbins (${pct(s.dens3)})</span>
           </div>
-        </div>
-        <div class="chrono-item">
+        </button>
+        <button type="button" class="chrono-item ${currentDensityFilter === 4 ? 'active' : ''}" onclick="window.filterMapByDensity(4, true)" title="Query hexbins with 4–5 burials">
           <span class="chrono-dot" style="background: #f43f5e;"></span>
           <div>
             <strong>4–5 Burials</strong>
-            <span>${s.dens4plus} sectors (${pct(s.dens4plus)})</span>
+            <span>${s.dens4plus} hexbins (${pct(s.dens4plus)})</span>
           </div>
-        </div>
+        </button>
       </div>
     `;
   } else {
+    const isFiltered = currentPhaseFilter !== 'all';
     legendContainer.innerHTML = `
-      <div style="font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; color: var(--text-dim); margin-bottom: 0.55rem; letter-spacing: 0.05em;">
-        Chronological Horizon Legend (Click to Isolate)
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.55rem;">
+        <span style="font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; color: var(--text-dim); letter-spacing: 0.05em;">
+          Chronological Horizon Query (Click to Isolate)
+        </span>
+        ${isFiltered ? `<button type="button" onclick="window.resetMapInspector()" class="legend-reset-mini">Show All (${s.totalSectors})</button>` : ''}
       </div>
       <div class="chronology-legend-grid">
-        <div class="chrono-item" onclick="window.filterMapByPhase('EAP')" style="cursor: pointer;" title="Isolate Early Avar Period">
+        <button type="button" class="chrono-item ${currentPhaseFilter === 'EAP' ? 'active' : ''}" onclick="window.filterMapByPhase('EAP', true)" title="Query & isolate Early Avar Period hexbins">
           <span class="chrono-dot" style="background: #22d3ee;"></span>
           <div>
             <strong>Early Avar (EAP)</strong>
-            <span>${s.EAP} sectors (c. 568–650)</span>
+            <span>${s.EAP} hexbins (c. 568–650)</span>
           </div>
-        </div>
-        <div class="chrono-item" onclick="window.filterMapByPhase('MAP')" style="cursor: pointer;" title="Isolate Middle Avar Period">
+        </button>
+        <button type="button" class="chrono-item ${currentPhaseFilter === 'MAP' ? 'active' : ''}" onclick="window.filterMapByPhase('MAP', true)" title="Query & isolate Middle Avar Period hexbins">
           <span class="chrono-dot" style="background: #ff4d29;"></span>
           <div>
             <strong>Middle Avar (MAP)</strong>
-            <span>${s.MAP} sectors (c. 650–700)</span>
+            <span>${s.MAP} hexbins (c. 650–700)</span>
           </div>
-        </div>
-        <div class="chrono-item" onclick="window.filterMapByPhase('LAP')" style="cursor: pointer;" title="Isolate Late Avar Period">
+        </button>
+        <button type="button" class="chrono-item ${currentPhaseFilter === 'LAP' ? 'active' : ''}" onclick="window.filterMapByPhase('LAP', true)" title="Query & isolate Late Avar Period hexbins">
           <span class="chrono-dot" style="background: #f8b838;"></span>
           <div>
             <strong>Late Avar (LAP)</strong>
-            <span>${s.LAP} sectors (c. 700–800)</span>
+            <span>${s.LAP} hexbins (c. 700–800)</span>
           </div>
-        </div>
-        <div class="chrono-item" onclick="window.filterMapByPhase('all')" style="cursor: pointer;" title="Show All Phases">
+        </button>
+        <button type="button" class="chrono-item ${currentPhaseFilter === 'tie' ? 'active' : ''}" onclick="window.filterMapByPhase('tie', true)" title="Query & isolate Mixed / Tie hexbins">
           <span class="chrono-dot" style="background: #c084fc;"></span>
           <div>
-            <strong>Mixed / Reset All</strong>
-            <span>${s.tie} ties · Show All (${s.totalSectors})</span>
+            <strong>Mixed / Tie</strong>
+            <span>${s.tie} hexbins (equal share)</span>
           </div>
-        </div>
+        </button>
       </div>
     `;
   }
@@ -1006,13 +1117,15 @@ function updateMapStatusPill() {
   else if (currentBasemap === 'ortho') bmapName = `basemap.at Orthofoto (${transpPct}% transp.)`;
   else if (currentBasemap === 'standard') bmapName = `basemap.at Standard (${transpPct}% transp.)`;
 
-  let subsetLabel = '428 Sectors (651 Burials)';
-  if (activeHexLayerName === 'female') subsetLabel = '182 Female Sectors (194 Burials)';
-  else if (activeHexLayerName === 'male') subsetLabel = '178 Male Sectors (191 Burials)';
+  let subsetLabel = '428 Hexbins (651 Burials)';
+  if (activeHexLayerName === 'female') subsetLabel = '182 Female Hexbins (194 Burials)';
+  else if (activeHexLayerName === 'male') subsetLabel = '178 Male Hexbins (191 Burials)';
 
   let filterLabel = '';
   if (currentPhaseFilter !== 'all') {
     filterLabel = ` · Isolated: ${currentPhaseFilter}`;
+  } else if (currentDensityFilter !== 'all') {
+    filterLabel = ` · Isolated: ${currentDensityFilter === 4 ? '4–5' : currentDensityFilter} Burial(s)`;
   }
 
   const modeLabel = currentThematicMode === 'density' ? 'Density View' : 'Chronology View';
