@@ -128,7 +128,7 @@ git push -u origin main
 
 ## 👥 Principal Investigators & Cooperations
 
-* **Dominik Hagmann** (Project Lead / Digital Archaeology, VIAS & HEAS – University of Vienna)
+* **Dominik Hagmann** (Project Lead / Digital Archaeology, Department of Evolutionary Anthropology & HEAS – University of Vienna)
 * **Sylvia Kirchengast** (Bioarchaeology & Evolutionary Anthropology, Department of Evolutionary Anthropology & HEAS – University of Vienna)
 * **Birgit Bühler** (Material Culture & Archaeometry, VIAS & HEAS – University of Vienna)
 * **Cooperation:** Wien Museum, City of Vienna Culture (Stadt Wien Kultur)

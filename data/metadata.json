@@ -26,24 +26,24 @@
   },
   "principal_investigators": [
     {
-      "name": "Dr. Dominik Hagmann",
+      "name": "Dominik Hagmann",
       "role": "Project Lead / Digital Archaeology",
-      "affiliation": "Vienna Institute for Archaeological Science (VIAS), University of Vienna"
+      "affiliation": "Department of Evolutionary Anthropology & HEAS, University of Vienna"
     },
     {
-      "name": "Univ.-Prof. Dr. Sylvia Kirchengast",
-      "role": "Bioarchaeology & Anthropology",
-      "affiliation": "Department of Evolutionary Anthropology, University of Vienna"
+      "name": "Sylvia Kirchengast",
+      "role": "Bioarchaeology & Evolutionary Anthropology",
+      "affiliation": "Department of Evolutionary Anthropology & HEAS, University of Vienna"
     },
     {
-      "name": "Dr. Birgit Bühler",
+      "name": "Birgit Bühler",
       "role": "Material Culture & Archaeometry",
-      "affiliation": "Vienna Institute for Archaeological Science (VIAS), University of Vienna"
+      "affiliation": "Vienna Institute for Archaeological Science (VIAS) & HEAS, University of Vienna"
     }
   ],
   "collaborating_institutions": [
-    "Vienna Institute for Archaeological Science (VIAS), University of Vienna",
     "Department of Evolutionary Anthropology, University of Vienna",
+    "Vienna Institute for Archaeological Science (VIAS), University of Vienna",
     "Research Network Human Evolution and Archaeological Sciences (HEAS), University of Vienna"
   ],
   "site": {
