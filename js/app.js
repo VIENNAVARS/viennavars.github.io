@@ -91,7 +91,7 @@ function renderPublications() {
     } else if (pubDisplayLimit < filtered.length) {
       actionArea.innerHTML = `
         <button id="btn-load-more-pubs" class="btn-prog btn-prog-secondary" style="margin: 2rem auto 0 auto; display: inline-flex; align-items: center; gap: 0.5rem;">
-          📚 Load More Publications (${filtered.length - pubDisplayLimit} remaining)
+          Load More Publications (${filtered.length - pubDisplayLimit} remaining) ↓
         </button>
       `;
       const btn = document.getElementById('btn-load-more-pubs');
