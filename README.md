@@ -53,7 +53,7 @@ This portal provides:
   * **Fig. 4:** Geographic Topography in Upper Danube Basin (*Nature & Anthropology* 2026, Fig. 1).
 
 ### 4. Publications & Research Corpus
-* 13 core publications directly covering the Vienna 11 – Csokorgasse cemetery and Avar population.
+* 15 core publications directly covering the Vienna 11 – Csokorgasse cemetery and Avar population.
 * Default display of first 3 articles with an interactive "Load More Publications" button.
 * All registered DOIs are directly clickable (`https://doi.org/...`) on titles and action buttons.
 * Real-time search by author, keyword, or year.
@@ -80,7 +80,7 @@ viennavars/
 │   ├── hex_chronology_all.geojson    # 428 spatial sectors with phase attributes
 │   ├── hex_chronology_female.geojson # 182 female spatial sectors
 │   ├── hex_chronology_male.geojson   # 178 male spatial sectors
-│   ├── publications.json             # 13 core peer-reviewed publications with DOIs
+│   ├── publications.json             # 15 core peer-reviewed publications with DOIs
 │   ├── summary_statistics.json       # Aggregated metrics and paper insights
 │   └── metadata.json                 # DataCite/Dublin Core metadata schema
 ├── assets/

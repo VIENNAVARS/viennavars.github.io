@@ -55,7 +55,8 @@ function getFilteredPublications() {
     const matchJournal = (item.journal || '').toLowerCase().includes(query);
     const matchYear = String(item.year || '').includes(query);
     const matchDoi = (item.doi || '').toLowerCase().includes(query);
-    return matchAuthors || matchTitle || matchJournal || matchYear || matchDoi;
+    const matchKeywords = (item.keywords || '').toLowerCase().includes(query);
+    return matchAuthors || matchTitle || matchJournal || matchYear || matchDoi || matchKeywords;
   });
 }
 
