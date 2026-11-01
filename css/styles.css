@@ -1522,7 +1522,7 @@ a:hover {
   font-size: 0.82rem;
   font-weight: 700;
   color: #e2e8f0;
-  white-space: nowrap;
+  line-height: 1.3;
 }
 
 /* ==================== Section 06: Citation Terminal ==================== */
@@ -1698,7 +1698,6 @@ a:hover {
   .wma-display-split { grid-template-columns: 1fr; }
   .spotlight-cols { grid-template-columns: 1fr; }
   .team-grid-prog { grid-template-columns: 1fr; }
-  .partner-logos-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid-prog { grid-template-columns: 1fr; }
   .impressum-grid { grid-template-columns: 1fr; }
 }
