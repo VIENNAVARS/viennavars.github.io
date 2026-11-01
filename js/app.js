@@ -3,7 +3,7 @@
  * Subtitle: Visualization and Interpretation of Female Lifeworlds in the Avar Period (7th–8th Centuries AD):
  *           The Population of the Csokorgasse Cemetery, Vienna 11
  * Base Map: basemap.at (70% default transparency / opacity 0.30) & Dark Canvas
- * Excavation Documentation: © Wien Museum
+ * Excavation Documentation: © Wien Museum - Stadtarchäologie
  * Copyright: © VIENNAVARS
  */
 

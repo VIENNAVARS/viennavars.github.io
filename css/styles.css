@@ -1456,7 +1456,7 @@ a:hover {
 
 .partner-logos-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   padding: 1.75rem 2rem;
   background: rgba(11, 17, 32, 0.82);
@@ -1578,8 +1578,8 @@ a:hover {
 
 .footer-grid-prog {
   display: grid;
-  grid-template-columns: 1.8fr 1fr 1fr;
-  gap: 2.5rem;
+  grid-template-columns: 1.8fr 1.2fr;
+  gap: 3.5rem;
   margin-bottom: 2.75rem;
 }
 

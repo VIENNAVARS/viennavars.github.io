@@ -3,7 +3,7 @@
 [![DOI](https://img.shields.io/badge/DOI-10.25365%2Fphaidra.537-orange.svg)](https://doi.org/10.25365/phaidra.537)
 [![PHAIDRA](https://img.shields.io/badge/PHAIDRA-o%3A2091644-blueviolet.svg)](https://phaidra.univie.ac.at/detail/o:2091644)
 [![Base Maps](https://img.shields.io/badge/Base_Maps-basemap.at_%26_Dark_Canvas-teal.svg)](https://www.basemap.at)
-[![Spatial Data](https://img.shields.io/badge/Geometries-%C2%A9_Wien_Museum-red.svg)](https://www.wienmuseum.at)
+[![Spatial Data](https://img.shields.io/badge/Geometries-%C2%A9_Wien_Museum_--_Stadtarch%C3%A4ologie-red.svg)](https://www.wienmuseum.at)
 [![Platform](https://img.shields.io/badge/Vibe--Coded_with-Google_Antigravity-4285F4.svg)](https://github.com/VIENNAVARS)
 [![License](https://img.shields.io/badge/Copyright-%C2%A9_VIENNAVARS-brightgreen.svg)](https://github.com/VIENNAVARS)
 
@@ -38,7 +38,7 @@ This portal provides:
 * **Dynamic Hexbin Inspector:** Live inspection of cell coordinates, burial totals, dated vs. undated counts, and chronological phase breakdown upon hover and click.
 * **Embedded Data Engine (`data/csokorgasse_data.js`):** Runs seamlessly offline (local `file://` double-click in Finder) without CORS restrictions, as well as on GitHub Pages.
 
-> **Spatial Intellectual Property Notice:** Primary excavation plans, trench geometries, and raw survey coordinates are the property of the **Wien Museum (© Wien Museum)** and are aggregated into 3-meter bins to ensure ethical confidentiality.
+> **Spatial Intellectual Property Notice:** Primary excavation plans, trench geometries, and raw survey coordinates are the property of the **Wien Museum - Stadtarchäologie (© Wien Museum - Stadtarchäologie)** and are aggregated into 3-meter bins to ensure ethical confidentiality.
 
 ### 2. Scientific Findings & Paper Teasers
 * **Demography, Stature & Stress:** Bioarchaeological analysis of female stature (mean: 158.4 cm) and early childhood physiological stress indicators (linear enamel hypoplasias, LEH).
@@ -49,7 +49,7 @@ This portal provides:
 * High-resolution figures directly from peer-reviewed Csokorgasse publications:
   * **Fig. 1:** Stature as a Social Signal Graphical Abstract (*Nature & Anthropology* 2026).
   * **Fig. 2:** Equestrian Grave 650 with Horse & Dog (*Monographien des RGZM 143* / Propylaeum, Baron 2024, Abb. 198).
-  * **Fig. 3:** Cemetery Excavation Plan with 700+ Burials (*Nature & Anthropology* 2026, Fig. 2 / Wien Museum).
+  * **Fig. 3:** Cemetery Excavation Plan with 700+ Burials (*Nature & Anthropology* 2026, Fig. 2 / Wien Museum - Stadtarchäologie).
   * **Fig. 4:** Geographic Topography in Upper Danube Basin (*Nature & Anthropology* 2026, Fig. 1).
 
 ### 4. Publications & Research Corpus
@@ -60,7 +60,7 @@ This portal provides:
 
 ### 5. Data Governance & Single-Point PHAIDRA Access
 * Datasets are permanently curated in the University of Vienna repository **PHAIDRA** under DOI `10.25365/phaidra.537`.
-* Primary excavation geometries belong to **Wien Museum (© Wien Museum)**.
+* Primary excavation geometries belong to **Wien Museum - Stadtarchäologie (© Wien Museum - Stadtarchäologie)**.
 * Synthesis, visualizations, and project assets are **© 2024–2026 VIENNAVARS**.
 
 ---
@@ -131,7 +131,7 @@ git push -u origin main
 * **Dominik Hagmann** (Project Lead / Digital Archaeology, Department of Evolutionary Anthropology & HEAS – University of Vienna)
 * **Sylvia Kirchengast** (Bioarchaeology & Evolutionary Anthropology, Department of Evolutionary Anthropology & HEAS – University of Vienna)
 * **Birgit Bühler** (Material Culture & Archaeometry, VIAS & HEAS – University of Vienna)
-* **Cooperation:** Wien Museum, City of Vienna Culture (Stadt Wien Kultur)
+* **Cooperation:** Wien Museum - Stadtarchäologie, City of Vienna Culture (Stadt Wien Kultur)
 * **Funding:** Supported by the *Hochschuljubiläumsfonds der Stadt Wien* (Grant H-448297/2023)
 
 ---
