@@ -151,9 +151,10 @@
     "journal": "PhD Dissertation, University of Vienna",
     "volume": "Vienna",
     "doi": null,
-    "url": "https://phaidra.univie.ac.at/detail/o:2091644",
+    "url": "https://usearch.univie.ac.at/primo-explore/search?query=any,contains,Gro%C3%9Fschmidt%20Csokorgasse&tab=default_tab&search_scope=UVIE_UB_ALL&vid=UVIE",
     "open_access": false,
-    "highlight": false
+    "highlight": false,
+    "button_label": "Uni-Bib-Katalog (u:search) ↗"
   },
   {
     "id": "streinz-1977",
@@ -163,8 +164,9 @@
     "journal": "Fundberichte aus Österreich",
     "volume": "16: 475–531",
     "doi": null,
-    "url": "https://phaidra.univie.ac.at/detail/o:2091644",
+    "url": "https://www.bda.gv.at/themen/publikationen/fundberichte-aus-oesterreich.html",
     "open_access": false,
-    "highlight": false
+    "highlight": false,
+    "button_label": "Bundesdenkmalamt (FÖ) ↗"
   }
 ]

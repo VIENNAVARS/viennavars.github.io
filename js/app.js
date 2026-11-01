@@ -127,7 +127,20 @@ function renderPublications() {
 function renderPublicationCard(pub) {
   const hasDoi = Boolean(pub.doi);
   const primaryUrl = hasDoi ? `https://doi.org/${pub.doi}` : (pub.url || '#');
-  const buttonLabel = hasDoi ? `DOI: ${pub.doi} ↗` : (pub.year < 2000 ? 'PHAIDRA Record ↗' : 'Open Access PDF ↗');
+  let buttonLabel = pub.button_label;
+  if (!buttonLabel) {
+    if (hasDoi) {
+      buttonLabel = `DOI: ${pub.doi} ↗`;
+    } else if (pub.url && pub.url.includes('usearch.univie.ac.at')) {
+      buttonLabel = 'Uni-Bib-Katalog (u:search) ↗';
+    } else if (pub.url && pub.url.includes('bda.gv.at')) {
+      buttonLabel = 'Bundesdenkmalamt (FÖ) ↗';
+    } else if (pub.open_access) {
+      buttonLabel = 'Open Access PDF ↗';
+    } else {
+      buttonLabel = 'View Publication ↗';
+    }
+  }
 
   return `
     <article class="pub-card ${pub.highlight ? 'pub-highlight' : ''}">
