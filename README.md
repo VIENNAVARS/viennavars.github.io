@@ -5,7 +5,7 @@
 [![Base Maps](https://img.shields.io/badge/Base_Maps-basemap.at_%26_Dark_Canvas-teal.svg)](https://www.basemap.at)
 [![Spatial Data](https://img.shields.io/badge/Geometries-%C2%A9_Wien_Museum_--_Stadtarch%C3%A4ologie-red.svg)](https://www.wienmuseum.at)
 [![Platform](https://img.shields.io/badge/Vibe--Coded_with-Google_Antigravity-4285F4.svg)](https://github.com/VIENNAVARS)
-[![License](https://img.shields.io/badge/Copyright-%C2%A9_VIENNAVARS-brightgreen.svg)](https://github.com/VIENNAVARS)
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
 **VIENNAVARS** — *Visualization and Interpretation of the early medieval fEmale avar populatioN through archaeothaNAthology from Vienna/Austria (csokorgasse-buRialS)*  
 
@@ -58,10 +58,10 @@ This portal provides:
 * All registered DOIs are directly clickable (`https://doi.org/...`) on titles and action buttons.
 * Real-time search by author, keyword, or year.
 
-### 5. Data Governance & Single-Point PHAIDRA Access
+### 5. Data Governance, Licensing (CC BY 4.0) & Single-Point PHAIDRA Access
 * Datasets are permanently curated in the University of Vienna repository **PHAIDRA** under DOI `10.25365/phaidra.537`.
 * Primary excavation geometries belong to **Wien Museum - Stadtarchäologie (© Wien Museum - Stadtarchäologie)**.
-* Synthesis, visualizations, and project assets are **© 2024–2026 VIENNAVARS**.
+* Portal texts, synthesis, visualizations, and project assets (**© 2024–2026 VIENNAVARS**) are licensed under **[Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)**.
 
 ---
 
@@ -140,11 +140,19 @@ git push -u origin main
 
 ```bibtex
 @dataset{viennavars_csokorgasse_2024,
-  author    = {Hagmann, Dominik and Kirchengast, Sylvia and B{\"u}hler, Birgit},
-  title     = {{VIENNAVARS : Visualization and Interpretation of the early medieval fEmale avar populatioN from Vienna/Austria (csokorgasse-buRialS)}},
+  author    = {Hagmann, Dominik and B{\"u}hler, Birgit and Kirchengast, Sylvia},
+  title     = {{VIENNAVARS: Visualisierung und Interpretation weiblicher Lebenswelten in der Awarenzeit (7. -- 8. Jhdt. n. Chr.) am Beispiel der Population des Gr{\"a}berfeldes Csokorgasse, Wien 11 / Visualization and Interpretation of the early medieval fEmale avar populatioN through archaeothaNAthology from Vienna/Austria (csokorgasse-buRialS)}},
   year      = {2024},
-  publisher = {PHAIDRA - University of Vienna},
+  publisher = {PHAIDRA -- University of Vienna},
   doi       = {10.25365/phaidra.537},
   url       = {https://phaidra.univie.ac.at/detail/o:2091644}
 }
 ```
+
+---
+
+## ⚖️ License
+
+<a href="https://creativecommons.org/licenses/by/4.0/"><img src="assets/logos/cc-by.svg" alt="CC BY 4.0" height="32"></a>
+
+Unless otherwise noted, the contents, source code, and synthesized cartographic visualizations of this repository (**© 2024–2026 VIENNAVARS**) are licensed under the **[Creative Commons Attribution 4.0 International License (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)** (see [`LICENSE`](LICENSE)). Primary excavation documentation: **© Wien Museum - Stadtarchäologie**. Base map tiles: **© basemap.at (CC BY 4.0)**.
