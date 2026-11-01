@@ -98,7 +98,7 @@ viennavars/
 │   └── team/                    # Project team portraits
 │       ├── dominik_hagmann.jpg
 │       ├── sylvia_kirchengast.jpg
-│       └── birgit_buehler.svg
+│       └── birgit_buehler.jpg
 ├── .github/
 │   └── workflows/
 │       └── deploy.yml           # Automated GitHub Actions Pages deployment
