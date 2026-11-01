@@ -1709,4 +1709,11 @@ a:hover {
   .metric-cell + .metric-cell { border-left: none; padding-left: 0; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 1rem; }
   .publications-grid { grid-template-columns: 1fr; }
   .partner-logos-grid { grid-template-columns: 1fr; }
+  .figure-meta-row { flex-wrap: wrap; }
+}
+
+@media (max-width: 480px) {
+  .nav-actions { gap: 0.4rem; }
+  .btn-phaidra-nav, .btn-github-nav { padding: 0.42rem 0.6rem; }
+  .btn-github-nav span { display: none; }
 }

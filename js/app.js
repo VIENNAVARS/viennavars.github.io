@@ -42,6 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
 function initPublicationsData() {
   if (window.CSOKORGASSE_DATA && window.CSOKORGASSE_DATA.publications) {
     publicationsList = window.CSOKORGASSE_DATA.publications;
+    const totalEl = document.getElementById('pub-total-count');
+    if (totalEl) totalEl.textContent = publicationsList.length;
   }
 }
 
