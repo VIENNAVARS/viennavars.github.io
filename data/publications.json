@@ -170,16 +170,17 @@
     "button_label": "Uni-Bib-Katalog (u:search) ↗"
   },
   {
-    "id": "streinz-1977",
+    "id": "streinz-1978",
     "authors": "Streinz, Ludwig",
-    "year": 1977,
+    "year": 1978,
     "title": "Wien 11 – Csokorgasse",
     "journal": "Fundberichte aus Österreich",
-    "volume": "16: 475–531",
+    "volume": "16, 1977 (1978): 475–531",
     "doi": null,
     "url": "https://www.bda.gv.at/themen/publikationen/fundberichte-aus-oesterreich.html",
     "open_access": false,
     "highlight": false,
-    "button_label": "Bundesdenkmalamt (FÖ) ↗"
+    "button_label": "Bundesdenkmalamt (FÖ) ↗",
+    "keywords": "1977, 1978, Fundberichte aus Österreich, BDA"
   }
 ]
