@@ -1565,6 +1565,8 @@ a:hover {
   color: #38bdf8;
   line-height: 1.6;
   overflow-x: auto;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
 }
 
 /* ==================== Footer & Imprint (Impressum) ==================== */
