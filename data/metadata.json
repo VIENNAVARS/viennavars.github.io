@@ -16,8 +16,8 @@
     "archiving_repository": "PHAIDRA (University of Vienna)",
     "portal_license": "Creative Commons Attribution 4.0 International (CC BY 4.0)",
     "portal_license_url": "https://creativecommons.org/licenses/by/4.0/",
-    "access_rights": "Controlled Scientific Access / Available upon request",
-    "access_statement": "Research datasets of the VIENNAVARS project are long-term archived via the PHAIDRA repository of the University of Vienna. Primary records, osteological catalogs, and excavation documentation are curated under controlled access and made available to verified researchers following consultation with the principal investigators.",
+    "access_rights": "Open Scientific Access",
+    "access_statement": "Research datasets of the VIENNAVARS project are long-term archived via the PHAIDRA repository of the University of Vienna.",
     "geometry_rights_notice": "Notice on Spatial Data: Excavation geometries, site plans, and primary coordinate documentation are the intellectual and legal property of the Wien Museum - Stadtarchäologie (© Wien Museum - Stadtarchäologie). Raw point vector coordinates are not disseminated publicly."
   },
   "publication_date": "2024-09-01",

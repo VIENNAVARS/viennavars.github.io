@@ -1252,7 +1252,7 @@ a:hover {
 
 .spotlight-cols {
   display: grid;
-  grid-template-columns: 1.3fr 1fr;
+  grid-template-columns: 1fr;
   gap: 2.5rem;
   align-items: stretch;
 }
