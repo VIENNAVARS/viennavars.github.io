@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initBibliographyDownload();
   initGisWma();
   initCitationCopy();
+  initMobileNav();
   initScrollSpy();
 });
 
@@ -1171,19 +1172,58 @@ function initCitationCopy() {
   }
 }
 
-// Scroll-Spy for Sticky Navbar Section Highlighting
-function initScrollSpy() {
-  const navLinks = Array.from(document.querySelectorAll('.nav-menu .nav-link[data-section]'));
-  if (navLinks.length === 0) return;
+// Burger Menu & Collapsible Navigation Drawer
+function initMobileNav() {
+  const burgerBtn = document.getElementById('nav-burger-btn');
+  const drawer = document.getElementById('mobile-nav-drawer');
+  if (!burgerBtn || !drawer) return;
 
-  const sectionIds = navLinks.map(link => link.getAttribute('data-section'));
-  const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+  function setDrawerOpen(isOpen) {
+    drawer.classList.toggle('open', isOpen);
+    burgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    drawer.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+  }
+
+  burgerBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = drawer.classList.contains('open');
+    setDrawerOpen(!isOpen);
+  });
+
+  drawer.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => setDrawerOpen(false));
+  });
+
+  document.addEventListener('click', (e) => {
+    if (drawer.classList.contains('open') && !drawer.contains(e.target) && !burgerBtn.contains(e.target)) {
+      setDrawerOpen(false);
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer.classList.contains('open')) {
+      setDrawerOpen(false);
+      burgerBtn.focus();
+    }
+  });
+}
+
+// Scroll-Spy for Sticky Navbar, Burger Drawer & Floating Side Section Ticks
+function initScrollSpy() {
+  const allSpyLinks = Array.from(document.querySelectorAll('[data-section]'));
+  if (allSpyLinks.length === 0) return;
+
+  const uniqueIds = Array.from(new Set(allSpyLinks.map(el => el.getAttribute('data-section'))));
+  const sections = uniqueIds
+    .filter(id => id !== 'top')
+    .map(id => document.getElementById(id))
+    .filter(Boolean);
 
   function updateActiveNav() {
     const scrollY = window.scrollY || window.pageYOffset;
-    const triggerLine = scrollY + 190; // 70px navbar + 120px lookahead
+    const triggerLine = scrollY + 210; // 70px navbar + 140px lookahead
 
-    let currentId = null;
+    let currentId = 'top';
     for (const sec of sections) {
       if (sec.offsetTop <= triggerLine) {
         currentId = sec.id;
@@ -1195,8 +1235,10 @@ function initScrollSpy() {
       currentId = sections[sections.length - 1].id;
     }
 
-    navLinks.forEach(link => {
-      const isMatch = link.getAttribute('data-section') === currentId;
+    allSpyLinks.forEach(link => {
+      const targetId = link.getAttribute('data-section');
+      // For the top pill .nav-menu (which has no 'top' or 'citation' link), keep 'team' active when in 'citation' if prefered, or match exact section
+      const isMatch = targetId === currentId;
       link.classList.toggle('active', isMatch);
     });
   }

@@ -27,7 +27,7 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 
   <!-- Portal Stylesheet -->
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.css?v=2">
 </head>
 <body id="top">
 
@@ -63,9 +63,77 @@
           </svg>
           <span>GitHub</span>
         </a>
+        <button type="button" id="nav-burger-btn" class="nav-burger-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav-drawer" title="Menu">
+          <span class="burger-bar"></span>
+          <span class="burger-bar"></span>
+          <span class="burger-bar"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Collapsible Burger Menu Drawer for Compact / Tablet / Mobile Viewports -->
+    <div id="mobile-nav-drawer" class="mobile-nav-drawer" aria-hidden="true">
+      <div class="container mobile-nav-inner">
+        <ul class="mobile-nav-list">
+          <li><a href="#top" class="mobile-nav-link" data-section="top"><span class="mobile-nav-idx">00</span> Overview</a></li>
+          <li><a href="#gis-wma" class="mobile-nav-link" data-section="gis-wma"><span class="mobile-nav-idx">01</span> Interactive Map</a></li>
+          <li><a href="#research" class="mobile-nav-link" data-section="research"><span class="mobile-nav-idx">02</span> Research Highlights</a></li>
+          <li><a href="#publications" class="mobile-nav-link" data-section="publications"><span class="mobile-nav-idx">03</span> Publications</a></li>
+          <li><a href="#data-archive" class="mobile-nav-link" data-section="data-archive"><span class="mobile-nav-idx">04</span> PHAIDRA Archive</a></li>
+          <li><a href="#team" class="mobile-nav-link" data-section="team"><span class="mobile-nav-idx">05</span> Research Team</a></li>
+          <li><a href="#citation" class="mobile-nav-link" data-section="citation"><span class="mobile-nav-idx">06</span> Cite Dataset</a></li>
+          <li><a href="imprint.html" class="mobile-nav-link"><span class="mobile-nav-idx">§</span> Imprint &amp; GDPR</a></li>
+        </ul>
+        <div class="mobile-nav-actions">
+          <a href="https://phaidra.univie.ac.at/detail/o:2091644" target="_blank" rel="noopener" class="btn-phaidra-nav">
+            <svg height="15" width="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+            <span>PHAIDRA (o:2091644)</span>
+          </a>
+          <a href="https://github.com/VIENNAVARS" target="_blank" rel="noopener" class="btn-github-nav">
+            <svg height="16" width="16" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+            </svg>
+            <span>GitHub Repository</span>
+          </a>
+        </div>
       </div>
     </div>
   </header>
+
+  <!-- Floating Side Section Navigation (Stacked Horizontal Lines / Scroll-Spy) -->
+  <nav class="side-section-nav" aria-label="Section Navigation">
+    <a href="#top" class="side-nav-tick active" data-section="top" aria-label="Overview">
+      <span class="side-nav-label">Overview</span>
+      <span class="side-nav-line"></span>
+    </a>
+    <a href="#gis-wma" class="side-nav-tick" data-section="gis-wma" aria-label="01 · Interactive Map">
+      <span class="side-nav-label">01 · Map</span>
+      <span class="side-nav-line"></span>
+    </a>
+    <a href="#research" class="side-nav-tick" data-section="research" aria-label="02 · Research Highlights">
+      <span class="side-nav-label">02 · Research</span>
+      <span class="side-nav-line"></span>
+    </a>
+    <a href="#publications" class="side-nav-tick" data-section="publications" aria-label="03 · Publications">
+      <span class="side-nav-label">03 · Publications</span>
+      <span class="side-nav-line"></span>
+    </a>
+    <a href="#data-archive" class="side-nav-tick" data-section="data-archive" aria-label="04 · PHAIDRA Archive">
+      <span class="side-nav-label">04 · Archive</span>
+      <span class="side-nav-line"></span>
+    </a>
+    <a href="#team" class="side-nav-tick" data-section="team" aria-label="05 · Research Team">
+      <span class="side-nav-label">05 · Team</span>
+      <span class="side-nav-line"></span>
+    </a>
+    <a href="#citation" class="side-nav-tick" data-section="citation" aria-label="06 · Citation">
+      <span class="side-nav-label">06 · Citation</span>
+      <span class="side-nav-line"></span>
+    </a>
+  </nav>
 
   <!-- Hero Section: Clean, Focused & Uncluttered -->
   <section class="hero">
@@ -655,6 +723,6 @@
   <script src="data/csokorgasse_data.js"></script>
 
   <!-- Portal Application Logic -->
-  <script src="js/app.js"></script>
+  <script src="js/app.js?v=2"></script>
 </body>
 </html>
