@@ -12,13 +12,8 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/logos/viennavars_emblem.png">
 
-  <!-- Google Fonts: Montserrat, Space Grotesk & JetBrains Mono -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Montserrat:wght@700;800&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- Portal Stylesheet -->
-  <link rel="stylesheet" href="css/styles.css?v=2">
+  <!-- Portal Stylesheet (includes self-hosted local WOFF2 fonts: Space Grotesk, Montserrat & JetBrains Mono) -->
+  <link rel="stylesheet" href="css/styles.css?v=3">
 </head>
 <body id="top">
 
@@ -225,7 +220,7 @@
                 <strong>basemap.at (Magistrat der Stadt Wien / geoland.at):</strong> When viewing the interactive cemetery map with an active base map layer (<em>Gray</em>, <em>Aerial Photo</em>, or <em>Standard</em>), your browser loads map tiles from <code>mapsneu.wien.gv.at</code>, transmitting your IP address to the municipal tile server of the City of Vienna (legal basis: Art. 6(1)(f) GDPR). You may switch the map to <strong>Dark Canvas</strong> at any time to browse the cemetery geometry without loading external map tiles.
               </li>
               <li>
-                <strong>Web Fonts &amp; Open-Source Mapping Library (Google Fonts &amp; unpkg CDN):</strong> For uniform typographic and cartographic rendering, this page loads open-source web fonts (<code>fonts.googleapis.com</code> / <code>fonts.gstatic.com</code>) and the open-source <em>Leaflet</em> library (<code>unpkg.com</code>) on the legal basis of Art. 6(1)(f) GDPR.
+                <strong>Self-Hosted Web Fonts &amp; Open-Source Mapping Library:</strong> All web fonts (<em>Space Grotesk</em>, <em>Montserrat</em>, and <em>JetBrains Mono</em>) are hosted locally on this portal (<code>assets/fonts/</code>); no requests are sent to external font servers (such as Google Fonts). For interactive cartographic rendering on the main portal page, the open-source <em>Leaflet</em> library is loaded via <code>unpkg.com</code> with Subresource Integrity (SRI) verification on the legal basis of Art. 6(1)(f) GDPR.
               </li>
             </ul>
           </div>
